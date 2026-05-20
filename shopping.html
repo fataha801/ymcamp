@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camp Shopping Tracker — June 29–July 2, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest:       #1e3d10;
+    --forest-mid:   #2d5a18;
+    --forest-light: #e4edd8;
+    --pine:         #3a7020;
+    --moss:         #7aab4a;
+    --amber:        #d97706;
+    --amber-light:  #fef3c7;
+    --red:          #b91c1c;
+    --cream:        #f7f5ef;
+    --parchment:    #edeae0;
+    --bark:         #5c4a2a;
+    --stone:        #7c7468;
+    --text:         #1a1a1a;
+    --text-mid:     #4a4a4a;
+    --border:       #d0cfc5;
+    --white:        #ffffff;
+    --shadow:       0 2px 12px rgba(0,0,0,0.09);
+    --radius:       10px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ─────────────────────────────────────── */
+  .hero {
+    background: var(--forest);
+    color: white;
+    padding: 1.75rem 1.25rem 1.4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 28px;
+    background: var(--cream);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+  .hero-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    position: relative;
+  }
+  .hero-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #a8cc7a;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+  .hero h1 {
+    font-family: 'Bitter', serif;
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    font-weight: 900;
+    line-height: 1.1;
+  }
+  .hero-date {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.6);
+    margin-top: 0.3rem;
+    font-weight: 300;
+  }
+
+  /* ── BUDGET SUMMARY CARDS ───────────────────────── */
+  .summary-strip {
+    background: var(--forest-mid);
+    padding: 0.9rem 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.25);
+  }
+  .sum-card {
+    background: rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 0.5rem 0.6rem;
+    text-align: center;
+  }
+  .sum-label {
+    font-size: 0.58rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.55);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .sum-value {
+    font-family: 'Bitter', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #a8cc7a;
+    line-height: 1;
+  }
+  .sum-value.over { color: #fca5a5; }
+  .sum-sub {
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.4);
+    margin-top: 0.15rem;
+    display: block;
+  }
+
+  /* ── MAIN ───────────────────────────────────────── */
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 1.5rem 0.9rem 3rem;
+  }
+
+  /* ── ACTION BAR ─────────────────────────────────── */
+  .actions {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.4rem;
+    align-items: center;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.55rem 1rem;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    font-family: 'Source Sans 3', sans-serif;
+    letter-spacing: 0.03em;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .btn-primary   { background: var(--forest); color: white; }
+  .btn-primary:hover { background: var(--forest-mid); }
+  .btn-success   { background: var(--moss); color: white; }
+  .btn-success:hover { background: var(--pine); }
+  .btn-outline   { background: white; color: var(--forest); border: 2px solid var(--forest); }
+  .btn-outline:hover { background: var(--forest-light); }
+  .btn-ghost     { background: transparent; color: var(--stone); border: 1px solid var(--border); }
+  .btn-ghost:hover { background: white; }
+  .btn-danger    { background: transparent; color: var(--red); border: 1px solid #fecaca; font-size: 0.72rem; padding: 0.45rem 0.7rem; }
+  .btn-danger:hover { background: #fef2f2; }
+
+  /* ── BUDGET SETTER ──────────────────────────────── */
+  .budget-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--amber-light);
+    border: 1px solid #fcd34d;
+    border-radius: 8px;
+    padding: 0.6rem 0.9rem;
+    margin-bottom: 1.4rem;
+  }
+  .budget-row label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--amber);
+    white-space: nowrap;
+  }
+  .budget-input {
+    border: 1px solid #fcd34d;
+    border-radius: 6px;
+    padding: 0.35rem 0.6rem;
+    font-size: 0.9rem;
+    font-family: 'Bitter', serif;
+    font-weight: 700;
+    color: var(--bark);
+    background: white;
+    width: 120px;
+    outline: none;
+  }
+  .budget-input:focus { border-color: var(--amber); }
+  .budget-hint {
+    font-size: 0.7rem;
+    color: var(--amber);
+    opacity: 0.8;
+  }
+
+  /* ── FILTER TABS ────────────────────────────────── */
+  .filter-tabs {
+    display: flex;
+    gap: 0.4rem;
+    overflow-x: auto;
+    padding-bottom: 0.4rem;
+    margin-bottom: 1rem;
+    scrollbar-width: none;
+  }
+  .filter-tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    padding: 0.35rem 0.85rem;
+    border-radius: 99px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: 2px solid var(--border);
+    background: white;
+    color: var(--stone);
+    white-space: nowrap;
+    transition: all 0.15s;
+    letter-spacing: 0.03em;
+  }
+  .tab.active {
+    background: var(--forest);
+    border-color: var(--forest);
+    color: white;
+  }
+
+  /* ── CATEGORY SECTION ───────────────────────────── */
+  .category-block {
+    margin-bottom: 2rem;
+  }
+  .cat-header {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-bottom: 0.7rem;
+  }
+  .cat-icon {
+    width: 26px; height: 26px;
+    background: var(--forest);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; flex-shrink: 0;
+  }
+  .cat-title {
+    font-family: 'Bitter', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--forest);
+  }
+  .cat-subtotal {
+    margin-left: auto;
+    font-family: 'Bitter', serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--moss);
+    background: var(--forest-light);
+    padding: 0.2rem 0.6rem;
+    border-radius: 99px;
+    white-space: nowrap;
+  }
+
+  /* ── ITEM CARD ──────────────────────────────────── */
+  .item-card {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 0.65rem;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: box-shadow 0.2s;
+  }
+  .item-card:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.12); }
+  .item-card.purchased {
+    opacity: 0.6;
+    background: #f9fdf5;
+  }
+
+  .item-main {
+    display: grid;
+    grid-template-columns: 28px 1fr auto;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.7rem 0.75rem;
+  }
+
+  .item-check {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 22px; height: 22px;
+    border: 2px solid var(--border);
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+  .item-check:checked {
+    background: var(--moss);
+    border-color: var(--moss);
+  }
+  .item-check:checked::after {
+    content: '';
+    position: absolute;
+    top: 3px; left: 6px;
+    width: 6px; height: 10px;
+    border: 2px solid white;
+    border-top: none; border-left: none;
+    transform: rotate(45deg);
+  }
+
+  .item-name-wrap {}
+  .item-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .item-card.purchased .item-name {
+    text-decoration: line-through;
+    color: var(--stone);
+  }
+  .item-vendor-tag {
+    display: inline-block;
+    font-size: 0.62rem;
+    background: var(--forest-light);
+    color: var(--forest-mid);
+    border-radius: 4px;
+    padding: 0.1rem 0.4rem;
+    margin-top: 0.2rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .item-vendor-tag:empty { display: none; }
+
+  .item-total {
+    font-family: 'Bitter', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--forest);
+    white-space: nowrap;
+    text-align: right;
+  }
+  .item-total.zero { color: var(--stone); font-size: 0.8rem; }
+
+  /* DETAIL ROW */
+  .item-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0.4rem;
+    padding: 0 0.75rem 0.7rem;
+    border-top: 1px solid var(--parchment);
+    padding-top: 0.6rem;
+  }
+  @media (max-width: 500px) {
+    .item-details { grid-template-columns: 1fr 1fr; }
+  }
+
+  .detail-group { display: flex; flex-direction: column; gap: 0.15rem; }
+  .detail-label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--stone);
+    font-weight: 700;
+  }
+  .detail-input, .detail-select {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.8rem;
+    font-family: 'Source Sans 3', sans-serif;
+    color: var(--text);
+    background: var(--cream);
+    outline: none;
+    width: 100%;
+    transition: border-color 0.15s;
+  }
+  .detail-input:focus, .detail-select:focus { border-color: var(--forest); background: white; }
+  .detail-input.price { font-family: 'Bitter', serif; font-weight: 600; }
+
+  /* notes row */
+  .item-notes-row {
+    padding: 0 0.75rem 0.7rem;
+  }
+  .notes-input {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.78rem;
+    font-family: 'Source Sans 3', sans-serif;
+    color: var(--text-mid);
+    background: var(--cream);
+    resize: none;
+    outline: none;
+    height: 38px;
+  }
+  .notes-input:focus { border-color: var(--forest); background: white; }
+  .notes-input::placeholder { color: #bbb; }
+
+  /* delete btn row */
+  .item-actions-row {
+    padding: 0 0.75rem 0.65rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* ── ADD ITEM FORM ──────────────────────────────── */
+  .add-item-form {
+    background: var(--forest-light);
+    border: 2px dashed var(--moss);
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin-top: 0.5rem;
+  }
+  .add-form-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--forest);
+    margin-bottom: 0.7rem;
+  }
+  .add-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+  }
+  @media (max-width: 480px) { .add-form-grid { grid-template-columns: 1fr; } }
+  .add-form-grid .full { grid-column: 1 / -1; }
+  .add-form-label {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--forest-mid);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .add-form-input, .add-form-select {
+    width: 100%;
+    border: 1px solid #b8d49a;
+    border-radius: 6px;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.82rem;
+    font-family: 'Source Sans 3', sans-serif;
+    background: white;
+    color: var(--text);
+    outline: none;
+  }
+  .add-form-input:focus, .add-form-select:focus { border-color: var(--forest); }
+  .add-form-actions { display: flex; gap: 0.5rem; justify-content: flex-end; }
+
+  /* ── VENDOR LEGEND ──────────────────────────────── */
+  .vendor-legend {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+  }
+  .legend-title {
+    font-family: 'Bitter', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--forest);
+    margin-bottom: 0.65rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .vendor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 0.5rem;
+  }
+  .vendor-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+  }
+  .vendor-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .vendor-name { font-weight: 600; color: var(--text-mid); }
+  .vendor-total { margin-left: auto; font-family: 'Bitter', serif; font-size: 0.78rem; color: var(--forest); }
+
+  /* ── PRINT ──────────────────────────────────────── */
+  @media print {
+    .actions, .add-item-form, .btn, .filter-tabs, .budget-row { display: none !important; }
+    body { background: white; }
+    .summary-strip { position: static; background: var(--forest-mid) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .hero { background: var(--forest) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .item-card { break-inside: avoid; }
+    .detail-input, .detail-select, .notes-input { border: 1px solid #ccc !important; background: white !important; }
+  }
+
+  /* ── EMPTY STATE ────────────────────────────────── */
+  .empty-state {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--stone);
+    font-size: 0.85rem;
+  }
+  .empty-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+
+  /* ── FOOTER ─────────────────────────────────────── */
+  footer {
+    text-align: center;
+    padding: 1.5rem 1rem 2rem;
+    font-size: 0.7rem;
+    color: var(--stone);
+    border-top: 1px solid var(--border);
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  /* Animation */
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .item-card { animation: slideIn 0.2s ease; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hero">
+  <div class="hero-top">
+    <div>
+      <div class="hero-eyebrow">Ward Camp · June 29–July 2, 2026</div>
+      <h1>Shopping Budget Tracker</h1>
+      <div class="hero-date">🛒 Food · Snacks · Gear · Supplies</div>
+    </div>
+  </div>
+</div>
+
+<!-- STICKY SUMMARY -->
+<div class="summary-strip">
+  <div class="sum-card">
+    <span class="sum-label">Budget</span>
+    <span class="sum-value" id="sumBudget">$0</span>
+    <span class="sum-sub">set below</span>
+  </div>
+  <div class="sum-card">
+    <span class="sum-label">Total Cost</span>
+    <span class="sum-value" id="sumTotal">$0.00</span>
+    <span class="sum-sub" id="sumRemain">—</span>
+  </div>
+  <div class="sum-card">
+    <span class="sum-label">Purchased</span>
+    <span class="sum-value" id="sumPurchased">$0.00</span>
+    <span class="sum-sub" id="sumPurchasedCount">0 items</span>
+  </div>
+</div>
+
+<main>
+
+  <!-- ACTION BAR -->
+  <div class="actions">
+    <button class="btn btn-primary" onclick="window.print()">⬇ Export PDF</button>
+    <button class="btn btn-outline" onclick="exportCSV()">📊 Export CSV</button>
+    <button class="btn btn-ghost" onclick="if(confirm('Clear all items?')) clearAll()">↺ Clear All</button>
+  </div>
+
+  <!-- BUDGET SETTER -->
+  <div class="budget-row">
+    <label for="budgetInput">🎯 Total Budget</label>
+    <input id="budgetInput" class="budget-input" type="number" min="0" step="1" placeholder="0.00" oninput="updateSummary()">
+    <span class="budget-hint">Enter your total camp shopping budget</span>
+  </div>
+
+  <!-- VENDOR LEGEND -->
+  <div class="vendor-legend">
+    <div class="legend-title">🏪 Vendor Breakdown</div>
+    <div class="vendor-grid" id="vendorGrid">
+      <div class="empty-state" style="grid-column:1/-1;padding:0.5rem;font-size:0.75rem;">Add items to see vendor totals</div>
+    </div>
+  </div>
+
+  <!-- FILTER TABS -->
+  <div class="filter-tabs">
+    <button class="tab active" onclick="filterCategory('all', this)">All Items</button>
+    <button class="tab" onclick="filterCategory('food', this)">🍖 Food</button>
+    <button class="tab" onclick="filterCategory('snacks', this)">🍪 Snacks</button>
+    <button class="tab" onclick="filterCategory('drinks', this)">🥤 Drinks</button>
+    <button class="tab" onclick="filterCategory('gear', this)">⛺ Gear</button>
+    <button class="tab" onclick="filterCategory('safety', this)">🩹 Safety</button>
+    <button class="tab" onclick="filterCategory('cleaning', this)">🧹 Cleaning</button>
+    <button class="tab" onclick="filterCategory('misc', this)">📦 Misc</button>
+  </div>
+
+  <!-- ITEM LIST -->
+  <div id="itemList"></div>
+
+  <!-- ADD ITEM FORM -->
+  <div class="add-item-form" id="addForm">
+    <div class="add-form-title">➕ Add Shopping Item</div>
+    <div class="add-form-grid">
+      <div class="full">
+        <label class="add-form-label">Item Name *</label>
+        <input class="add-form-input" id="newName" placeholder="e.g. Trail mix, Sunscreen…">
+      </div>
+      <div>
+        <label class="add-form-label">Category</label>
+        <select class="add-form-select" id="newCat">
+          <option value="food">🍖 Food</option>
+          <option value="snacks">🍪 Snacks</option>
+          <option value="drinks">🥤 Drinks</option>
+          <option value="gear">⛺ Gear</option>
+          <option value="safety">🩹 Safety</option>
+          <option value="cleaning">🧹 Cleaning</option>
+          <option value="misc">📦 Misc</option>
+        </select>
+      </div>
+      <div>
+        <label class="add-form-label">Vendor / Store</label>
+        <input class="add-form-input" id="newVendor" list="vendorList" placeholder="e.g. Costco, Walmart…">
+        <datalist id="vendorList">
+          <option value="Costco">
+          <option value="Walmart">
+          <option value="Target">
+          <option value="Sam's Club">
+          <option value="Amazon">
+          <option value="Smith's">
+          <option value="Winco">
+          <option value="Dollar Tree">
+          <option value="REI">
+          <option value="Home Depot">
+          <option value="Macey's">
+        </datalist>
+      </div>
+      <div>
+        <label class="add-form-label">Qty</label>
+        <input class="add-form-input" id="newQty" type="number" min="0" step="0.5" placeholder="1">
+      </div>
+      <div>
+        <label class="add-form-label">Unit</label>
+        <select class="add-form-select" id="newUnit">
+          <option value="each">each</option>
+          <option value="pack">pack</option>
+          <option value="box">box</option>
+          <option value="bag">bag</option>
+          <option value="case">case</option>
+          <option value="lb">lb</option>
+          <option value="oz">oz</option>
+          <option value="gallon">gallon</option>
+          <option value="roll">roll</option>
+          <option value="set">set</option>
+          <option value="pair">pair</option>
+          <option value="bundle">bundle</option>
+        </select>
+      </div>
+      <div>
+        <label class="add-form-label">Unit Price ($)</label>
+        <input class="add-form-input" id="newPrice" type="number" min="0" step="0.01" placeholder="0.00">
+      </div>
+    </div>
+    <div class="add-form-actions">
+      <button class="btn btn-ghost" onclick="clearAddForm()">Clear</button>
+      <button class="btn btn-success" onclick="addItem()">Add Item</button>
+    </div>
+  </div>
+
+</main>
+
+<footer>Ward Camp Shopping Tracker · June 29–July 2, 2026 · "Walk, Not Talk"</footer>
+
+<script>
+// ── DATA ────────────────────────────────────────────────────────────────────
+const VENDOR_COLORS = [
+  '#2d5a18','#d97706','#1d4ed8','#7c3aed','#be123c',
+  '#0e7490','#b45309','#065f46','#4338ca','#9a3412'
+];
+
+let items = [];
+let nextId = 1;
+let currentFilter = 'all';
+
+const CAT_META = {
+  food:     { label: 'Food',     icon: '🍖' },
+  snacks:   { label: 'Snacks',   icon: '🍪' },
+  drinks:   { label: 'Drinks',   icon: '🥤' },
+  gear:     { label: 'Gear',     icon: '⛺' },
+  safety:   { label: 'Safety',   icon: '🩹' },
+  cleaning: { label: 'Cleaning', icon: '🧹' },
+  misc:     { label: 'Misc',     icon: '📦' },
+};
+
+// Seed with starter items pulled from the gear checklist
+const SEED = [
+  // Food
+  { name: 'Group snacks (trail mix, granola bars)', cat: 'snacks', vendor: 'Costco', qty: 2, unit: 'bag', price: 18.99 },
+  { name: 'Electrolyte drink mix / lemonade', cat: 'drinks', vendor: 'Costco', qty: 3, unit: 'pack', price: 9.49 },
+  { name: 'Easy late-night / emergency food (ramen, PB crackers)', cat: 'food', vendor: 'Walmart', qty: 1, unit: 'case', price: 14.00 },
+  { name: 'Napkins', cat: 'misc', vendor: 'Walmart', qty: 1, unit: 'pack', price: 3.49 },
+  // Drinks
+  { name: 'Extra refillable water bottles', cat: 'drinks', vendor: 'Target', qty: 6, unit: 'each', price: 4.99 },
+  { name: 'Electrolyte packets (Liquid IV / similar)', cat: 'drinks', vendor: 'Costco', qty: 1, unit: 'box', price: 24.99 },
+  // Gear
+  { name: 'Trash bags (large)', cat: 'cleaning', vendor: 'Walmart', qty: 2, unit: 'box', price: 7.49 },
+  { name: 'Disposable gloves (cleanup)', cat: 'cleaning', vendor: 'Walmart', qty: 1, unit: 'box', price: 5.99 },
+  { name: 'Dish soap (biodegradable)', cat: 'cleaning', vendor: 'Target', qty: 1, unit: 'each', price: 3.89 },
+  { name: 'Scrub brushes / sponges', cat: 'cleaning', vendor: 'Dollar Tree', qty: 4, unit: 'each', price: 1.25 },
+  // Safety
+  { name: 'Sunscreen SPF 50+', cat: 'safety', vendor: 'Costco', qty: 2, unit: 'each', price: 9.99 },
+  { name: 'Bug spray (DEET)', cat: 'safety', vendor: 'Walmart', qty: 2, unit: 'each', price: 6.49 },
+  { name: 'Baby / body wipes', cat: 'safety', vendor: 'Walmart', qty: 2, unit: 'pack', price: 4.49 },
+  { name: 'Toilet paper backup', cat: 'misc', vendor: 'Costco', qty: 1, unit: 'pack', price: 12.99 },
+  // Snacks
+  { name: 'Marshmallows (campfire)', cat: 'snacks', vendor: 'Walmart', qty: 2, unit: 'bag', price: 2.99 },
+  { name: 'Chips / crackers variety', cat: 'snacks', vendor: 'Costco', qty: 1, unit: 'case', price: 13.99 },
+  { name: 'Granola / energy bars', cat: 'snacks', vendor: 'Costco', qty: 2, unit: 'box', price: 11.99 },
+];
+
+function seed() {
+  SEED.forEach(s => {
+    items.push({ id: nextId++, purchased: false, notes: '', ...s });
+  });
+}
+
+// ── RENDER ──────────────────────────────────────────────────────────────────
+function itemTotal(item) {
+  const q = parseFloat(item.qty) || 0;
+  const p = parseFloat(item.price) || 0;
+  return q * p;
+}
+
+function fmt(n) {
+  return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+function renderAll() {
+  const list = document.getElementById('itemList');
+  const cats = Object.keys(CAT_META);
+  
+  const filtered = currentFilter === 'all'
+    ? items
+    : items.filter(i => i.cat === currentFilter);
+
+  if (filtered.length === 0) {
+    list.innerHTML = `<div class="empty-state"><div class="empty-icon">🛒</div>No items yet. Add one below!</div>`;
+    updateSummary();
+    return;
+  }
+
+  // Group by category
+  const grouped = {};
+  cats.forEach(c => grouped[c] = []);
+  filtered.forEach(item => {
+    if (grouped[item.cat]) grouped[item.cat].push(item);
+  });
+
+  let html = '';
+  cats.forEach(cat => {
+    if (grouped[cat].length === 0) return;
+    const catTotal = grouped[cat].reduce((s, i) => s + itemTotal(i), 0);
+    const meta = CAT_META[cat];
+    html += `
+      <div class="category-block" data-cat="${cat}">
+        <div class="cat-header">
+          <div class="cat-icon">${meta.icon}</div>
+          <div class="cat-title">${meta.label}</div>
+          <div class="cat-subtotal">${fmt(catTotal)}</div>
+        </div>
+        ${grouped[cat].map(item => renderItem(item)).join('')}
+      </div>`;
+  });
+
+  list.innerHTML = html;
+  updateSummary();
+}
+
+function renderItem(item) {
+  const tot = itemTotal(item);
+  const totStr = tot > 0 ? fmt(tot) : '—';
+  const totClass = tot > 0 ? '' : 'zero';
+  return `
+    <div class="item-card ${item.purchased ? 'purchased' : ''}" id="card-${item.id}">
+      <div class="item-main">
+        <input type="checkbox" class="item-check" ${item.purchased ? 'checked' : ''}
+          onchange="togglePurchased(${item.id}, this.checked)">
+        <div class="item-name-wrap">
+          <div class="item-name">${escHtml(item.name)}</div>
+          <span class="item-vendor-tag">${escHtml(item.vendor || '')}</span>
+        </div>
+        <div class="item-total ${totClass}">${totStr}</div>
+      </div>
+      <div class="item-details">
+        <div class="detail-group">
+          <span class="detail-label">Item Name</span>
+          <input class="detail-input" value="${escAttr(item.name)}"
+            onchange="updateField(${item.id},'name',this.value)">
+        </div>
+        <div class="detail-group">
+          <span class="detail-label">Vendor / Store</span>
+          <input class="detail-input" list="vendorList" value="${escAttr(item.vendor||'')}"
+            onchange="updateField(${item.id},'vendor',this.value)">
+        </div>
+        <div class="detail-group">
+          <span class="detail-label">Qty</span>
+          <input class="detail-input" type="number" min="0" step="0.5" value="${item.qty||''}"
+            oninput="updateField(${item.id},'qty',this.value)">
+        </div>
+        <div class="detail-group">
+          <span class="detail-label">Unit</span>
+          <select class="detail-select" onchange="updateField(${item.id},'unit',this.value)">
+            ${['each','pack','box','bag','case','lb','oz','gallon','roll','set','pair','bundle']
+              .map(u => `<option ${item.unit===u?'selected':''}>${u}</option>`).join('')}
+          </select>
+        </div>
+        <div class="detail-group">
+          <span class="detail-label">Unit Price ($)</span>
+          <input class="detail-input price" type="number" min="0" step="0.01" value="${item.price||''}"
+            oninput="updateField(${item.id},'price',this.value)">
+        </div>
+        <div class="detail-group">
+          <span class="detail-label">Category</span>
+          <select class="detail-select" onchange="updateField(${item.id},'cat',this.value)">
+            ${Object.entries(CAT_META).map(([k,v])=>
+              `<option value="${k}" ${item.cat===k?'selected':''}>${v.icon} ${v.label}</option>`
+            ).join('')}
+          </select>
+        </div>
+        <div class="detail-group">
+          <span class="detail-label">Line Total</span>
+          <input class="detail-input price" readonly value="${tot > 0 ? tot.toFixed(2) : ''}"
+            placeholder="—" style="background:#f0f7e8;color:var(--forest);font-weight:700;">
+        </div>
+      </div>
+      <div class="item-notes-row">
+        <textarea class="notes-input" placeholder="Notes (aisle, substitution, priority…)"
+          oninput="updateField(${item.id},'notes',this.value)">${escHtml(item.notes||'')}</textarea>
+      </div>
+      <div class="item-actions-row">
+        <button class="btn btn-danger" onclick="deleteItem(${item.id})">🗑 Remove</button>
+      </div>
+    </div>`;
+}
+
+// ── ACTIONS ─────────────────────────────────────────────────────────────────
+function togglePurchased(id, val) {
+  const item = items.find(i => i.id === id);
+  if (item) { item.purchased = val; renderAll(); save(); }
+}
+
+function updateField(id, field, val) {
+  const item = items.find(i => i.id === id);
+  if (!item) return;
+  item[field] = (field === 'qty' || field === 'price') ? (parseFloat(val) || 0) : val;
+  // Live update total display without full re-render
+  const card = document.getElementById('card-' + id);
+  if (card) {
+    const tot = itemTotal(item);
+    const totEl = card.querySelector('.item-total');
+    if (totEl) { totEl.textContent = tot > 0 ? fmt(tot) : '—'; totEl.className = 'item-total' + (tot > 0 ? '' : ' zero'); }
+    const lineEl = card.querySelectorAll('.detail-input.price')[1];
+    if (lineEl) lineEl.value = tot > 0 ? tot.toFixed(2) : '';
+    const tagEl = card.querySelector('.item-vendor-tag');
+    if (tagEl && field === 'vendor') tagEl.textContent = val;
+    const nameEl = card.querySelector('.item-name');
+    if (nameEl && field === 'name') nameEl.textContent = val;
+  }
+  updateSummary();
+  save();
+}
+
+function deleteItem(id) {
+  items = items.filter(i => i.id !== id);
+  renderAll();
+  save();
+}
+
+function addItem() {
+  const name = document.getElementById('newName').value.trim();
+  if (!name) { document.getElementById('newName').focus(); return; }
+  items.push({
+    id: nextId++,
+    name,
+    cat:       document.getElementById('newCat').value,
+    vendor:    document.getElementById('newVendor').value.trim(),
+    qty:       parseFloat(document.getElementById('newQty').value) || 1,
+    unit:      document.getElementById('newUnit').value,
+    price:     parseFloat(document.getElementById('newPrice').value) || 0,
+    purchased: false,
+    notes:     '',
+  });
+  clearAddForm();
+  renderAll();
+  save();
+  // scroll to new item
+  setTimeout(() => {
+    const cards = document.querySelectorAll('.item-card');
+    if (cards.length) cards[cards.length-1].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 50);
+}
+
+function clearAddForm() {
+  ['newName','newVendor','newQty','newPrice'].forEach(id => document.getElementById(id).value = '');
+}
+
+function filterCategory(cat, btn) {
+  currentFilter = cat;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  renderAll();
+}
+
+function clearAll() {
+  items = [];
+  nextId = 1;
+  renderAll();
+  save();
+}
+
+// ── SUMMARY ──────────────────────────────────────────────────────────────────
+function updateSummary() {
+  const total = items.reduce((s, i) => s + itemTotal(i), 0);
+  const purchasedTotal = items.filter(i => i.purchased).reduce((s, i) => s + itemTotal(i), 0);
+  const purchasedCount = items.filter(i => i.purchased).length;
+  const budget = parseFloat(document.getElementById('budgetInput').value) || 0;
+  const remain = budget - total;
+
+  document.getElementById('sumBudget').textContent = budget > 0 ? fmt(budget) : '$—';
+  document.getElementById('sumTotal').textContent = fmt(total);
+  document.getElementById('sumTotal').className = 'sum-value' + (budget > 0 && total > budget ? ' over' : '');
+  document.getElementById('sumPurchased').textContent = fmt(purchasedTotal);
+  document.getElementById('sumPurchasedCount').textContent = purchasedCount + ' item' + (purchasedCount !== 1 ? 's' : '');
+
+  if (budget > 0) {
+    const over = total > budget;
+    document.getElementById('sumRemain').textContent = over
+      ? fmt(total - budget) + ' over'
+      : fmt(remain) + ' left';
+    document.getElementById('sumRemain').style.color = over ? '#fca5a5' : 'rgba(255,255,255,0.4)';
+  } else {
+    document.getElementById('sumRemain').textContent = '—';
+  }
+
+  // Vendor breakdown
+  const vendorMap = {};
+  const vendorColorMap = {};
+  let colorIdx = 0;
+  items.forEach(item => {
+    const v = item.vendor || 'Unassigned';
+    if (!vendorMap[v]) {
+      vendorMap[v] = 0;
+      vendorColorMap[v] = VENDOR_COLORS[colorIdx++ % VENDOR_COLORS.length];
+    }
+    vendorMap[v] += itemTotal(item);
+  });
+
+  const vg = document.getElementById('vendorGrid');
+  const vendors = Object.entries(vendorMap).sort((a,b) => b[1] - a[1]);
+  if (vendors.length === 0) {
+    vg.innerHTML = `<div style="grid-column:1/-1;font-size:0.75rem;color:var(--stone);padding:0.25rem 0">Add items to see vendor totals</div>`;
+  } else {
+    vg.innerHTML = vendors.map(([v, t]) => `
+      <div class="vendor-item">
+        <div class="vendor-dot" style="background:${vendorColorMap[v]}"></div>
+        <span class="vendor-name">${escHtml(v)}</span>
+        <span class="vendor-total">${fmt(t)}</span>
+      </div>`).join('');
+  }
+}
+
+// ── EXPORT CSV ───────────────────────────────────────────────────────────────
+function exportCSV() {
+  const rows = [['Item','Category','Vendor','Qty','Unit','Unit Price','Line Total','Purchased','Notes']];
+  items.forEach(i => rows.push([
+    i.name, CAT_META[i.cat]?.label || i.cat, i.vendor || '',
+    i.qty, i.unit, (parseFloat(i.price)||0).toFixed(2),
+    itemTotal(i).toFixed(2), i.purchased ? 'Yes' : 'No', i.notes || ''
+  ]));
+  const csv = rows.map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url;
+  a.download = 'camp-shopping-tracker.csv'; a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ── PERSISTENCE ───────────────────────────────────────────────────────────────
+function save() {
+  try { sessionStorage.setItem('campShop', JSON.stringify({ items, nextId })); } catch(e) {}
+}
+function load() {
+  try {
+    const d = JSON.parse(sessionStorage.getItem('campShop') || 'null');
+    if (d && d.items) { items = d.items; nextId = d.nextId || items.length + 1; return true; }
+  } catch(e) {}
+  return false;
+}
+
+// Escape helpers
+function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function escAttr(s) { return String(s).replace(/"/g,'&quot;'); }
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+if (!load()) seed();
+renderAll();
+document.getElementById('budgetInput').addEventListener('input', updateSummary);
+</script>
+</body>
+</html>
