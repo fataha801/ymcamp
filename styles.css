@@ -1,0 +1,353 @@
+/* ============================================================
+   Lehi Utah 3rd Stake Young Men Camp 2026 — Stylesheet
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f0f4f8;
+  color: #1a202c;
+  line-height: 1.6;
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Full-page blended camp background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(rgba(240, 244, 248, 0.42), rgba(240, 244, 248, 0.48)),
+    url("fun-camp.png") center center / cover no-repeat;
+  z-index: -2;
+}
+
+/* Optional extra soft tint for polish */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(26, 71, 49, 0.10),
+    rgba(56, 161, 105, 0.06)
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ---- Header ---- */
+header {
+  background: linear-gradient(135deg, #1a4731 0%, #276749 60%, #38a169 100%);
+  color: #fff;
+  padding: 2.5rem 1rem 2rem;
+  text-align: center;
+}
+
+.header-inner h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.25rem;
+}
+
+.stake-name {
+  font-size: 1.15rem;
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+/* ---- Urgent Banner ---- */
+.banner-urgent {
+  background: #c53030;
+  color: #fff;
+  text-align: center;
+  padding: 0.9rem 1rem;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.banner-icon {
+  font-size: 1.3rem;
+}
+
+/* ---- Main layout ---- */
+main {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ---- Cards ---- */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.75rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.card h2 {
+  font-size: 1.4rem;
+  color: #276749;
+  margin-bottom: 0.85rem;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0.5rem;
+}
+
+.card h3 {
+  font-size: 1.05rem;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  margin-bottom: 0.75rem;
+}
+
+/* ---- Fee card ---- */
+.card-fee {
+  border-left: 6px solid #c53030;
+}
+
+.fee-amount {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #c53030;
+  margin: 0.5rem 0 0.75rem;
+  line-height: 1;
+}
+
+.fee-amount .per-person {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #4a5568;
+  vertical-align: middle;
+}
+
+.deadline-reminder {
+  background: #fff5f5;
+  border: 2px solid #fc8181;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  font-size: 1rem;
+}
+
+/* ---- Info list ---- */
+.info-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-top: 0.5rem;
+}
+
+.info-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+
+/* ---- T-shirt size tables ---- */
+.size-tables {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin: 1rem 0 0.75rem;
+}
+
+@media (max-width: 560px) {
+  .size-tables {
+    grid-template-columns: 1fr;
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+thead tr {
+  background: #edf2f7;
+}
+
+th, td {
+  padding: 0.45rem 0.75rem;
+  text-align: left;
+  border: 1px solid #e2e8f0;
+}
+
+th {
+  font-weight: 700;
+  color: #2d3748;
+}
+
+tbody tr:nth-child(even) {
+  background: #f7fafc;
+}
+
+.size-note {
+  font-size: 0.9rem;
+  color: #718096;
+  font-style: italic;
+  margin-top: 0;
+}
+
+/* ---- Steps list ---- */
+.steps {
+  padding-left: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 0.5rem;
+}
+
+.steps li {
+  padding-left: 0.25rem;
+}
+
+/* ---- Questions card ---- */
+.card-questions {
+  background: #ebf8ff;
+  border-left: 6px solid #3182ce;
+}
+
+.card-questions h2 {
+  color: #2b6cb0;
+  border-bottom-color: #bee3f8;
+}
+
+/* ---- Footer ---- */
+footer {
+  text-align: center;
+  padding: 1.25rem 1rem;
+  background: #2d3748;
+  color: #a0aec0;
+  font-size: 0.88rem;
+}
+
+
+/* ---- Registration form ---- */
+.card-register {
+  border-left: 6px solid #38a169;
+}
+
+.registration-form {
+  margin-top: 1rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-field label {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.form-field input,
+.form-field select {
+  border: 1px solid #cbd5e0;
+  border-radius: 8px;
+  padding: 0.8rem 0.9rem;
+  font: inherit;
+  background: #fff;
+}
+
+.form-field input:focus,
+.form-field select:focus {
+  outline: 3px solid rgba(56, 161, 105, 0.18);
+  border-color: #38a169;
+}
+
+.checkbox-group {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.checkbox-row input {
+  margin-top: 0.2rem;
+  transform: scale(1.15);
+}
+
+.form-actions {
+  margin-top: 1.25rem;
+}
+
+.register-button {
+  background: linear-gradient(135deg, #276749 0%, #38a169 100%);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.9rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(39, 103, 73, 0.18);
+}
+
+.register-button:hover {
+  filter: brightness(1.03);
+}
+
+.register-button:focus {
+  outline: 3px solid rgba(56, 161, 105, 0.25);
+  outline-offset: 2px;
+}
+
+.form-message {
+  margin-top: 1rem;
+  font-weight: 600;
+  min-height: 1.5rem;
+  color: #276749;
+}
