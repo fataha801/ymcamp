@@ -139,6 +139,91 @@
       border: 1px solid #e8e2dc;
     }
 
+    /* ── PROVIDED SECTION (info-only, no checkboxes) ── */
+    .section.provided-section {
+      background: #fff;
+      border: 1.5px solid #b2c8e6;
+      box-shadow: 0 2px 16px rgba(37,99,180,0.08);
+    }
+
+    .section.provided-section .section-header {
+      background: linear-gradient(135deg, #e8f0fb 0%, #ddeaf8 100%);
+      border-bottom: 1px solid #c4d9f0;
+    }
+
+    .section.provided-section .section-title {
+      color: #1a5fa8;
+    }
+
+    .section.provided-section .section-badge {
+      background: #ddeaf8;
+      color: #1a5fa8;
+      border-color: #90b8e0;
+    }
+
+    .section.provided-section .chevron {
+      color: #6da3d8;
+    }
+
+    .provided-note {
+      background: linear-gradient(135deg, #eef5fd 0%, #f5f9ff 100%);
+      padding: 10px 18px 12px;
+      border-bottom: 1px solid #ddeaf8;
+    }
+
+    .provided-note p {
+      color: #1a5fa8;
+      font-size: 0.78rem;
+      font-style: italic;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .provided-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      padding: 12px 18px;
+      border-bottom: 1px solid #edf3fb;
+    }
+
+    .provided-item:last-child { border-bottom: none; }
+
+    .provided-bullet {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    .provided-bullet span {
+      color: #fff;
+      font-size: 11px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .provided-item-text {
+      flex: 1;
+      color: #1e3a5f;
+      font-size: 0.91rem;
+      line-height: 1.45;
+    }
+
+    .provided-item-text .item-optional {
+      font-size: 0.73rem;
+      color: #6a9ac4;
+      font-style: italic;
+      margin-left: 3px;
+    }
+
+    /* ── SECTION CARDS (shared) ── */
     .section-header {
       padding: 16px 18px;
       display: flex;
@@ -445,6 +530,45 @@
 
   <main>
 
+    <!-- PROVIDED BY WARD LEADERS -->
+    <div class="section provided-section" id="section-provided">
+      <div class="section-header" onclick="toggleSection('provided')" style="border-bottom-color:#c4d9f0;">
+        <span class="section-icon">⛪</span>
+        <span class="section-title" style="color:#1a5fa8;">Provided by Ward Leaders</span>
+        <span class="section-badge" style="background:#ddeaf8;color:#1a5fa8;border-color:#90b8e0;">No need to bring!</span>
+        <span class="chevron" style="color:#6da3d8;">▾</span>
+      </div>
+      <div class="section-items" id="items-provided">
+        <div class="provided-note">
+          <p>✅ These items will be taken care of — you don't need to bring them!</p>
+        </div>
+        <div class="provided-item">
+          <div class="provided-bullet"><span>✓</span></div>
+          <div class="provided-item-text">Standard first aid kit <span class="item-optional">(includes ibuprofen &amp; Tylenol)</span></div>
+        </div>
+        <div class="provided-item">
+          <div class="provided-bullet"><span>✓</span></div>
+          <div class="provided-item-text">Mosquito &amp; insect repellant spray</div>
+        </div>
+        <div class="provided-item">
+          <div class="provided-bullet"><span>✓</span></div>
+          <div class="provided-item-text">Tent</div>
+        </div>
+        <div class="provided-item">
+          <div class="provided-bullet"><span>✓</span></div>
+          <div class="provided-item-text">Meals provided <span class="item-optional">(breakfast, lunch &amp; dinner)</span></div>
+        </div>
+        <div class="provided-item">
+          <div class="provided-bullet"><span>✓</span></div>
+          <div class="provided-item-text">In-between snacks</div>
+        </div>
+        <div class="provided-item">
+          <div class="provided-bullet"><span>✓</span></div>
+          <div class="provided-item-text">Drinking water</div>
+        </div>
+      </div>
+    </div>
+
     <!-- CLOTHES -->
     <div class="section" id="section-clothes">
       <div class="section-header" onclick="toggleSection('clothes')">
@@ -507,7 +631,7 @@
         <span class="section-icon">🪥</span>
         <span class="section-title">Personal Items</span>
         <span class="section-done">✅</span>
-        <span class="section-badge" id="badge-personal">0/8</span>
+        <span class="section-badge" id="badge-personal">0/6</span>
         <span class="chevron">▾</span>
       </div>
       <div class="section-items" id="items-personal">
@@ -568,6 +692,15 @@
       gear:     { label: 'GEAR',           icon: '🎒' },
       personal: { label: 'PERSONAL ITEMS', icon: '🪥' },
     };
+
+    const providedItems = [
+      'Standard first aid kit (includes ibuprofen & Tylenol)',
+      'Mosquito & insect repellant spray',
+      'Tent',
+      'Meals provided (breakfast, lunch & dinner)',
+      'In-between snacks',
+      'Drinking water',
+    ];
 
     function toggleItem(el) {
       el.classList.toggle('checked');
@@ -688,13 +821,60 @@
       doc.text(`Packed: ${done} / ${total} items  (${pct}% complete)`, margin, y + 8);
       y += 18;
 
+      // PROVIDED BY WARD LEADERS section
+      doc.setFillColor(37, 99, 180);
+      doc.roundedRect(margin - 4, y, colW + 8, 10, 3, 3, 'F');
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(9.5);
+      doc.setTextColor(255, 255, 255);
+      doc.text('PROVIDED BY WARD LEADERS', margin, y + 7);
+      doc.setFontSize(8);
+      doc.text('No need to bring!', pageW - margin, y + 7, { align: 'right' });
+      y += 13;
+
+      // Note row
+      doc.setFillColor(238, 245, 253);
+      doc.roundedRect(margin - 2, y - 1, colW + 4, 9, 2, 2, 'F');
+      doc.setFont('helvetica', 'italic');
+      doc.setFontSize(8);
+      doc.setTextColor(26, 95, 168);
+      doc.text('These items will be taken care of — you don\'t need to bring them!', margin + 3, y + 5.5);
+      y += 10;
+
+      providedItems.forEach(text => {
+        doc.setFillColor(245, 249, 255);
+        doc.roundedRect(margin - 2, y - 1, colW + 4, 9, 2, 2, 'F');
+
+        doc.setFillColor(37, 99, 180);
+        doc.circle(margin + 3, y + 3.5, 3, 'F');
+        doc.setTextColor(255, 255, 255);
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(7);
+        doc.text('✓', margin + 1.2, y + 5.2);
+
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(30, 58, 95);
+        doc.text(text, margin + 9, y + 5.5);
+        y += 10;
+
+        if (y > pageH - 22) {
+          doc.addPage();
+          doc.setFillColor(242, 237, 232);
+          doc.rect(0, 0, pageW, pageH, 'F');
+          y = margin;
+        }
+      });
+
+      y += 5;
+
+      // Checkable sections
       Object.keys(sections).forEach(id => {
         const container = document.getElementById('items-' + id);
         const items = container.querySelectorAll('.item');
         const sectionChecked = container.querySelectorAll('.item.checked').length;
         const sectionTotal = items.length;
 
-        // Section header
         doc.setFillColor(46, 125, 82);
         doc.roundedRect(margin - 4, y, colW + 8, 10, 3, 3, 'F');
         doc.setFont('helvetica', 'bold');
@@ -764,7 +944,7 @@
     Object.keys(sections).forEach(id => {
       document.getElementById('items-' + id).style.maxHeight = 'none';
     });
+    document.getElementById('items-provided').style.maxHeight = 'none';
   </script>
 </body>
 </html>
-
