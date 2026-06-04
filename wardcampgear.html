@@ -1,1 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ward Camp Gear — June 29–July 2, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #2d5016;
+    --forest-mid: #3d6b1f;
+    --forest-light: #e8f0de;
+    --bark: #6b4c2a;
+    --pine: #4a7c2f;
+    --cream: #faf8f3;
+    --warm-white: #ffffff;
+    --stone: #8b8378;
+    --text-dark: #1e1e1e;
+    --text-mid: #444;
+    --border: #c8d8b0;
+    --check-active: #3d6b1f;
+    --section-gap: 2.5rem;
+  }
 
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    min-height: 100vh;
+  }
+
+  /* HERO HEADER */
+  .hero {
+    background: var(--forest);
+    color: white;
+    padding: 2rem 1.25rem 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 30px,
+      rgba(255,255,255,0.025) 30px,
+      rgba(255,255,255,0.025) 60px
+    );
+  }
+  .hero-eyebrow {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #a8cc7a;
+    margin-bottom: 0.4rem;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 5vw, 2.6rem);
+    font-weight: 900;
+    line-height: 1.15;
+    position: relative;
+    margin-bottom: 0.5rem;
+  }
+  .hero-date {
+    font-size: 0.85rem;
+    color: #c8e0a0;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    position: relative;
+  }
+  .hero-note {
+    margin-top: 0.9rem;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.5;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+  }
+
+  /* PROGRESS BAR */
+  .progress-bar-wrap {
+    background: var(--forest-mid);
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  .progress-label {
+    font-size: 0.75rem;
+    color: #c8e0a0;
+    white-space: nowrap;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .progress-track {
+    flex: 1;
+    height: 6px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: #a8cc7a;
+    border-radius: 3px;
+    width: 0%;
+    transition: width 0.4s ease;
+  }
+  .progress-count {
+    font-size: 0.75rem;
+    color: white;
+    white-space: nowrap;
+    min-width: 3.5rem;
+    text-align: right;
+  }
+
+  /* MAIN LAYOUT */
+  main {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  /* SECTION */
+  .section {
+    margin-bottom: var(--section-gap);
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+  }
+  .section-icon {
+    width: 28px;
+    height: 28px;
+    background: var(--forest);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--forest);
+  }
+  .section-count {
+    margin-left: auto;
+    font-size: 0.7rem;
+    color: var(--stone);
+    background: var(--forest-light);
+    border-radius: 99px;
+    padding: 0.2rem 0.55rem;
+    white-space: nowrap;
+    font-weight: 700;
+  }
+
+  /* TABLE */
+  .gear-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+  }
+  .gear-table thead tr {
+    background: var(--forest);
+    color: white;
+  }
+  .gear-table thead th {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+  }
+  .gear-table thead th:last-child {
+    text-align: right;
+  }
+  .gear-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+  .gear-table tbody tr:last-child { border-bottom: none; }
+  .gear-table tbody tr:hover { background: var(--forest-light); }
+  .gear-table tbody tr.checked {
+    background: #f0f7e8;
+    opacity: 0.7;
+  }
+  .gear-table tbody tr.checked .item-name {
+    text-decoration: line-through;
+    color: var(--stone);
+  }
+
+  .col-check { width: 44px; padding: 0.65rem 0.5rem 0.65rem 0.75rem; }
+  .col-item { padding: 0.65rem 0.5rem; }
+  .col-qty { width: 80px; padding: 0.65rem 0.75rem; text-align: right; }
+
+  .item-name {
+    font-size: 0.875rem;
+    line-height: 1.35;
+    color: var(--text-dark);
+    transition: color 0.2s, text-decoration 0.2s;
+  }
+  .qty-badge {
+    font-size: 0.72rem;
+    color: var(--stone);
+    font-weight: 400;
+    text-align: right;
+    line-height: 1.3;
+  }
+
+  /* CUSTOM CHECKBOX */
+  .custom-check {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--border);
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.18s;
+    flex-shrink: 0;
+    display: block;
+  }
+  .custom-check:checked {
+    background: var(--check-active);
+    border-color: var(--check-active);
+  }
+  .custom-check:checked::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 6px;
+    width: 6px;
+    height: 10px;
+    border: 2px solid white;
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg);
+  }
+  .custom-check:hover { border-color: var(--pine); }
+
+  /* ASSIGNED INPUT */
+  .assigned-input {
+    font-size: 0.75rem;
+    border: none;
+    border-bottom: 1px dashed var(--border);
+    background: transparent;
+    color: var(--text-mid);
+    width: 100%;
+    padding: 2px 0;
+    outline: none;
+    font-family: 'Lato', sans-serif;
+  }
+  .assigned-input:focus {
+    border-bottom-color: var(--forest);
+  }
+  .assigned-input::placeholder { color: #ccc; }
+
+  /* ACTIONS BAR */
+  .actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.1rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 0.04em;
+    transition: all 0.18s;
+  }
+  .btn-primary {
+    background: var(--forest);
+    color: white;
+  }
+  .btn-primary:hover { background: var(--forest-mid); }
+  .btn-secondary {
+    background: white;
+    color: var(--forest);
+    border: 2px solid var(--forest);
+  }
+  .btn-secondary:hover { background: var(--forest-light); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--stone);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover { background: white; }
+
+  /* TIP BOX */
+  .tip-box {
+    background: var(--forest-light);
+    border-left: 4px solid var(--forest);
+    border-radius: 0 8px 8px 0;
+    padding: 0.85rem 1rem;
+    font-size: 0.8rem;
+    color: var(--forest);
+    line-height: 1.5;
+    margin-top: 1.5rem;
+  }
+  .tip-box strong { font-weight: 700; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 1.5rem 1rem 2rem;
+    font-size: 0.72rem;
+    color: var(--stone);
+    border-top: 1px solid var(--border);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* PRINT / PDF */
+  @media print {
+    .progress-bar-wrap, .actions, .btn { display: none !important; }
+    body { background: white; }
+    .hero { background: var(--forest) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .gear-table thead tr { background: var(--forest) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section { break-inside: avoid; }
+    .assigned-input { border-bottom: 1px solid #ccc; }
+    main { padding: 0.5rem; }
+  }
+
+  @media (max-width: 480px) {
+    .col-qty { width: 65px; }
+    .item-name { font-size: 0.82rem; }
+    .qty-badge { font-size: 0.68rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-eyebrow">Ward Leader Group Gear Sign-Up Sheet</div>
+  <h1>Camp Gear Checklist</h1>
+  <div class="hero-date">🌲 June 29 – July 2, 2026 &nbsp;·&nbsp; "Walk, Not Talk"</div>
+  <div class="hero-note">Shared ward equipment only. Personal sleeping gear and individual clothing/toiletries are not included. Mess kits encouraged to reduce disposable waste. Firewood only if conditions permit.</div>
+</div>
+
+<div class="progress-bar-wrap">
+  <span class="progress-label">Packed</span>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <span class="progress-count" id="progressCount">0 / 0</span>
+</div>
+
+<main>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="exportPDF()">⬇ Export PDF</button>
+    <button class="btn btn-secondary" onclick="printPage()">🖨 Print</button>
+    <button class="btn btn-ghost" onclick="clearAll()">↺ Clear All</button>
+  </div>
+
+  <!-- SECTION 1: Camp Setup & Shelter -->
+  <div class="section" data-section="setup">
+    <div class="section-header">
+      <div class="section-icon">⛺</div>
+      <h2 class="section-title">Camp Setup &amp; Shelter</h2>
+      <span class="section-count" id="count-setup">0/12</span>
+    </div>
+    <table class="gear-table">
+      <thead><tr>
+        <th></th>
+        <th>Item</th>
+        <th>Qty / Assigned</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="setup"></td><td class="col-item"><div class="item-name">Large tents (6-man or larger)</div></td><td class="col-qty"><div class="qty-badge">—</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="setup"></td><td class="col-item"><div class="item-name">Ground tarps / footprints for tents</div></td><td class="col-qty"><div class="qty-badge">—</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="setup"></td><td class="col-item"><div class="item-name">Easy-up canopies</div></td><td class="col-qty"><div class="qty-badge">2–3 per ward</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="setup"></td><td class="col-item"><div class="item-name">Extra stakes and mallet</div></td><td class="col-qty"><div class="qty-badge">1 set</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="setup"></td><td class="col-item"><div class="item-name">Tent repair kit</div></td><td class="col-qty"><div class="qty-badge">1</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="setup"></td><td class="col-item"><div class="item-name">Folding camp chairs</div></td><td class="col-qty"><div class="qty-badge">as needed</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="setup"></td><td class="col-item"><div class="item-name">Folding tables</div></td><td class="col-qty"><div class="qty-badge">2–4</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="setup"></td><td class="col-item"><div class="item-name">Lanterns or hanging camp lights</div></td><td class="col-qty"><div class="qty-badge">2–4</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="setup"></td><td class="col-item"><div class="item-name">Battery-powered string lights or area lights</div></td><td class="col-qty"><div class="qty-badge">1–2 sets</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="setup"></td><td class="col-item"><div class="item-name">Extra batteries (assorted)</div></td><td class="col-qty"><div class="qty-badge">assorted</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="setup"></td><td class="col-item"><div class="item-name">Clothespins or clips for tarps/tablecloths</div></td><td class="col-qty"><div class="qty-badge">1 pack</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="setup"></td><td class="col-item"><div class="item-name">Tablecloths with clips for picnic tables</div></td><td class="col-qty"><div class="qty-badge">1–2</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 2: Food, Water & Camp Use -->
+  <div class="section" data-section="food">
+    <div class="section-header">
+      <div class="section-icon">🍽</div>
+      <h2 class="section-title">Food, Water &amp; Camp Use</h2>
+      <span class="section-count" id="count-food">0/13</span>
+    </div>
+    <table class="gear-table">
+      <thead><tr><th></th><th>Item</th><th>Qty / Assigned</th></tr></thead>
+      <tbody>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="food"></td><td class="col-item"><div class="item-name">Food storage bins with lids</div></td><td class="col-qty"><div class="qty-badge">2–4</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="food"></td><td class="col-item"><div class="item-name">Group snacks</div></td><td class="col-qty"><div class="qty-badge">—</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="food"></td><td class="col-item"><div class="item-name">Easy late-night or emergency food options</div></td><td class="col-qty"><div class="qty-badge">—</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="food"></td><td class="col-item"><div class="item-name">Mess kits (strongly encouraged per leader/camper)</div></td><td class="col-qty"><div class="qty-badge">per person</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="food"></td><td class="col-item"><div class="item-name">Cups / mugs</div></td><td class="col-qty"><div class="qty-badge">as needed</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="food"></td><td class="col-item"><div class="item-name">Eating utensils (if not in mess kits)</div></td><td class="col-qty"><div class="qty-badge">as needed</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="food"></td><td class="col-item"><div class="item-name">Napkins</div></td><td class="col-qty"><div class="qty-badge">1 pack</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="food"></td><td class="col-item"><div class="item-name">Large water containers/coolers for water or drink mix</div></td><td class="col-qty"><div class="qty-badge">2–3</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="food"></td><td class="col-item"><div class="item-name">Water jugs to transport water from spigot</div></td><td class="col-qty"><div class="qty-badge">2–4</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="food"></td><td class="col-item"><div class="item-name">Drink dispensers</div></td><td class="col-qty"><div class="qty-badge">1–2</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="food"></td><td class="col-item"><div class="item-name">Ice chests / coolers</div></td><td class="col-qty"><div class="qty-badge">2–4</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="food"></td><td class="col-item"><div class="item-name">Electrolyte drink mix or lemonade</div></td><td class="col-qty"><div class="qty-badge">—</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="food"></td><td class="col-item"><div class="item-name">Extra refillable water bottles</div></td><td class="col-qty"><div class="qty-badge">several</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 3: Washing & Cleanup -->
+  <div class="section" data-section="wash">
+    <div class="section-header">
+      <div class="section-icon">🧹</div>
+      <h2 class="section-title">Washing &amp; Cleanup</h2>
+      <span class="section-count" id="count-wash">0/12</span>
+    </div>
+    <table class="gear-table">
+      <thead><tr><th></th><th>Item</th><th>Qty / Assigned</th></tr></thead>
+      <tbody>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="wash"></td><td class="col-item"><div class="item-name">Biodegradable wash kit (3-basin system)</div></td><td class="col-qty"><div class="qty-badge">1</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="wash"></td><td class="col-item"><div class="item-name">Dish soap</div></td><td class="col-qty"><div class="qty-badge">1</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="wash"></td><td class="col-item"><div class="item-name">Sanitizing spray or wipes</div></td><td class="col-qty"><div class="qty-badge">1–2</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="wash"></td><td class="col-item"><div class="item-name">Scrub brushes / sponges</div></td><td class="col-qty"><div class="qty-badge">2–4</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="wash"></td><td class="col-item"><div class="item-name">Dish towels</div></td><td class="col-qty"><div class="qty-badge">4–6</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="wash"></td><td class="col-item"><div class="item-name">Hand towels</div></td><td class="col-qty"><div class="qty-badge">2–4</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="wash"></td><td class="col-item"><div class="item-name">Drying rack or drying mat</div></td><td class="col-qty"><div class="qty-badge">1</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="wash"></td><td class="col-item"><div class="item-name">Broom and dustpan</div></td><td class="col-qty"><div class="qty-badge">1</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="wash"></td><td class="col-item"><div class="item-name">Small rake for campsite cleanup</div></td><td class="col-qty"><div class="qty-badge">1</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="wash"></td><td class="col-item"><div class="item-name">Trash bags and pack-out system</div></td><td class="col-qty"><div class="qty-badge">plenty</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="wash"></td><td class="col-item"><div class="item-name">Recycling bags/bins (optional)</div></td><td class="col-qty"><div class="qty-badge">optional</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="wash"></td><td class="col-item"><div class="item-name">Disposable gloves for cleanup</div></td><td class="col-qty"><div class="qty-badge">1 box</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 4: Fire & Evening Camp Needs -->
+  <div class="section" data-section="fire">
+    <div class="section-header">
+      <div class="section-icon">🔥</div>
+      <h2 class="section-title">Fire &amp; Evening Camp Needs</h2>
+      <span class="section-count" id="count-fire">0/7</span>
+    </div>
+    <table class="gear-table">
+      <thead><tr><th></th><th>Item</th><th>Qty / Assigned</th></tr></thead>
+      <tbody>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="fire"></td><td class="col-item"><div class="item-name">Firewood (if conditions permit fires)</div></td><td class="col-qty"><div class="qty-badge">if permitted</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="fire"></td><td class="col-item"><div class="item-name">Fire starters / newspaper / kindling</div></td><td class="col-qty"><div class="qty-badge">—</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="fire"></td><td class="col-item"><div class="item-name">Long lighter</div></td><td class="col-qty"><div class="qty-badge">1–2</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="fire"></td><td class="col-item"><div class="item-name">Bucket for water near fire ring</div></td><td class="col-qty"><div class="qty-badge">1</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="fire"></td><td class="col-item"><div class="item-name">Shovel for fire safety</div></td><td class="col-qty"><div class="qty-badge">1</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="fire"></td><td class="col-item"><div class="item-name">Marshmallow roasting sticks</div></td><td class="col-qty"><div class="qty-badge">as needed</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="fire"></td><td class="col-item"><div class="item-name">Extra chairs/seating for campfire gathering</div></td><td class="col-qty"><div class="qty-badge">as needed</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 5: Safety, Sanitation & Organization -->
+  <div class="section" data-section="safety">
+    <div class="section-header">
+      <div class="section-icon">🩹</div>
+      <h2 class="section-title">Safety, Sanitation &amp; Organization</h2>
+      <span class="section-count" id="count-safety">0/6</span>
+    </div>
+    <table class="gear-table">
+      <thead><tr><th></th><th>Item</th><th>Qty / Assigned</th></tr></thead>
+      <tbody>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="safety"></td><td class="col-item"><div class="item-name">Handwashing station or hand sanitizer</div></td><td class="col-qty"><div class="qty-badge">1–2</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="safety"></td><td class="col-item"><div class="item-name">Toilet paper backup</div></td><td class="col-qty"><div class="qty-badge">1–2 packs</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="safety"></td><td class="col-item"><div class="item-name">Baby wipes or body wipes</div></td><td class="col-qty"><div class="qty-badge">1–2 packs</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="safety"></td><td class="col-item"><div class="item-name">Sunscreen</div></td><td class="col-qty"><div class="qty-badge">1–2</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="safety"></td><td class="col-item"><div class="item-name">Bug spray</div></td><td class="col-qty"><div class="qty-badge">1–2 boxes</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="safety"></td><td class="col-item"><div class="item-name">Large first aid kit</div></td><td class="col-qty"><div class="qty-badge">1</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 6: Emergency & Admin -->
+  <div class="section" data-section="admin">
+    <div class="section-header">
+      <div class="section-icon">📋</div>
+      <h2 class="section-title">Emergency &amp; Admin</h2>
+      <span class="section-count" id="count-admin">0/19</span>
+    </div>
+    <table class="gear-table">
+      <thead><tr><th></th><th>Item</th><th>Qty / Assigned</th></tr></thead>
+      <tbody>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="admin"></td><td class="col-item"><div class="item-name">Emergency contact list</div></td><td class="col-qty"><div class="qty-badge">1 copy</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="admin"></td><td class="col-item"><div class="item-name">Camp roster</div></td><td class="col-qty"><div class="qty-badge">1 copy</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="admin"></td><td class="col-item"><div class="item-name">Medical/permission forms as needed</div></td><td class="col-qty"><div class="qty-badge">1 set</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="admin"></td><td class="col-item"><div class="item-name">Whistle</div></td><td class="col-qty"><div class="qty-badge">1</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="admin"></td><td class="col-item"><div class="item-name">Duct tape</div></td><td class="col-qty"><div class="qty-badge">1 roll</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="admin"></td><td class="col-item"><div class="item-name">Multi-tool</div></td><td class="col-qty"><div class="qty-badge">1</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="admin"></td><td class="col-item"><div class="item-name">Extra rope / paracord</div></td><td class="col-qty"><div class="qty-badge">1 bundle</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="admin"></td><td class="col-item"><div class="item-name">Walkie-talkies (if cell service is limited)</div></td><td class="col-qty"><div class="qty-badge">as available</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="admin"></td><td class="col-item"><div class="item-name">Emergency weather plan items</div></td><td class="col-qty"><div class="qty-badge">—</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="admin"></td><td class="col-item"><div class="item-name">Small shovel</div></td><td class="col-qty"><div class="qty-badge">1</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="admin"></td><td class="col-item"><div class="item-name">Work gloves</div></td><td class="col-qty"><div class="qty-badge">1–2 pairs</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="admin"></td><td class="col-item"><div class="item-name">Clipboards</div></td><td class="col-qty"><div class="qty-badge">1–2</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="admin"></td><td class="col-item"><div class="item-name">Pens and Sharpies</div></td><td class="col-qty"><div class="qty-badge">several</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="admin"></td><td class="col-item"><div class="item-name">Zip bags or supply bins for organization</div></td><td class="col-qty"><div class="qty-badge">several</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="admin"></td><td class="col-item"><div class="item-name">Labels or masking tape</div></td><td class="col-qty"><div class="qty-badge">1–2</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="admin"></td><td class="col-item"><div class="item-name">Camp schedule copies</div></td><td class="col-qty"><div class="qty-badge">as needed</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="admin"></td><td class="col-item"><div class="item-name">Devotional or activity supplies</div></td><td class="col-qty"><div class="qty-badge">—</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="admin"></td><td class="col-item"><div class="item-name">Extra tarp for shade / weather protection</div></td><td class="col-qty"><div class="qty-badge">1</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+        <tr><td class="col-check"><input type="checkbox" class="custom-check" data-section="admin"></td><td class="col-item"><div class="item-name">Wagon or tote bins for moving supplies</div></td><td class="col-qty"><div class="qty-badge">1–2</div><input class="assigned-input" placeholder="Assign…"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tip-box">
+    <strong>💡 Tip:</strong> Assign one leader or family to each checked item before departure so every shared need is covered.
+  </div>
+
+</main>
+
+<footer>Ward Leader Group Gear Sign-Up · June 29–July 2, 2026 · "Walk, Not Talk"</footer>
+
+<script>
+  // ── State ──────────────────────────────────────────────────────────────
+  const sectionTotals = {
+    setup: 12, food: 13, wash: 12, fire: 7, safety: 6, admin: 19
+  };
+
+  function updateProgress() {
+    const all = document.querySelectorAll('.custom-check');
+    const checked = document.querySelectorAll('.custom-check:checked');
+    const total = all.length;
+    const done = checked.length;
+
+    document.getElementById('progressFill').style.width = total ? (done / total * 100) + '%' : '0%';
+    document.getElementById('progressCount').textContent = done + ' / ' + total;
+
+    // Per-section counts
+    Object.keys(sectionTotals).forEach(sec => {
+      const secAll = document.querySelectorAll(`.custom-check[data-section="${sec}"]`);
+      const secDone = document.querySelectorAll(`.custom-check[data-section="${sec}"]:checked`);
+      const el = document.getElementById('count-' + sec);
+      if (el) el.textContent = secDone.length + '/' + secAll.length;
+    });
+  }
+
+  // Row strikethrough on check
+  document.querySelectorAll('.custom-check').forEach(cb => {
+    cb.addEventListener('change', function() {
+      const row = this.closest('tr');
+      if (this.checked) row.classList.add('checked');
+      else row.classList.remove('checked');
+      updateProgress();
+      saveState();
+    });
+  });
+
+  // ── Persistence ────────────────────────────────────────────────────────
+  function saveState() {
+    const checks = [];
+    document.querySelectorAll('.custom-check').forEach((cb, i) => checks.push(cb.checked));
+    const assigns = [];
+    document.querySelectorAll('.assigned-input').forEach(inp => assigns.push(inp.value));
+    try {
+      sessionStorage.setItem('campChecks', JSON.stringify(checks));
+      sessionStorage.setItem('campAssigns', JSON.stringify(assigns));
+    } catch(e) {}
+  }
+
+  function loadState() {
+    try {
+      const checks = JSON.parse(sessionStorage.getItem('campChecks') || '[]');
+      const assigns = JSON.parse(sessionStorage.getItem('campAssigns') || '[]');
+      document.querySelectorAll('.custom-check').forEach((cb, i) => {
+        if (checks[i]) { cb.checked = true; cb.closest('tr').classList.add('checked'); }
+      });
+      document.querySelectorAll('.assigned-input').forEach((inp, i) => {
+        if (assigns[i]) inp.value = assigns[i];
+      });
+    } catch(e) {}
+    updateProgress();
+  }
+
+  document.querySelectorAll('.assigned-input').forEach(inp => {
+    inp.addEventListener('input', saveState);
+  });
+
+  // ── Actions ────────────────────────────────────────────────────────────
+  function clearAll() {
+    if (!confirm('Clear all checkmarks and assignments?')) return;
+    document.querySelectorAll('.custom-check').forEach(cb => {
+      cb.checked = false;
+      cb.closest('tr').classList.remove('checked');
+    });
+    document.querySelectorAll('.assigned-input').forEach(inp => inp.value = '');
+    updateProgress();
+    try { sessionStorage.clear(); } catch(e) {}
+  }
+
+  function printPage() { window.print(); }
+
+  function exportPDF() {
+    // Use browser print-to-PDF dialog
+    window.print();
+  }
+
+  // ── Init ───────────────────────────────────────────────────────────────
+  loadState();
+</script>
+</body>
+</html>
