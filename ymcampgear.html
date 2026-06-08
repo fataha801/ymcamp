@@ -3,119 +3,181 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Camping Gear Checklist</title>
+  <title>Camping Gear Checklist — LU3 Stake YM Camp 2026</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:      #1a2744;
+      --navy-mid:  #243257;
+      --gold:      #c8973a;
+      --gold-lt:   #e6b86a;
+      --cream:     #f7f3ec;
+      --stone:     #e8e0d4;
+      --muted:     #8a8178;
+      --white:     #ffffff;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --shadow-card: 0 2px 12px rgba(26,39,68,.10);
+      --shadow-lift: 0 6px 24px rgba(26,39,68,.16);
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'DM Sans', sans-serif;
+      --spacing-xs:  4px;
+      --spacing-sm:  8px;
+      --spacing-md:  16px;
+      --spacing-lg:  24px;
+      --spacing-xl:  40px;
+      --spacing-2xl: 64px;
 
+      --day1:    #4a7c59;
+      --day1-lt: #eef5ee;
+      --day2:    #5b82bf;
+      --day2-lt: #eef1f9;
+      --day3:    #2d6b2d;
+      --day3-lt: #d4edd4;
+      --provided: #2563eb;
+      --provided-lt: #eef3fd;
+      --provided-border: #c4d9f0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background: #f2ede8;
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--navy);
       min-height: 100vh;
-      padding-bottom: 90px;
+      font-size: 15px;
+      line-height: 1.6;
+      padding-bottom: 100px;
     }
 
     /* ── HERO ── */
-    header {
-      position: relative;
-      height: 280px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    .hero {
+      background: var(--navy);
+      color: var(--white);
+      padding: var(--spacing-xl) var(--spacing-md);
       text-align: center;
-      overflow: hidden;
-      padding: 20px;
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=1200&q=80');
-      background-size: cover;
-      background-position: center 40%;
-      filter: brightness(0.78);
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(10,30,15,0.15) 0%,
-        rgba(10,30,15,0.45) 70%,
-        rgba(10,30,15,0.70) 100%
-      );
-    }
-
-    header .hero-content {
       position: relative;
-      z-index: 2;
+      overflow: hidden;
     }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 110%, rgba(200,151,58,.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 20%, rgba(200,151,58,.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: .7rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      margin-bottom: var(--spacing-sm);
+      position: relative;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 6vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: var(--spacing-xs);
+      position: relative;
+    }
+    .hero-sub {
+      font-size: .85rem;
+      color: rgba(255,255,255,.65);
+      margin-top: var(--spacing-sm);
+      max-width: 400px;
+      margin-inline: auto;
+      position: relative;
+    }
+    .gold-rule {
+      width: 48px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin: var(--spacing-md) auto;
+      position: relative;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .75rem;
+      font-weight: 500;
+      color: var(--gold-lt);
+      text-decoration: none;
+      opacity: .8;
+      transition: opacity .18s;
+      position: relative;
+      z-index: 1;
+      margin-bottom: var(--spacing-md);
+    }
+    .back-link:hover { opacity: 1; }
 
-    .hero-icon {
-      font-size: 2.2rem;
-      margin-bottom: 8px;
-      display: block;
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+    /* ── INFO STRIP ── */
+    .info-strip {
+      background: var(--gold);
+      color: var(--navy);
+      padding: var(--spacing-md);
     }
-
-    header h1 {
-      color: #fff;
-      font-size: clamp(1.6rem, 6vw, 2.4rem);
-      font-weight: 800;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.55);
-      letter-spacing: 0.5px;
+    .info-strip-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm) var(--spacing-xl);
+      justify-content: center;
+      align-items: center;
     }
-
-    header p {
-      color: rgba(255,255,255,0.88);
-      font-size: 0.9rem;
-      margin-top: 7px;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.5);
-    }
+    .info-item { display: flex; align-items: center; gap: 8px; font-size: .82rem; font-weight: 500; }
 
     /* ── PROGRESS ── */
     .progress-container {
-      background: #fff;
-      padding: 14px 18px 16px;
+      background: var(--white);
+      padding: var(--spacing-md);
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.10);
-      border-bottom: 1px solid #e8e2dc;
+      box-shadow: var(--shadow-card);
+      border-bottom: 1px solid var(--stone);
     }
-
+    .progress-inner { max-width: 640px; margin: 0 auto; }
     .progress-label {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 8px;
+      margin-bottom: var(--spacing-sm);
     }
-
-    .progress-label span {
-      color: #6b7c6a;
-      font-size: 0.78rem;
+    .progress-label-text {
+      font-size: .62rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.6px;
+      letter-spacing: .14em;
+      color: var(--muted);
     }
-
-    .progress-label .count {
-      color: #2e7d52;
-      font-size: 0.95rem;
-      font-weight: 700;
+    .progress-count {
+      font-family: var(--font-display);
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--day1);
     }
-
     .progress-bar-track {
-      background: #e8e2dc;
+      background: var(--stone);
       border-radius: 12px;
-      height: 9px;
+      height: 8px;
       overflow: hidden;
     }
-
     .progress-bar-fill {
-      background: linear-gradient(90deg, #2e7d52, #52c27a);
+      background: linear-gradient(90deg, var(--day1), var(--gold));
       height: 100%;
       border-radius: 12px;
       transition: width 0.4s ease;
@@ -123,309 +185,278 @@
     }
 
     /* ── MAIN ── */
-    main {
-      max-width: 580px;
+    .main {
+      max-width: 640px;
       margin: 0 auto;
-      padding: 18px 14px 8px;
+      padding: var(--spacing-xl) var(--spacing-md) var(--spacing-2xl);
     }
 
-    /* ── SECTION CARDS ── */
+    /* ── SECTION DIVIDER ── */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+      margin-top: var(--spacing-xl);
+    }
+    .section-divider:first-child { margin-top: 0; }
+    .section-divider-line { flex: 1; height: 1px; background: var(--stone); }
+    .section-divider-label {
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── SECTION CARD ── */
     .section {
-      background: #fff;
-      border-radius: 18px;
-      margin-bottom: 16px;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
       overflow: hidden;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-      border: 1px solid #e8e2dc;
+      margin-bottom: var(--spacing-md);
+      transition: box-shadow .2s;
     }
+    .section:hover { box-shadow: var(--shadow-lift); }
 
-    /* ── PROVIDED SECTION (info-only, no checkboxes) ── */
-    .section.provided-section {
-      background: #fff;
-      border: 1.5px solid #b2c8e6;
-      box-shadow: 0 2px 16px rgba(37,99,180,0.08);
-    }
-
-    .section.provided-section .section-header {
-      background: linear-gradient(135deg, #e8f0fb 0%, #ddeaf8 100%);
-      border-bottom: 1px solid #c4d9f0;
-    }
-
-    .section.provided-section .section-title {
-      color: #1a5fa8;
-    }
-
-    .section.provided-section .section-badge {
-      background: #ddeaf8;
-      color: #1a5fa8;
-      border-color: #90b8e0;
-    }
-
-    .section.provided-section .chevron {
-      color: #6da3d8;
-    }
-
-    .provided-note {
-      background: linear-gradient(135deg, #eef5fd 0%, #f5f9ff 100%);
-      padding: 10px 18px 12px;
-      border-bottom: 1px solid #ddeaf8;
-    }
-
-    .provided-note p {
-      color: #1a5fa8;
-      font-size: 0.78rem;
-      font-style: italic;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .provided-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 13px;
-      padding: 12px 18px;
-      border-bottom: 1px solid #edf3fb;
-    }
-
-    .provided-item:last-child { border-bottom: none; }
-
-    .provided-bullet {
-      flex-shrink: 0;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #2563eb, #3b82f6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 1px;
-    }
-
-    .provided-bullet span {
-      color: #fff;
-      font-size: 11px;
-      font-weight: 900;
-      line-height: 1;
-    }
-
-    .provided-item-text {
-      flex: 1;
-      color: #1e3a5f;
-      font-size: 0.91rem;
-      line-height: 1.45;
-    }
-
-    .provided-item-text .item-optional {
-      font-size: 0.73rem;
-      color: #6a9ac4;
-      font-style: italic;
-      margin-left: 3px;
-    }
-
-    /* ── SECTION CARDS (shared) ── */
     .section-header {
-      padding: 16px 18px;
+      padding: var(--spacing-md);
       display: flex;
       align-items: center;
       gap: 10px;
       cursor: pointer;
       user-select: none;
-      border-bottom: 1px solid #f0ebe5;
-      transition: background 0.15s;
+      color: var(--white);
+      position: relative;
     }
 
-    .section-header:active { background: #f9f5f1; }
+    /* Checkable section colors */
+    #section-clothes  .section-header { background: var(--day1); }
+    #section-gear     .section-header { background: var(--day2); }
+    #section-personal .section-header { background: var(--navy-mid); }
 
-    .section-icon { font-size: 1.25rem; flex-shrink: 0; }
+    /* Provided section — distinct blue style */
+    #section-provided {
+      border: 1.5px solid var(--provided-border);
+    }
+    #section-provided .section-header {
+      background: linear-gradient(135deg, #ddeaf8 0%, #e8f2fd 100%);
+      color: var(--provided);
+      border-bottom: 1px solid var(--provided-border);
+    }
+    #section-provided .section-title { color: var(--provided); }
+    #section-provided .chevron { color: #6da3d8; }
 
+    .section-icon { font-size: 1.1rem; flex-shrink: 0; }
     .section-title {
       flex: 1;
-      color: #2e7d52;
-      font-size: 0.88rem;
-      font-weight: 800;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.2;
     }
 
-    .section-done { display: none; font-size: 0.9rem; }
+    /* Badge — white-tinted for colored headers */
+    .section-badge {
+      font-size: .6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      background: rgba(255,255,255,.2);
+      color: var(--white);
+      padding: 3px 9px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .section-header.all-done .section-badge { background: var(--gold); color: var(--navy); }
+
+    /* Badge overrides for provided section */
+    #section-provided .section-badge {
+      background: #ddeaf8;
+      color: var(--provided);
+      border: 1px solid #90b8e0;
+    }
+
+    .section-done { display: none; font-size: .85rem; }
     .section-header.all-done .section-done { display: inline; }
 
-    .section-badge {
-      background: #f0faf4;
-      color: #2e7d52;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 3px 9px;
-      border-radius: 20px;
-      border: 1px solid #b2dfc4;
-    }
-
-    .section-header.all-done .section-badge {
-      background: #d4f4e2;
-      border-color: #52c27a;
-    }
-
-    .chevron {
-      color: #9cba9e;
-      font-size: 0.78rem;
-      transition: transform 0.3s ease;
-    }
-
+    .chevron { color: rgba(255,255,255,.7); font-size: .78rem; transition: transform 0.3s ease; }
     .section.collapsed .chevron { transform: rotate(-90deg); }
-
-    .section-items {
-      overflow: hidden;
-      transition: max-height 0.35s ease;
-    }
-
+    .section-items { overflow: hidden; transition: max-height 0.35s ease; }
     .section.collapsed .section-items { max-height: 0 !important; }
 
-    /* ── SELECT ALL ── */
+    /* ── PROVIDED ITEMS ── */
+    .provided-note {
+      background: var(--provided-lt);
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-bottom: 1px solid var(--provided-border);
+    }
+    .provided-note p {
+      color: var(--provided);
+      font-size: .78rem;
+      font-style: italic;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .provided-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-md);
+      padding: 11px var(--spacing-md);
+      border-bottom: 1px solid #edf3fb;
+    }
+    .provided-item:last-child { border-bottom: none; }
+    .provided-bullet {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--provided);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .provided-bullet span { color: var(--white); font-size: 11px; font-weight: 900; line-height: 1; }
+    .provided-item-text {
+      flex: 1;
+      color: #1e3a5f;
+      font-size: .85rem;
+      line-height: 1.45;
+    }
+    .provided-item-text .item-optional {
+      font-size: .72rem;
+      color: #6a9ac4;
+      font-style: italic;
+      margin-left: 3px;
+    }
+
+    /* ── SELECT ALL ROW ── */
     .select-all-row {
       display: flex;
       align-items: center;
       gap: 11px;
-      padding: 10px 18px;
-      border-bottom: 1px solid #f0ebe5;
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-bottom: 1px solid var(--stone);
       cursor: pointer;
+      background: var(--cream);
       -webkit-tap-highlight-color: transparent;
-      background: #faf8f6;
     }
-
-    .select-all-row:active { background: #f0ebe5; }
-
+    .select-all-row:active { background: var(--stone); }
     .select-all-text {
-      color: #2e7d52;
-      font-size: 0.76rem;
+      font-size: .65rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: .1em;
+      color: var(--muted);
     }
-
     .select-all-checkbox {
       width: 20px;
       height: 20px;
-      border-radius: 6px;
-      border: 2px solid #b2dfc4;
-      background: #fff;
+      border-radius: 5px;
+      border: 2px solid var(--stone);
+      background: var(--white);
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s;
       flex-shrink: 0;
+      transition: all .2s;
     }
-
-    .select-all-checkbox.all-checked {
-      background: #2e7d52;
-      border-color: #2e7d52;
-    }
-
-    .select-all-tick { display: none; color: #fff; font-size: 11px; font-weight: 900; }
+    .select-all-checkbox.all-checked { background: var(--gold); border-color: var(--gold); }
+    .select-all-tick { display: none; color: var(--navy); font-size: 11px; font-weight: 900; }
     .select-all-checkbox.all-checked .select-all-tick { display: block; }
 
     /* ── ITEMS ── */
     .item {
       display: flex;
       align-items: flex-start;
-      gap: 14px;
-      padding: 14px 18px;
-      border-bottom: 1px solid #f4f0ec;
+      gap: var(--spacing-md);
+      padding: 12px var(--spacing-md);
+      border-bottom: 1px solid var(--stone);
       cursor: pointer;
-      transition: background 0.12s;
+      transition: background .12s;
       -webkit-tap-highlight-color: transparent;
     }
-
     .item:last-child { border-bottom: none; }
-    .item:active { background: #f9f5f1; }
+    .item:active { background: var(--cream); }
     .item.checked { background: #fafcfa; }
 
-    /* CHECKBOX */
     .checkbox {
       flex-shrink: 0;
-      width: 24px;
-      height: 24px;
-      border-radius: 7px;
-      border: 2px solid #c8ddc9;
-      background: #fff;
+      width: 22px;
+      height: 22px;
+      border-radius: var(--radius-sm);
+      border: 2px solid var(--stone);
+      background: var(--white);
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s ease;
+      transition: all .2s ease;
       margin-top: 1px;
     }
-
-    .item.checked .checkbox {
-      background: #2e7d52;
-      border-color: #2e7d52;
-    }
-
-    .checkbox-tick { display: none; color: #fff; font-size: 13px; font-weight: 900; line-height: 1; }
+    .item.checked .checkbox { background: var(--day1); border-color: var(--day1); }
+    .checkbox-tick { display: none; color: var(--white); font-size: 12px; font-weight: 900; line-height: 1; }
     .item.checked .checkbox-tick { display: block; }
 
     .item-text {
       flex: 1;
-      color: #2e3a2f;
-      font-size: 0.92rem;
+      font-size: .85rem;
+      color: var(--navy);
       line-height: 1.45;
-      transition: all 0.2s;
+      transition: all .2s;
     }
+    .item-optional { font-size: .72rem; color: var(--muted); font-style: italic; margin-left: 3px; }
+    .item.checked .item-text { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--stone); }
 
-    .item-optional {
-      font-size: 0.73rem;
-      color: #9aab90;
-      font-style: italic;
-      margin-left: 3px;
-    }
-
-    .item.checked .item-text {
-      color: #a0b8a0;
-      text-decoration: line-through;
-      text-decoration-color: #78b88a;
-    }
-
-    /* ── FOOTER BUTTONS ── */
+    /* ── FOOTER ACTIONS ── */
     .footer-actions {
       position: fixed;
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
       width: 100%;
-      max-width: 580px;
-      padding: 12px 14px 22px;
-      background: linear-gradient(0deg, #f2ede8 60%, transparent);
+      max-width: 640px;
+      padding: 12px var(--spacing-md) 24px;
+      background: linear-gradient(0deg, var(--cream) 60%, transparent);
       display: flex;
-      gap: 10px;
+      gap: var(--spacing-sm);
     }
-
     .btn {
       flex: 1;
       padding: 14px 10px;
       border: none;
-      border-radius: 14px;
-      font-size: 0.9rem;
-      font-weight: 700;
+      border-radius: var(--radius-md);
+      font-family: var(--font-body);
+      font-size: .88rem;
+      font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all .2s ease;
       -webkit-tap-highlight-color: transparent;
     }
-
     .btn-reset {
-      background: #fff;
-      color: #5a7a5c;
-      border: 1.5px solid #c8ddc9;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      background: var(--white);
+      color: var(--navy);
+      border: 1.5px solid var(--stone);
+      box-shadow: var(--shadow-card);
     }
-
-    .btn-reset:active { background: #f0faf4; transform: scale(0.98); }
-
+    .btn-reset:active { background: var(--cream); transform: scale(0.98); }
     .btn-download {
-      background: linear-gradient(135deg, #2e7d52, #3fa068);
-      color: #fff;
-      box-shadow: 0 4px 16px rgba(46,125,82,0.35);
+      background: var(--navy);
+      color: var(--white);
+      box-shadow: var(--shadow-lift);
+      position: relative;
+      overflow: hidden;
     }
-
-    .btn-download:active { transform: scale(0.97); box-shadow: 0 2px 8px rgba(46,125,82,0.25); }
+    .btn-download::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 80%, rgba(200,151,58,.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .btn-download:active { transform: scale(0.97); }
 
     /* ── TOAST ── */
     .toast {
@@ -433,20 +464,19 @@
       top: 76px;
       left: 50%;
       transform: translateX(-50%) translateY(-16px);
-      background: #2e7d52;
-      color: #fff;
-      padding: 11px 20px;
-      border-radius: 30px;
-      font-size: 0.84rem;
+      background: var(--navy);
+      color: var(--gold-lt);
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: .82rem;
       font-weight: 600;
-      box-shadow: 0 4px 20px rgba(46,125,82,0.35);
+      box-shadow: var(--shadow-lift);
       opacity: 0;
-      transition: all 0.3s ease;
+      transition: all .3s ease;
       z-index: 999;
       white-space: nowrap;
       pointer-events: none;
     }
-
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
     /* ── MODAL ── */
@@ -454,497 +484,511 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(20,40,22,0.6);
+      background: rgba(26,39,68,.65);
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
       z-index: 500;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: var(--spacing-md);
     }
-
     .modal-overlay.active { display: flex; }
-
     .modal {
-      background: #fff;
-      border-radius: 22px;
-      padding: 28px 22px;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg) var(--spacing-md);
       width: 100%;
       max-width: 400px;
-      box-shadow: 0 12px 48px rgba(0,0,0,0.2);
+      box-shadow: 0 16px 64px rgba(26,39,68,.3);
       text-align: center;
     }
-
-    .modal-icon { font-size: 2.4rem; margin-bottom: 10px; }
-
-    .modal h2 { color: #1e3a22; font-size: 1.2rem; margin-bottom: 8px; }
-
-    .modal p { color: #5a7a5c; font-size: 0.87rem; line-height: 1.6; margin-bottom: 20px; }
-
+    .modal-top {
+      background: var(--navy);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+      position: relative;
+      overflow: hidden;
+    }
+    .modal-top::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 120%, rgba(200,151,58,.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .modal-icon { font-size: 2rem; display: block; margin-bottom: var(--spacing-xs); position: relative; }
+    .modal-top h2 { font-family: var(--font-display); color: var(--white); font-size: 1.15rem; margin-bottom: 4px; position: relative; }
+    .modal-top p { color: rgba(255,255,255,.65); font-size: .78rem; line-height: 1.5; position: relative; }
     .modal-stats {
       display: flex;
       justify-content: center;
-      gap: 24px;
-      margin-bottom: 22px;
-      background: #f5faf6;
-      border-radius: 14px;
-      padding: 16px 10px;
-      border: 1px solid #d4ead9;
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+      background: var(--cream);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-md);
+      border: 1px solid var(--stone);
     }
-
     .modal-stat { text-align: center; }
-
-    .modal-stat-num { display: block; font-size: 1.9rem; font-weight: 800; color: #2e7d52; }
-
-    .modal-stat-num.orange { color: #d97706; }
-
-    .modal-stat-label { font-size: 0.72rem; color: #7a9e7e; text-transform: uppercase; letter-spacing: 0.5px; }
-
-    .modal-buttons { display: flex; gap: 10px; }
+    .modal-stat-num { display: block; font-family: var(--font-display); font-size: 1.9rem; font-weight: 700; color: var(--day1); line-height: 1; }
+    .modal-stat-num.orange { color: var(--gold); }
+    .modal-stat-label { font-size: .65rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-top: 2px; }
+    .modal-buttons { display: flex; gap: var(--spacing-sm); }
     .modal-buttons .btn { padding: 13px 10px; }
   </style>
 </head>
 <body>
 
-  <!-- HERO -->
-  <header>
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <span class="hero-icon">🏕️</span>
-      <h1>Camping Gear Checklist</h1>
-      <p>Check off items as you pack — download when ready!</p>
-    </div>
-  </header>
+<!-- HERO -->
+<header class="hero">
+  <a class="back-link" href="index.html">← Back to Schedule</a>
+  <p class="hero-eyebrow">LU3 Stake Young Men · Cobblecreek Camp · 2026</p>
+  <h1>Camping Gear Checklist</h1>
+  <div class="gold-rule"></div>
+  <p class="hero-sub">Check off items as you pack — download when ready</p>
+</header>
 
-  <!-- PROGRESS -->
-  <div class="progress-container">
+<!-- INFO STRIP -->
+<section class="info-strip">
+  <div class="info-strip-inner">
+    <div class="info-item">📅 June 29 – July 2, 2026</div>
+    <div class="info-item">📍 Cobblecreek Campground, Huntsville, UT</div>
+  </div>
+</section>
+
+<!-- PROGRESS -->
+<div class="progress-container">
+  <div class="progress-inner">
     <div class="progress-label">
-      <span>Pack Progress</span>
-      <span class="count" id="progressCount">0/30 packed</span>
+      <span class="progress-label-text">Pack Progress</span>
+      <span class="progress-count" id="progressCount">0 / 28 packed</span>
     </div>
     <div class="progress-bar-track">
       <div class="progress-bar-fill" id="progressFill"></div>
     </div>
   </div>
+</div>
 
-  <main>
+<main class="main">
 
-    <!-- PROVIDED BY WARD LEADERS -->
-    <div class="section provided-section" id="section-provided">
-      <div class="section-header" onclick="toggleSection('provided')" style="border-bottom-color:#c4d9f0;">
-        <span class="section-icon">⛪</span>
-        <span class="section-title" style="color:#1a5fa8;">Provided by Ward Leaders</span>
-        <span class="section-badge" style="background:#ddeaf8;color:#1a5fa8;border-color:#90b8e0;">No need to bring!</span>
-        <span class="chevron" style="color:#6da3d8;">▾</span>
-      </div>
-      <div class="section-items" id="items-provided">
-        <div class="provided-note">
-          <p>✅ These items will be taken care of — you don't need to bring them!</p>
-        </div>
-        <div class="provided-item">
-          <div class="provided-bullet"><span>✓</span></div>
-          <div class="provided-item-text">Standard first aid kit <span class="item-optional">(includes ibuprofen &amp; Tylenol)</span></div>
-        </div>
-        <div class="provided-item">
-          <div class="provided-bullet"><span>✓</span></div>
-          <div class="provided-item-text">Mosquito &amp; insect repellant spray</div>
-        </div>
-        <div class="provided-item">
-          <div class="provided-bullet"><span>✓</span></div>
-          <div class="provided-item-text">Tent</div>
-        </div>
-        <div class="provided-item">
-          <div class="provided-bullet"><span>✓</span></div>
-          <div class="provided-item-text">Meals provided <span class="item-optional">(breakfast, lunch &amp; dinner)</span></div>
-        </div>
-        <div class="provided-item">
-          <div class="provided-bullet"><span>✓</span></div>
-          <div class="provided-item-text">In-between snacks</div>
-        </div>
-        <div class="provided-item">
-          <div class="provided-bullet"><span>✓</span></div>
-          <div class="provided-item-text">Drinking water</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CLOTHES -->
-    <div class="section" id="section-clothes">
-      <div class="section-header" onclick="toggleSection('clothes')">
-        <span class="section-icon">👕</span>
-        <span class="section-title">Clothes</span>
-        <span class="section-done">✅</span>
-        <span class="section-badge" id="badge-clothes">0/15</span>
-        <span class="chevron">▾</span>
-      </div>
-      <div class="section-items" id="items-clothes">
-        <div class="select-all-row" onclick="toggleSection_selectAll('clothes')">
-          <div class="select-all-checkbox" id="selAll-clothes"><span class="select-all-tick">✓</span></div>
-          <span class="select-all-text">Select / Deselect All</span>
-        </div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Shoes <span class="item-optional">(good traction &amp; support)</span></div></div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Slippers/Slides <span class="item-optional">(optional)</span></div></div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Short-sleeved shirts <span class="item-optional">(5)</span></div></div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Warm shirt, coat, jacket or hoodie</div></div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Shorts <span class="item-optional">(2–3 extra pairs)</span></div></div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Long pants <span class="item-optional">(1 pair)</span></div></div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Rain coat or poncho or umbrella <span class="item-optional">(optional)</span></div></div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Pajamas or sleepwear</div></div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Socks <span class="item-optional">(3-4 pairs, optional)</span></div></div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Underwear <span class="item-optional">(4-6 pairs)</span></div></div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Hat or baseball cap <span class="item-optional">(optional, sun protection)</span></div></div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Water shoes or sandals with heel straps</div></div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Swim Shorts</div></div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Sunglasses <span class="item-optional">(optional)</span></div></div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Eyewear retainer <span class="item-optional">(optional)</span></div></div>
-      </div>
-    </div>
-
-    <!-- GEAR -->
-    <div class="section" id="section-gear">
-      <div class="section-header" onclick="toggleSection('gear')">
-        <span class="section-icon">🎒</span>
-        <span class="section-title">Gear</span>
-        <span class="section-done">✅</span>
-        <span class="section-badge" id="badge-gear">0/7</span>
-        <span class="chevron">▾</span>
-      </div>
-      <div class="section-items" id="items-gear">
-        <div class="select-all-row" onclick="toggleSection_selectAll('gear')">
-          <div class="select-all-checkbox" id="selAll-gear"><span class="select-all-tick">✓</span></div>
-          <span class="select-all-text">Select / Deselect All</span>
-        </div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Sleeping bag and sleeping pad</div></div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Pillow <span class="item-optional">(optional)</span></div></div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Headlamp or flashlight with extra batteries</div></div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Small backpack</div></div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">32 oz water bottle</div></div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Dry bag <span class="item-optional">(optional)</span></div></div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Camp chair</div></div>
-      </div>
-    </div>
-
-    <!-- PERSONAL ITEMS -->
-    <div class="section" id="section-personal">
-      <div class="section-header" onclick="toggleSection('personal')">
-        <span class="section-icon">🪥</span>
-        <span class="section-title">Personal Items</span>
-        <span class="section-done">✅</span>
-        <span class="section-badge" id="badge-personal">0/6</span>
-        <span class="chevron">▾</span>
-      </div>
-      <div class="section-items" id="items-personal">
-        <div class="select-all-row" onclick="toggleSection_selectAll('personal')">
-          <div class="select-all-checkbox" id="selAll-personal"><span class="select-all-tick">✓</span></div>
-          <span class="select-all-text">Select / Deselect All</span>
-        </div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Toothbrush and toothpaste</div></div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Deodorant</div></div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Soap and/or Shampoo</div></div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Towel <span class="item-optional">(1 extra)</span></div></div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Sunscreen <span class="item-optional">(waterproof recommended for rafting)</span></div></div>
-        <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Personal medications <span class="item-optional">(if required)</span></div></div>
-      </div>
-    </div>
-
-  </main>
-
-  <!-- FOOTER -->
-  <div class="footer-actions">
-    <button class="btn btn-reset" onclick="resetAll()">🔄 Reset</button>
-    <button class="btn btn-download" onclick="openDownloadModal()">📄 Download PDF</button>
+  <div class="section-divider" style="margin-top:0;">
+    <span class="section-divider-line"></span>
+    <span class="section-divider-label">What to Bring</span>
+    <span class="section-divider-line"></span>
   </div>
 
-  <!-- TOAST -->
-  <div class="toast" id="toast"></div>
+  <!-- PROVIDED BY WARD LEADERS -->
+  <div class="section" id="section-provided">
+    <div class="section-header" onclick="toggleSection('provided')">
+      <span class="section-icon">⛪</span>
+      <span class="section-title">Provided by Ward Leaders</span>
+      <span class="section-badge">No need to bring!</span>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-items" id="items-provided">
+      <div class="provided-note">
+        <p>✅ These items will be taken care of — you don't need to bring them!</p>
+      </div>
+      <div class="provided-item">
+        <div class="provided-bullet"><span>✓</span></div>
+        <div class="provided-item-text">Standard first aid kit <span class="item-optional">(includes ibuprofen &amp; Tylenol)</span></div>
+      </div>
+      <div class="provided-item">
+        <div class="provided-bullet"><span>✓</span></div>
+        <div class="provided-item-text">Mosquito &amp; insect repellant spray</div>
+      </div>
+      <div class="provided-item">
+        <div class="provided-bullet"><span>✓</span></div>
+        <div class="provided-item-text">Tent</div>
+      </div>
+      <div class="provided-item">
+        <div class="provided-bullet"><span>✓</span></div>
+        <div class="provided-item-text">Meals provided <span class="item-optional">(breakfast, lunch &amp; dinner)</span></div>
+      </div>
+      <div class="provided-item">
+        <div class="provided-bullet"><span>✓</span></div>
+        <div class="provided-item-text">In-between snacks</div>
+      </div>
+      <div class="provided-item">
+        <div class="provided-bullet"><span>✓</span></div>
+        <div class="provided-item-text">Drinking water</div>
+      </div>
+    </div>
+  </div>
 
-  <!-- MODAL -->
-  <div class="modal-overlay" id="modal" onclick="closeModal(event)">
-    <div class="modal">
-      <div class="modal-icon">🏕️</div>
+  <!-- CLOTHES -->
+  <div class="section" id="section-clothes">
+    <div class="section-header" onclick="toggleSection('clothes')">
+      <span class="section-icon">👕</span>
+      <span class="section-title">Clothes</span>
+      <span class="section-done">✅</span>
+      <span class="section-badge" id="badge-clothes">0 / 15</span>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-items" id="items-clothes">
+      <div class="select-all-row" onclick="toggleSection_selectAll('clothes')">
+        <div class="select-all-checkbox" id="selAll-clothes"><span class="select-all-tick">✓</span></div>
+        <span class="select-all-text">Select / Deselect All</span>
+      </div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Shoes <span class="item-optional">(good traction &amp; support)</span></div></div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Slippers/Slides <span class="item-optional">(optional)</span></div></div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Short-sleeved shirts <span class="item-optional">(5)</span></div></div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Warm shirt, coat, jacket or hoodie</div></div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Shorts <span class="item-optional">(2–3 extra pairs)</span></div></div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Long pants <span class="item-optional">(1 pair)</span></div></div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Rain coat or poncho or umbrella <span class="item-optional">(optional)</span></div></div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Pajamas or sleepwear</div></div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Socks <span class="item-optional">(3–4 pairs)</span></div></div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Underwear <span class="item-optional">(4–6 pairs)</span></div></div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Hat or baseball cap <span class="item-optional">(optional, sun protection)</span></div></div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Water shoes or sandals with heel straps</div></div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Swim Shorts</div></div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Sunglasses <span class="item-optional">(optional)</span></div></div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Eyewear retainer <span class="item-optional">(optional)</span></div></div>
+    </div>
+  </div>
+
+  <!-- GEAR -->
+  <div class="section" id="section-gear">
+    <div class="section-header" onclick="toggleSection('gear')">
+      <span class="section-icon">🎒</span>
+      <span class="section-title">Gear</span>
+      <span class="section-done">✅</span>
+      <span class="section-badge" id="badge-gear">0 / 7</span>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-items" id="items-gear">
+      <div class="select-all-row" onclick="toggleSection_selectAll('gear')">
+        <div class="select-all-checkbox" id="selAll-gear"><span class="select-all-tick">✓</span></div>
+        <span class="select-all-text">Select / Deselect All</span>
+      </div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Sleeping bag and sleeping pad</div></div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Pillow <span class="item-optional">(optional)</span></div></div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Headlamp or flashlight with extra batteries</div></div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Small backpack</div></div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">32 oz water bottle</div></div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Dry bag <span class="item-optional">(optional)</span></div></div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Camp chair</div></div>
+    </div>
+  </div>
+
+  <!-- PERSONAL ITEMS -->
+  <div class="section" id="section-personal">
+    <div class="section-header" onclick="toggleSection('personal')">
+      <span class="section-icon">🪥</span>
+      <span class="section-title">Personal Items</span>
+      <span class="section-done">✅</span>
+      <span class="section-badge" id="badge-personal">0 / 6</span>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-items" id="items-personal">
+      <div class="select-all-row" onclick="toggleSection_selectAll('personal')">
+        <div class="select-all-checkbox" id="selAll-personal"><span class="select-all-tick">✓</span></div>
+        <span class="select-all-text">Select / Deselect All</span>
+      </div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Toothbrush and toothpaste</div></div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Deodorant</div></div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Soap and/or Shampoo</div></div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Towel <span class="item-optional">(1 extra)</span></div></div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Sunscreen <span class="item-optional">(waterproof recommended for rafting)</span></div></div>
+      <div class="item" onclick="toggleItem(this)"><div class="checkbox"><span class="checkbox-tick">✓</span></div><div class="item-text">Personal medications <span class="item-optional">(if required)</span></div></div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER ACTIONS -->
+<div class="footer-actions">
+  <button class="btn btn-reset" onclick="resetAll()">🔄 Reset</button>
+  <button class="btn btn-download" onclick="openDownloadModal()">📄 Download PDF</button>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-top">
+      <span class="modal-icon">🏕️</span>
       <h2>Ready to Download?</h2>
       <p id="modal-msg">Review your checklist summary, then download your PDF.</p>
-      <div class="modal-stats">
-        <div class="modal-stat">
-          <span class="modal-stat-num" id="modal-checked">0</span>
-          <span class="modal-stat-label">Packed ✓</span>
-        </div>
-        <div class="modal-stat">
-          <span class="modal-stat-num orange" id="modal-remaining">0</span>
-          <span class="modal-stat-label">Remaining</span>
-        </div>
-        <div class="modal-stat">
-          <span class="modal-stat-num" id="modal-total">0</span>
-          <span class="modal-stat-label">Total</span>
-        </div>
+    </div>
+    <div class="modal-stats">
+      <div class="modal-stat">
+        <span class="modal-stat-num" id="modal-checked">0</span>
+        <span class="modal-stat-label">Packed ✓</span>
       </div>
-      <div class="modal-buttons">
-        <button class="btn btn-reset" onclick="closeModalBtn()">Cancel</button>
-        <button class="btn btn-download" onclick="downloadPDF()">⬇ Download PDF</button>
+      <div class="modal-stat">
+        <span class="modal-stat-num orange" id="modal-remaining">0</span>
+        <span class="modal-stat-label">Remaining</span>
+      </div>
+      <div class="modal-stat">
+        <span class="modal-stat-num" id="modal-total">0</span>
+        <span class="modal-stat-label">Total</span>
       </div>
     </div>
+    <div class="modal-buttons">
+      <button class="btn btn-reset" onclick="closeModalBtn()">Cancel</button>
+      <button class="btn btn-download" onclick="downloadPDF()">⬇ Download PDF</button>
+    </div>
   </div>
+</div>
 
-  <script>
-    const sections = {
-      clothes:  { label: 'CLOTHES',        icon: '👕' },
-      gear:     { label: 'GEAR',           icon: '🎒' },
-      personal: { label: 'PERSONAL ITEMS', icon: '🪥' },
-    };
+<script>
+  const sections = {
+    clothes:  { label: 'CLOTHES',        icon: '👕' },
+    gear:     { label: 'GEAR',           icon: '🎒' },
+    personal: { label: 'PERSONAL ITEMS', icon: '🪥' },
+  };
 
-    const providedItems = [
-      'Standard first aid kit (includes ibuprofen & Tylenol)',
-      'Mosquito & insect repellant spray',
-      'Tent',
-      'Meals provided (breakfast, lunch & dinner)',
-      'In-between snacks',
-      'Drinking water',
-    ];
+  const providedItems = [
+    'Standard first aid kit (includes ibuprofen & Tylenol)',
+    'Mosquito & insect repellant spray',
+    'Tent',
+    'Meals provided (breakfast, lunch & dinner)',
+    'In-between snacks',
+    'Drinking water',
+  ];
 
-    function toggleItem(el) {
-      el.classList.toggle('checked');
-      updateAll();
+  function toggleItem(el) {
+    el.classList.toggle('checked');
+    updateAll();
+  }
+
+  function toggleSection_selectAll(id) {
+    const container = document.getElementById('items-' + id);
+    const items = container.querySelectorAll('.item');
+    const allChecked = [...items].every(i => i.classList.contains('checked'));
+    items.forEach(i => allChecked ? i.classList.remove('checked') : i.classList.add('checked'));
+    updateAll();
+  }
+
+  function toggleSection(id) {
+    const sec = document.getElementById('section-' + id);
+    const itemsEl = document.getElementById('items-' + id);
+    if (sec.classList.contains('collapsed')) {
+      sec.classList.remove('collapsed');
+      itemsEl.style.maxHeight = itemsEl.scrollHeight + 'px';
+      setTimeout(() => itemsEl.style.maxHeight = 'none', 380);
+    } else {
+      itemsEl.style.maxHeight = itemsEl.scrollHeight + 'px';
+      requestAnimationFrame(() => requestAnimationFrame(() => sec.classList.add('collapsed')));
     }
+  }
 
-    function toggleSection_selectAll(id) {
+  function updateAll() {
+    let totalItems = 0, totalChecked = 0;
+    Object.keys(sections).forEach(id => {
       const container = document.getElementById('items-' + id);
       const items = container.querySelectorAll('.item');
-      const allChecked = [...items].every(i => i.classList.contains('checked'));
-      items.forEach(i => allChecked ? i.classList.remove('checked') : i.classList.add('checked'));
-      updateAll();
-    }
+      const checked = container.querySelectorAll('.item.checked');
+      const total = items.length, done = checked.length;
+      document.getElementById('badge-' + id).textContent = `${done} / ${total}`;
+      const header = document.querySelector('#section-' + id + ' .section-header');
+      done === total ? header.classList.add('all-done') : header.classList.remove('all-done');
+      const selAll = document.getElementById('selAll-' + id);
+      done === total ? selAll.classList.add('all-checked') : selAll.classList.remove('all-checked');
+      totalItems += total;
+      totalChecked += done;
+    });
+    document.getElementById('progressCount').textContent = `${totalChecked} / ${totalItems} packed`;
+    const pct = totalItems > 0 ? (totalChecked / totalItems * 100) : 0;
+    document.getElementById('progressFill').style.width = pct + '%';
+  }
 
-    function toggleSection(id) {
-      const sec = document.getElementById('section-' + id);
-      const itemsEl = document.getElementById('items-' + id);
-      if (sec.classList.contains('collapsed')) {
-        sec.classList.remove('collapsed');
-        itemsEl.style.maxHeight = itemsEl.scrollHeight + 'px';
-        setTimeout(() => itemsEl.style.maxHeight = 'none', 380);
-      } else {
-        itemsEl.style.maxHeight = itemsEl.scrollHeight + 'px';
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => sec.classList.add('collapsed'));
-        });
-      }
-    }
+  function resetAll() {
+    document.querySelectorAll('.item').forEach(i => i.classList.remove('checked'));
+    updateAll();
+    showToast('🔄 Checklist reset');
+  }
 
-    function updateAll() {
-      let totalItems = 0, totalChecked = 0;
-      Object.keys(sections).forEach(id => {
-        const container = document.getElementById('items-' + id);
-        const items = container.querySelectorAll('.item');
-        const checked = container.querySelectorAll('.item.checked');
-        const total = items.length, done = checked.length;
-        document.getElementById('badge-' + id).textContent = `${done}/${total}`;
-        const header = document.querySelector('#section-' + id + ' .section-header');
-        done === total ? header.classList.add('all-done') : header.classList.remove('all-done');
-        const selAll = document.getElementById('selAll-' + id);
-        done === total ? selAll.classList.add('all-checked') : selAll.classList.remove('all-checked');
-        totalItems += total;
-        totalChecked += done;
-      });
-      document.getElementById('progressCount').textContent = `${totalChecked}/${totalItems} packed`;
-      const pct = totalItems > 0 ? (totalChecked / totalItems * 100) : 0;
-      document.getElementById('progressFill').style.width = pct + '%';
-    }
+  let toastTimer;
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+  }
 
-    function resetAll() {
-      document.querySelectorAll('.item').forEach(i => i.classList.remove('checked'));
-      updateAll();
-      showToast('🔄 Checklist reset!');
-    }
+  function openDownloadModal() {
+    const total = document.querySelectorAll('.item').length;
+    const done = document.querySelectorAll('.item.checked').length;
+    const remaining = total - done;
+    document.getElementById('modal-checked').textContent = done;
+    document.getElementById('modal-remaining').textContent = remaining;
+    document.getElementById('modal-total').textContent = total;
+    if (remaining === 0) document.getElementById('modal-msg').textContent = "🎉 You've packed everything! Checklist is complete.";
+    else if (done === 0) document.getElementById('modal-msg').textContent = "You haven't checked anything yet. Download anyway?";
+    else document.getElementById('modal-msg').textContent = `You've packed ${done} items. ${remaining} still to go — download your progress?`;
+    document.getElementById('modal').classList.add('active');
+  }
 
-    let toastTimer;
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      t.textContent = msg;
-      t.classList.add('show');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
-    }
+  function closeModal(e) { if (e.target === document.getElementById('modal')) closeModalBtn(); }
+  function closeModalBtn() { document.getElementById('modal').classList.remove('active'); }
 
-    function openDownloadModal() {
-      const total = document.querySelectorAll('.item').length;
-      const done = document.querySelectorAll('.item.checked').length;
-      const remaining = total - done;
-      document.getElementById('modal-checked').textContent = done;
-      document.getElementById('modal-remaining').textContent = remaining;
-      document.getElementById('modal-total').textContent = total;
-      if (remaining === 0) document.getElementById('modal-msg').textContent = "🎉 You've packed everything! Your checklist is complete.";
-      else if (done === 0) document.getElementById('modal-msg').textContent = "You haven't checked anything yet. Download anyway?";
-      else document.getElementById('modal-msg').textContent = `You've packed ${done} items. ${remaining} still to go — download your progress?`;
-      document.getElementById('modal').classList.add('active');
-    }
+  function downloadPDF() {
+    closeModalBtn();
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'letter' });
+    const pageW = doc.internal.pageSize.getWidth();
+    const pageH = doc.internal.pageSize.getHeight();
+    const margin = 18;
+    const colW = pageW - margin * 2;
+    let y = margin;
 
-    function closeModal(e) { if (e.target === document.getElementById('modal')) closeModalBtn(); }
-    function closeModalBtn() { document.getElementById('modal').classList.remove('active'); }
+    // Background — camp cream
+    doc.setFillColor(247, 243, 236);
+    doc.rect(0, 0, pageW, pageH, 'F');
 
-    function downloadPDF() {
-      closeModalBtn();
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'letter' });
-      const pageW = doc.internal.pageSize.getWidth();
-      const pageH = doc.internal.pageSize.getHeight();
-      const margin = 18;
-      const colW = pageW - margin * 2;
-      let y = margin;
+    // Header — navy with gold text
+    doc.setFillColor(26, 39, 68);
+    doc.roundedRect(margin - 6, y - 6, colW + 12, 32, 5, 5, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(17);
+    doc.setTextColor(255, 255, 255);
+    doc.text('Camping Gear Checklist', pageW / 2, y + 7, { align: 'center' });
+    doc.setFontSize(7.5);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(230, 184, 106);
+    doc.text('LU3 Stake Young Men · Cobblecreek Camp · Huntsville, UT · 2026', pageW / 2, y + 15, { align: 'center' });
+    const now = new Date();
+    doc.setTextColor(180, 170, 155);
+    doc.setFontSize(7);
+    doc.text(`Generated: ${now.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' })}`, pageW / 2, y + 22, { align: 'center' });
+    y += 38;
 
-      // Background
-      doc.setFillColor(242, 237, 232);
-      doc.rect(0, 0, pageW, pageH, 'F');
+    // Summary strip
+    const total = document.querySelectorAll('.item').length;
+    const done = document.querySelectorAll('.item.checked').length;
+    const pct = total > 0 ? Math.round(done / total * 100) : 0;
+    doc.setFillColor(255, 255, 255);
+    doc.roundedRect(margin - 4, y, colW + 8, 12, 3, 3, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9);
+    doc.setTextColor(74, 124, 89);
+    doc.text(`Packed: ${done} / ${total} items  (${pct}% complete)`, margin, y + 8);
+    y += 18;
 
-      // Header
-      doc.setFillColor(46, 125, 82);
-      doc.roundedRect(margin - 6, y - 6, colW + 12, 28, 5, 5, 'F');
-      doc.setFont('helvetica', 'bold');
-      doc.setFontSize(18);
-      doc.setTextColor(255, 255, 255);
-      doc.text('Camping Gear Checklist', pageW / 2, y + 7, { align: 'center' });
-      const now = new Date();
-      doc.setFontSize(8);
-      doc.setFont('helvetica', 'normal');
-      doc.setTextColor(200, 235, 212);
-      doc.text(`Generated: ${now.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' })}`, pageW / 2, y + 15, { align: 'center' });
-      y += 32;
+    // PROVIDED BY WARD LEADERS section
+    doc.setFillColor(37, 99, 180);
+    doc.roundedRect(margin - 4, y, colW + 8, 10, 3, 3, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9.5);
+    doc.setTextColor(255, 255, 255);
+    doc.text('⛪  PROVIDED BY WARD LEADERS', margin, y + 7);
+    doc.setFontSize(8);
+    doc.setTextColor(200, 220, 255);
+    doc.text('No need to bring!', pageW - margin, y + 7, { align: 'right' });
+    y += 13;
 
-      // Summary
-      const total = document.querySelectorAll('.item').length;
-      const done = document.querySelectorAll('.item.checked').length;
-      const pct = total > 0 ? Math.round(done / total * 100) : 0;
-      doc.setFillColor(255, 255, 255);
-      doc.roundedRect(margin - 4, y, colW + 8, 12, 3, 3, 'F');
-      doc.setFont('helvetica', 'bold');
-      doc.setFontSize(9);
-      doc.setTextColor(46, 125, 82);
-      doc.text(`Packed: ${done} / ${total} items  (${pct}% complete)`, margin, y + 8);
-      y += 18;
+    // Note row
+    doc.setFillColor(238, 245, 253);
+    doc.roundedRect(margin - 2, y - 1, colW + 4, 9, 2, 2, 'F');
+    doc.setFont('helvetica', 'italic');
+    doc.setFontSize(8);
+    doc.setTextColor(26, 95, 168);
+    doc.text("These items will be taken care of — you don't need to bring them!", margin + 3, y + 5.5);
+    y += 10;
 
-      // PROVIDED BY WARD LEADERS section
+    providedItems.forEach(text => {
+      doc.setFillColor(245, 249, 255);
+      doc.roundedRect(margin - 2, y - 1, colW + 4, 9, 2, 2, 'F');
       doc.setFillColor(37, 99, 180);
+      doc.circle(margin + 3, y + 3.5, 3, 'F');
+      doc.setTextColor(255, 255, 255);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(7);
+      doc.text('✓', margin + 1.2, y + 5.2);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9);
+      doc.setTextColor(30, 58, 95);
+      doc.text(text, margin + 9, y + 5.5);
+      y += 10;
+      if (y > pageH - 22) {
+        doc.addPage();
+        doc.setFillColor(247, 243, 236);
+        doc.rect(0, 0, pageW, pageH, 'F');
+        y = margin;
+      }
+    });
+    y += 5;
+
+    // Checkable sections
+    Object.keys(sections).forEach(id => {
+      const container = document.getElementById('items-' + id);
+      const items = container.querySelectorAll('.item');
+      const sectionChecked = container.querySelectorAll('.item.checked').length;
+      const sectionTotal = items.length;
+
+      doc.setFillColor(26, 39, 68);
       doc.roundedRect(margin - 4, y, colW + 8, 10, 3, 3, 'F');
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(9.5);
       doc.setTextColor(255, 255, 255);
-      doc.text('PROVIDED BY WARD LEADERS', margin, y + 7);
+      doc.text(sections[id].icon + '  ' + sections[id].label, margin, y + 7);
       doc.setFontSize(8);
-      doc.text('No need to bring!', pageW - margin, y + 7, { align: 'right' });
+      doc.setTextColor(200, 151, 58);
+      doc.text(`${sectionChecked}/${sectionTotal}`, pageW - margin, y + 7, { align: 'right' });
       y += 13;
 
-      // Note row
-      doc.setFillColor(238, 245, 253);
-      doc.roundedRect(margin - 2, y - 1, colW + 4, 9, 2, 2, 'F');
-      doc.setFont('helvetica', 'italic');
-      doc.setFontSize(8);
-      doc.setTextColor(26, 95, 168);
-      doc.text('These items will be taken care of — you don\'t need to bring them!', margin + 3, y + 5.5);
-      y += 10;
-
-      providedItems.forEach(text => {
-        doc.setFillColor(245, 249, 255);
+      items.forEach(item => {
+        const isChecked = item.classList.contains('checked');
+        const text = item.querySelector('.item-text').textContent.trim();
+        doc.setFillColor(isChecked ? 250 : 255, isChecked ? 252 : 255, isChecked ? 250 : 255);
         doc.roundedRect(margin - 2, y - 1, colW + 4, 9, 2, 2, 'F');
-
-        doc.setFillColor(37, 99, 180);
-        doc.circle(margin + 3, y + 3.5, 3, 'F');
-        doc.setTextColor(255, 255, 255);
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(7);
-        doc.text('✓', margin + 1.2, y + 5.2);
-
+        if (isChecked) {
+          doc.setFillColor(74, 124, 89);
+          doc.roundedRect(margin, y + 0.5, 6, 6, 1.5, 1.5, 'F');
+          doc.setTextColor(255, 255, 255);
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(7);
+          doc.text('✓', margin + 1.2, y + 5.5);
+        } else {
+          doc.setDrawColor(232, 224, 212);
+          doc.setLineWidth(0.45);
+          doc.roundedRect(margin, y + 0.5, 6, 6, 1.5, 1.5, 'S');
+        }
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(9);
-        doc.setTextColor(30, 58, 95);
+        doc.setTextColor(isChecked ? 138 : 26, isChecked ? 129 : 39, isChecked ? 120 : 68);
         doc.text(text, margin + 9, y + 5.5);
+        if (isChecked) {
+          const tw = doc.getTextWidth(text);
+          doc.setDrawColor(200, 200, 200);
+          doc.setLineWidth(0.4);
+          doc.line(margin + 9, y + 3.5, margin + 9 + tw, y + 3.5);
+        }
         y += 10;
-
         if (y > pageH - 22) {
           doc.addPage();
-          doc.setFillColor(242, 237, 232);
+          doc.setFillColor(247, 243, 236);
           doc.rect(0, 0, pageW, pageH, 'F');
           y = margin;
         }
       });
-
       y += 5;
-
-      // Checkable sections
-      Object.keys(sections).forEach(id => {
-        const container = document.getElementById('items-' + id);
-        const items = container.querySelectorAll('.item');
-        const sectionChecked = container.querySelectorAll('.item.checked').length;
-        const sectionTotal = items.length;
-
-        doc.setFillColor(46, 125, 82);
-        doc.roundedRect(margin - 4, y, colW + 8, 10, 3, 3, 'F');
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(9.5);
-        doc.setTextColor(255, 255, 255);
-        doc.text(sections[id].label, margin, y + 7);
-        doc.setFontSize(8);
-        doc.text(`${sectionChecked}/${sectionTotal}`, pageW - margin, y + 7, { align: 'right' });
-        y += 13;
-
-        items.forEach(item => {
-          const isChecked = item.classList.contains('checked');
-          const text = item.querySelector('.item-text').textContent.trim();
-
-          doc.setFillColor(isChecked ? 245 : 255, isChecked ? 250 : 255, isChecked ? 246 : 255);
-          doc.roundedRect(margin - 2, y - 1, colW + 4, 9, 2, 2, 'F');
-
-          if (isChecked) {
-            doc.setFillColor(46, 125, 82);
-            doc.roundedRect(margin, y + 0.5, 6, 6, 1.5, 1.5, 'F');
-            doc.setTextColor(255, 255, 255);
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(7);
-            doc.text('✓', margin + 1.2, y + 5.5);
-          } else {
-            doc.setDrawColor(180, 210, 185);
-            doc.setLineWidth(0.45);
-            doc.roundedRect(margin, y + 0.5, 6, 6, 1.5, 1.5, 'S');
-          }
-
-          doc.setFont('helvetica', 'normal');
-          doc.setFontSize(9);
-          doc.setTextColor(isChecked ? 150 : 46, isChecked ? 180 : 58, isChecked ? 155 : 47);
-          doc.text(text, margin + 9, y + 5.5);
-          if (isChecked) {
-            const tw = doc.getTextWidth(text);
-            doc.setDrawColor(120, 184, 138);
-            doc.setLineWidth(0.5);
-            doc.line(margin + 9, y + 3.5, margin + 9 + tw, y + 3.5);
-          }
-
-          y += 10;
-          if (y > pageH - 22) {
-            doc.addPage();
-            doc.setFillColor(242, 237, 232);
-            doc.rect(0, 0, pageW, pageH, 'F');
-            y = margin;
-          }
-        });
-
-        y += 5;
-      });
-
-      // Footer
-      doc.setFillColor(46, 125, 82);
-      doc.rect(0, pageH - 11, pageW, 11, 'F');
-      doc.setFont('helvetica', 'italic');
-      doc.setFontSize(7.5);
-      doc.setTextColor(200, 235, 212);
-      doc.text('Have a wonderful camping trip! ⛺', pageW / 2, pageH - 4, { align: 'center' });
-
-      doc.save('camping-checklist.pdf');
-      showToast('✅ PDF downloaded!');
-    }
-
-    updateAll();
-    Object.keys(sections).forEach(id => {
-      document.getElementById('items-' + id).style.maxHeight = 'none';
     });
-    document.getElementById('items-provided').style.maxHeight = 'none';
-  </script>
+
+    // Footer
+    doc.setFillColor(26, 39, 68);
+    doc.rect(0, pageH - 11, pageW, 11, 'F');
+    doc.setFont('helvetica', 'italic');
+    doc.setFontSize(7.5);
+    doc.setTextColor(230, 184, 106);
+    doc.text('"Walk with me." — Moses 6:34  ·  Have a wonderful camp! ⛺', pageW / 2, pageH - 4, { align: 'center' });
+
+    doc.save('camp-gear-checklist.pdf');
+    showToast('✅ PDF downloaded!');
+  }
+
+  updateAll();
+  Object.keys(sections).forEach(id => {
+    document.getElementById('items-' + id).style.maxHeight = 'none';
+  });
+  document.getElementById('items-provided').style.maxHeight = 'none';
+</script>
 </body>
 </html>
