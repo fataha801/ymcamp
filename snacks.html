@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Camp Snack Menu 2026 — LU3 Stake YM Camp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:      #1a2744;
+      --navy-mid:  #243257;
+      --gold:      #c8973a;
+      --gold-lt:   #e6b86a;
+      --cream:     #f7f3ec;
+      --stone:     #e8e0d4;
+      --muted:     #8a8178;
+      --white:     #ffffff;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --shadow-card: 0 2px 12px rgba(26,39,68,.10);
+      --shadow-lift: 0 6px 24px rgba(26,39,68,.16);
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'DM Sans', sans-serif;
+      --spacing-xs:  4px;
+      --spacing-sm:  8px;
+      --spacing-md:  16px;
+      --spacing-lg:  24px;
+      --spacing-xl:  40px;
+      --spacing-2xl: 64px;
+
+      --day1:    #4a7c59;
+      --day1-lt: #eef5ee;
+      --day2:    #5b82bf;
+      --day2-lt: #eef1f9;
+      --day3:    #2d6b2d;
+      --day3-lt: #d4edd4;
+      --day4:    #7a5010;
+      --day4-lt: #fdf6ec;
+
+      --water:    #2a6496;
+      --water-lt: #e8f2fb;
+      --fire:     #c0392b;
+      --fire-lt:  #fdecea;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--navy);
+      min-height: 100vh;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--navy);
+      color: var(--white);
+      padding: var(--spacing-xl) var(--spacing-md);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 110%, rgba(200,151,58,.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 20%, rgba(200,151,58,.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: .7rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      margin-bottom: var(--spacing-sm);
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 6vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: var(--spacing-xs);
+      position: relative;
+    }
+    .hero-sub {
+      font-size: .85rem;
+      color: rgba(255,255,255,.65);
+      margin-top: var(--spacing-sm);
+      max-width: 400px;
+      margin-inline: auto;
+    }
+    .gold-rule {
+      width: 48px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin: var(--spacing-md) auto;
+    }
+    .hero-dates {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--gold-lt);
+      font-weight: 600;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .75rem;
+      font-weight: 500;
+      color: var(--gold-lt);
+      text-decoration: none;
+      opacity: .8;
+      transition: opacity .18s;
+      position: relative;
+      z-index: 1;
+      margin-bottom: var(--spacing-md);
+    }
+    .back-link:hover { opacity: 1; }
+
+    /* ── INFO STRIP ── */
+    .info-strip {
+      background: var(--gold);
+      color: var(--navy);
+      padding: var(--spacing-md);
+    }
+    .info-strip-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm) var(--spacing-xl);
+      justify-content: center;
+      align-items: center;
+    }
+    .info-item { display: flex; align-items: center; gap: 8px; font-size: .82rem; font-weight: 500; }
+    .info-icon { font-size: 1rem; }
+
+    /* ── MAIN ── */
+    .main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: var(--spacing-xl) var(--spacing-md) var(--spacing-2xl);
+    }
+
+    /* ── SECTION DIVIDER ── */
+    .section-divider {
+      display: flex; align-items: center; gap: var(--spacing-md);
+      margin-bottom: var(--spacing-lg);
+      margin-top: var(--spacing-xl);
+    }
+    .section-divider:first-child { margin-top: 0; }
+    .section-divider-line { flex: 1; height: 1px; background: var(--stone); }
+    .section-divider-label {
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── SCHEDULE GRID ── */
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-md);
+      align-items: start;
+    }
+    @media (max-width: 680px) { .schedule-grid { grid-template-columns: 1fr; } }
+
+    /* ── SNACK CARD ── */
+    .snack-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      transition: box-shadow .2s;
+    }
+    .snack-card:hover { box-shadow: var(--shadow-lift); }
+
+    .snack-card-header {
+      padding: var(--spacing-md);
+      color: var(--white);
+      position: relative;
+    }
+    .snack-card-header.monday  { background: var(--day1); }
+    .snack-card-header.tuesday-pm { background: var(--day2); }
+    .snack-card-header.tuesday-eve { background: var(--navy-mid); }
+    .snack-card-header.wednesday-pm { background: var(--day3); }
+    .snack-card-header.wednesday-eve { background: var(--fire); }
+
+    .snack-day-label {
+      font-size: .62rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      opacity: .8;
+      margin-bottom: 2px;
+    }
+    .snack-time-label {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 3px;
+    }
+    .snack-occasion {
+      font-size: .68rem;
+      opacity: .75;
+      font-weight: 500;
+      letter-spacing: .05em;
+    }
+
+    .snack-items {
+      padding: var(--spacing-sm) var(--spacing-md) var(--spacing-md);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .snack-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--stone);
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--navy);
+    }
+    .snack-item:last-child { border-bottom: none; }
+    .snack-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .monday   .snack-dot { background: var(--day1); }
+    .tuesday-pm .snack-dot { background: var(--day2); }
+    .tuesday-eve .snack-dot { background: var(--navy-mid); }
+    .wednesday-pm .snack-dot { background: var(--day3); }
+    .wednesday-eve .snack-dot { background: var(--fire); }
+
+    .snack-note {
+      font-size: .7rem;
+      color: var(--muted);
+      font-style: italic;
+      padding: 0 var(--spacing-md) var(--spacing-sm);
+      margin-top: -4px;
+    }
+
+    /* ── WATER SECTION ── */
+    .water-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+    .water-header {
+      background: var(--water);
+      color: var(--white);
+      padding: var(--spacing-md) var(--spacing-lg);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+    }
+    .water-icon { font-size: 1.8rem; }
+    .water-title { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; }
+    .water-sub   { font-size: .7rem; opacity: .75; margin-top: 2px; }
+
+    .water-body {
+      padding: var(--spacing-md) var(--spacing-lg);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-md);
+    }
+    @media (max-width: 500px) { .water-body { grid-template-columns: 1fr; } }
+
+    .water-stat {
+      background: var(--water-lt);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-md);
+      text-align: center;
+    }
+    .water-stat-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--water);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .water-stat-label {
+      font-size: .72rem;
+      font-weight: 500;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+
+    .hydration-extras {
+      padding: 0 var(--spacing-lg) var(--spacing-lg);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-sm);
+    }
+    @media (max-width: 500px) { .hydration-extras { grid-template-columns: 1fr; } }
+
+    .hydration-tag {
+      background: var(--cream);
+      border: 1px solid var(--stone);
+      border-radius: var(--radius-sm);
+      padding: var(--spacing-sm) var(--spacing-md);
+      text-align: center;
+    }
+    .hydration-tag-icon { font-size: 1.1rem; margin-bottom: 4px; }
+    .hydration-tag-name {
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+    .hydration-tag-when {
+      font-size: .62rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 2px;
+    }
+
+    .beach-note {
+      margin: 0 var(--spacing-lg) var(--spacing-lg);
+      background: var(--water-lt);
+      border-left: 3px solid var(--water);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: var(--spacing-sm) var(--spacing-md);
+    }
+    .beach-note-label {
+      font-size: .62rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--water);
+      margin-bottom: 2px;
+    }
+    .beach-note-text {
+      font-size: .75rem;
+      color: var(--navy);
+    }
+
+    /* ── TINFOIL OPTIONS ── */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-md);
+      align-items: start;
+    }
+    @media (max-width: 540px) { .options-grid { grid-template-columns: 1fr; } }
+
+    .option-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      transition: box-shadow .2s;
+    }
+    .option-card:hover { box-shadow: var(--shadow-lift); }
+
+    .option-header {
+      padding: var(--spacing-md);
+      background: var(--navy);
+      color: var(--white);
+      position: relative;
+    }
+    .option-header.nachos  { background: #b5451b; }
+    .option-header.pizza   { background: #6b2d8c; }
+    .option-header.banana  { background: var(--day4); }
+    .option-header.apple   { background: var(--day1); }
+
+    .option-num {
+      font-size: .6rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      opacity: .7;
+      margin-bottom: 2px;
+    }
+    .option-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .option-meta {
+      font-size: .68rem;
+      opacity: .75;
+      margin-top: 3px;
+    }
+    .fav-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: .55rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      padding: 2px 7px;
+      border-radius: 999px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    .option-body {
+      padding: var(--spacing-sm) var(--spacing-md) var(--spacing-md);
+    }
+
+    .option-section-label {
+      font-size: .6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--muted);
+      margin: var(--spacing-sm) 0 4px;
+    }
+    .option-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .option-list li {
+      font-size: .78rem;
+      color: var(--navy);
+      padding: 4px 0 4px 14px;
+      position: relative;
+      border-bottom: 1px solid var(--stone);
+      line-height: 1.35;
+    }
+    .option-list li:last-child { border-bottom: none; }
+    .option-list li::before {
+      content: '·';
+      position: absolute;
+      left: 3px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .cook-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--cream);
+      border: 1px solid var(--stone);
+      border-radius: 999px;
+      font-size: .65rem;
+      font-weight: 600;
+      color: var(--navy);
+      padding: 3px 10px;
+      margin-top: var(--spacing-sm);
+    }
+    .cook-pill-icon { font-size: .8rem; }
+
+    /* ── NOODLES SECTION ── */
+    .noodles-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+    .noodles-header {
+      background: var(--navy-mid);
+      color: var(--white);
+      padding: var(--spacing-md) var(--spacing-lg);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+    }
+    .noodles-icon { font-size: 1.8rem; }
+    .noodles-title { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; }
+    .noodles-sub   { font-size: .7rem; opacity: .75; margin-top: 2px; }
+
+    .noodles-body {
+      padding: var(--spacing-md) var(--spacing-lg);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-md);
+    }
+    @media (max-width: 500px) { .noodles-body { grid-template-columns: 1fr; } }
+
+    .noodles-why {
+      background: var(--cream);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-md);
+    }
+    .noodles-why-title {
+      font-size: .62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--muted);
+      margin-bottom: var(--spacing-sm);
+    }
+    .why-list { list-style: none; }
+    .why-list li {
+      font-size: .78rem;
+      color: var(--navy);
+      padding: 3px 0 3px 14px;
+      position: relative;
+      line-height: 1.4;
+    }
+    .why-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      font-size: .65rem;
+      color: var(--day1);
+      font-weight: 700;
+    }
+
+    .noodles-qty {
+      background: var(--navy);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-md);
+      color: var(--white);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+    }
+    .noodles-qty-num {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .noodles-qty-label { font-size: .72rem; opacity: .75; }
+
+    .flavors-row {
+      padding: 0 var(--spacing-lg) var(--spacing-lg);
+      display: flex;
+      gap: var(--spacing-sm);
+      flex-wrap: wrap;
+    }
+    .flavor-tag {
+      background: var(--navy);
+      color: var(--white);
+      font-size: .68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      padding: 5px 14px;
+      border-radius: var(--radius-sm);
+    }
+    .flavor-tag.gold { background: var(--gold); color: var(--navy); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,.5);
+      text-align: center;
+      padding: var(--spacing-lg) var(--spacing-md);
+      font-size: .72rem;
+      letter-spacing: .04em;
+      line-height: 1.8;
+    }
+    footer strong { color: var(--gold-lt); }
+    footer .motto { color: var(--gold-lt); font-style: italic; margin-top: 4px; font-size: .7rem; display: block; }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <a class="back-link" href="index.html">← Back to Schedule</a>
+  <p class="hero-eyebrow">LU3 Stake Young Men · Cobblecreek Camp · 2026</p>
+  <h1>Camp Snack Menu</h1>
+  <div class="gold-rule"></div>
+  <p class="hero-dates">Monday – Wednesday</p>
+  <p class="hero-sub">Fueling brotherhood, one campfire snack at a time</p>
+</header>
+
+<section class="info-strip">
+  <div class="info-strip-inner">
+    <div class="info-item"><span class="info-icon">👥</span> 30 Campers</div>
+    <div class="info-item"><span class="info-icon">📅</span> June 29 – July 2, 2026</div>
+    <div class="info-item"><span class="info-icon">📍</span> Cobblecreek Campground, Huntsville, UT</div>
+  </div>
+</section>
+
+<main class="main">
+
+  <!-- SNACK SCHEDULE -->
+  <div class="section-divider" style="margin-top:0;">
+    <span class="section-divider-line"></span>
+    <span class="section-divider-label">Snack Schedule</span>
+    <span class="section-divider-line"></span>
+  </div>
+
+  <div class="schedule-grid">
+
+    <!-- Monday Evening -->
+    <div class="snack-card">
+      <div class="snack-card-header monday">
+        <div class="snack-day-label">Day 1 — Monday</div>
+        <div class="snack-time-label">Evening Snack</div>
+        <div class="snack-occasion">🌙 After Ward Time</div>
+      </div>
+      <div class="snack-items">
+        <div class="snack-item">
+          <span class="snack-dot"></span> 🍌 Banana Boats
+        </div>
+        <div class="snack-item">
+          <span class="snack-dot"></span> ☕ Hot Chocolate
+        </div>
+        <div class="snack-item">
+          <span class="snack-dot"></span> 🍋 Lemonade
+        </div>
+      </div>
+      <p class="snack-note">Hot chocolate if cool evening; lemonade if warm</p>
+    </div>
+
+    <!-- Tuesday Afternoon -->
+    <div class="snack-card">
+      <div class="snack-card-header tuesday-pm">
+        <div class="snack-day-label">Day 2 — Tuesday</div>
+        <div class="snack-time-label">Afternoon Snack</div>
+        <div class="snack-occasion">☀️ Between Workshops</div>
+      </div>
+      <div class="snack-items">
+        <div class="snack-item">
+          <span class="snack-dot"></span> 🍓 Fresh Fruit
+        </div>
+        <div class="snack-item">
+          <span class="snack-dot"></span> 🍫 Granola Bars
+        </div>
+      </div>
+    </div>
+
+    <!-- Tuesday Night -->
+    <div class="snack-card">
+      <div class="snack-card-header tuesday-eve">
+        <div class="snack-day-label">Day 2 — Tuesday</div>
+        <div class="snack-time-label">Evening Snack</div>
+        <div class="snack-occasion">🌙 Night Activity</div>
+      </div>
+      <div class="snack-items">
+        <div class="snack-item">
+          <span class="snack-dot"></span> 🍜 Cup of Noodles Bar
+        </div>
+      </div>
+      <p class="snack-note">Mix of chicken, beef &amp; shrimp flavors · see details below</p>
+    </div>
+
+    <!-- Wednesday Afternoon -->
+    <div class="snack-card">
+      <div class="snack-card-header wednesday-pm">
+        <div class="snack-day-label">Day 3 — Wednesday</div>
+        <div class="snack-time-label">Afternoon Snack</div>
+        <div class="snack-occasion">🏖️ Post Beach Day</div>
+      </div>
+      <div class="snack-items">
+        <div class="snack-item">
+          <span class="snack-dot"></span> 🍬 Rice Krispie Treats
+        </div>
+        <div class="snack-item">
+          <span class="snack-dot"></span> 🍎 Fresh Fruit
+        </div>
+      </div>
+    </div>
+
+    <!-- Wednesday Night -->
+    <div class="snack-card">
+      <div class="snack-card-header wednesday-eve">
+        <div class="snack-day-label">Day 3 — Wednesday</div>
+        <div class="snack-time-label">Evening Snack</div>
+        <div class="snack-occasion">🔥 Campfire Time</div>
+      </div>
+      <div class="snack-items">
+        <div class="snack-item">
+          <span class="snack-dot"></span> 🌮 Campfire Nachos
+        </div>
+      </div>
+      <p class="snack-note">Tinfoil nacho packets over the campfire · see details below</p>
+    </div>
+
+  </div>
+
+  <!-- HYDRATION STATION -->
+  <div class="section-divider">
+    <span class="section-divider-line"></span>
+    <span class="section-divider-label">Hydration Station</span>
+    <span class="section-divider-line"></span>
+  </div>
+
+  <div class="water-card">
+    <div class="water-header">
+      <div class="water-icon">💧</div>
+      <div>
+        <div class="water-title">Water Supply Plan</div>
+        <div class="water-sub">Hot weather hydration · 30 campers</div>
+      </div>
+    </div>
+    <div class="water-body">
+      <div class="water-stat">
+        <div class="water-stat-num">400</div>
+        <div class="water-stat-label">Total Bottles<br/><span style="color:var(--muted);font-size:.65rem;">10 cases × 40 bottles/pack</span></div>
+      </div>
+      <div class="water-stat">
+        <div class="water-stat-num">~13</div>
+        <div class="water-stat-label">Bottles Per Person<br/><span style="color:var(--muted);font-size:.65rem;">Right for hot weather camp</span></div>
+      </div>
+    </div>
+
+    <div class="beach-note">
+      <div class="beach-note-label">🏖️ Wednesday Beach Day</div>
+      <div class="beach-note-text">+3 extra bottles at beach + 4 daily limit = <strong>7 bottles total on Wednesday</strong> (120 ÷ 40 = 3 additional)</div>
+    </div>
+
+    <div style="padding: 0 var(--spacing-lg); margin-bottom: var(--spacing-sm);">
+      <div class="option-section-label">Drink Extras</div>
+    </div>
+    <div class="hydration-extras">
+      <div class="hydration-tag">
+        <div class="hydration-tag-icon">🍋</div>
+        <div class="hydration-tag-name">Lemonade Mix</div>
+        <div class="hydration-tag-when">Beach day &amp; breakfast</div>
+      </div>
+      <div class="hydration-tag">
+        <div class="hydration-tag-icon">⚡</div>
+        <div class="hydration-tag-name">Gatorade Powder</div>
+        <div class="hydration-tag-when">Beach day &amp; dinner only</div>
+      </div>
+      <div class="hydration-tag">
+        <div class="hydration-tag-icon">💊</div>
+        <div class="hydration-tag-name">Liquid IV Packets</div>
+        <div class="hydration-tag-when">Daily consumption</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUP OF NOODLES -->
+  <div class="section-divider">
+    <span class="section-divider-line"></span>
+    <span class="section-divider-label">Cup of Noodles Plan</span>
+    <span class="section-divider-line"></span>
+  </div>
+
+  <div class="noodles-card">
+    <div class="noodles-header">
+      <div class="noodles-icon">🍜</div>
+      <div>
+        <div class="noodles-title">Cup of Noodles Bar</div>
+        <div class="noodles-sub">Tuesday Evening · Snack Time</div>
+      </div>
+    </div>
+    <div class="noodles-body">
+      <div class="noodles-why">
+        <div class="noodles-why-title">Why It Works</div>
+        <ul class="why-list">
+          <li>Only requires boiling water</li>
+          <li>Minimal dishes</li>
+          <li>Great between-lunch snack</li>
+          <li>Youth camp favorite</li>
+        </ul>
+      </div>
+      <div class="noodles-qty">
+        <div class="noodles-qty-num">70</div>
+        <div class="noodles-qty-label">cups per snack day<br/>(Mon–Wed, 30 people + extra)</div>
+      </div>
+    </div>
+    <div style="padding: 0 var(--spacing-lg) var(--spacing-sm);">
+      <div class="option-section-label">Mix of Flavors</div>
+    </div>
+    <div class="flavors-row">
+      <span class="flavor-tag gold">🍗 Chicken</span>
+      <span class="flavor-tag">🥩 Beef</span>
+      <span class="flavor-tag">🍤 Shrimp</span>
+    </div>
+  </div>
+
+  <!-- TINFOIL SNACK OPTIONS -->
+  <div class="section-divider">
+    <span class="section-divider-line"></span>
+    <span class="section-divider-label">Tinfoil Snack Options · Dinner Time</span>
+    <span class="section-divider-line"></span>
+  </div>
+
+  <div class="options-grid">
+
+    <!-- Option 1: Campfire Nachos -->
+    <div class="option-card">
+      <div class="option-header nachos">
+        <div class="option-num">Option 1</div>
+        <div class="option-title">Campfire Nachos</div>
+        <div class="option-meta">🌮 Very popular and easy</div>
+      </div>
+      <div class="option-body">
+        <div class="option-section-label">Each Person Gets</div>
+        <ul class="option-list">
+          <li>Small sheet of foil</li>
+          <li>Tortilla chips</li>
+          <li>Shredded cheese</li>
+          <li>Taco meat (optional)</li>
+          <li>Jalapeños</li>
+          <li>Salsa packets</li>
+        </ul>
+        <div class="option-section-label">Supplies · 30 People</div>
+        <ul class="option-list">
+          <li>3 large bags tortilla chips</li>
+          <li>5 lbs shredded cheese</li>
+          <li>3–4 lbs taco meat</li>
+        </ul>
+        <div class="cook-pill"><span class="cook-pill-icon">🔥</span> Cook 5–10 min over fire</div>
+      </div>
+    </div>
+
+    <!-- Option 2: Pizza Packets -->
+    <div class="option-card">
+      <div class="option-header pizza">
+        <div class="option-num">Option 2</div>
+        <div class="option-title">Pizza Packets</div>
+        <div class="option-meta">🍕 Over coals</div>
+      </div>
+      <div class="option-body">
+        <div class="option-section-label">Each Person Gets</div>
+        <ul class="option-list">
+          <li>English muffin or pita</li>
+          <li>Pizza sauce</li>
+          <li>Mozzarella cheese</li>
+          <li>Pepperoni</li>
+        </ul>
+        <div class="option-section-label">Supplies · 30 People</div>
+        <ul class="option-list">
+          <li>30 English muffins</li>
+          <li>2 lbs pepperoni</li>
+          <li>5 lbs cheese</li>
+          <li>2 jars pizza sauce</li>
+        </ul>
+        <div class="cook-pill"><span class="cook-pill-icon">🔥</span> Cook 5–8 min over coals</div>
+      </div>
+    </div>
+
+    <!-- Option 3: Banana Boats -->
+    <div class="option-card">
+      <div class="option-header banana">
+        <div class="option-num">Option 3</div>
+        <div class="option-title">Banana Boats <span class="fav-badge">⭐ Fav</span></div>
+        <div class="option-meta">🍌 Youth love these · Zero cleanup</div>
+      </div>
+      <div class="option-body">
+        <div class="option-section-label">Stuff the Banana With</div>
+        <ul class="option-list">
+          <li>Chocolate chips</li>
+          <li>Mini marshmallows</li>
+          <li>Peanut butter chips</li>
+        </ul>
+        <p style="font-size:.7rem;color:var(--muted);font-style:italic;margin:6px 0;">Slice banana lengthwise · wrap in foil · eat with spoon</p>
+        <div class="option-section-label">Supplies · 30 People</div>
+        <ul class="option-list">
+          <li>30 bananas</li>
+          <li>2 bags chocolate chips</li>
+          <li>2 bags mini marshmallows</li>
+        </ul>
+        <div class="cook-pill"><span class="cook-pill-icon">🔥</span> Heat 5 min · cleanup is almost nothing</div>
+      </div>
+    </div>
+
+    <!-- Option 4: Cinnamon Apple Packets -->
+    <div class="option-card">
+      <div class="option-header apple">
+        <div class="option-num">Option 4</div>
+        <div class="option-title">Cinnamon Apple Packets</div>
+        <div class="option-meta">🍎 Healthier dessert option</div>
+      </div>
+      <div class="option-body">
+        <div class="option-section-label">Foil Packet Ingredients</div>
+        <ul class="option-list">
+          <li>Apple slices</li>
+          <li>Brown sugar</li>
+          <li>Cinnamon</li>
+          <li>Tiny butter pat</li>
+        </ul>
+        <div class="option-section-label">Supplies · 30 People</div>
+        <ul class="option-list">
+          <li>30 apples</li>
+          <li>Brown sugar</li>
+          <li>Cinnamon</li>
+        </ul>
+        <div class="cook-pill"><span class="cook-pill-icon">🔥</span> Cook 10 min · dessert + healthy</div>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  <strong>LU3 Stake Young Men's Camp</strong> · Cobblecreek Camp · Huntsville, Utah · 2026<br/>
+  All dates and quantities tentative. Confirm with ward leaders.<br/>
+  <span class="motto">"Walk with me." — Moses 6:34</span>
+</footer>
+
+</body>
+</html>
