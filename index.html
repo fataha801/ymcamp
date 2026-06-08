@@ -3,37 +3,439 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Camping Gear Checklist</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <title>LU3 Stake Young Men Camp 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:      #1a2744;
+      --navy-mid:  #243257;
+      --gold:      #c8973a;
+      --gold-lt:   #e6b86a;
+      --cream:     #f7f3ec;
+      --stone:     #e8e0d4;
+      --muted:     #8a8178;
+      --white:     #ffffff;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --shadow-card: 0 2px 12px rgba(26,39,68,.10);
+      --shadow-lift: 0 8px 32px rgba(26,39,68,.18);
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'DM Sans', sans-serif;
 
+      --card-agenda:   #4a7c59;
+      --card-snacks:   #c0392b;
+      --card-checklist:#2563eb;
+      --card-calendar: #7a5010;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background: #f2ede8;
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--navy);
       min-height: 100vh;
-      padding-bottom: 90px;
+      font-size: 15px;
+      line-height: 1.6;
     }
 
     /* ── HERO ── */
-    header {
-      position: relative;
-      height: 280px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    .hero {
+      background: var(--navy);
+      color: var(--white);
+      padding: 56px var(--spacing-md, 16px) 48px;
       text-align: center;
+      position: relative;
       overflow: hidden;
-      padding: 20px;
     }
-
-    .hero-bg {
+    .hero::before {
+      content: '';
       position: absolute;
       inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=1200&q=80');
-      background-size: cover;
-      background-position: center 40%;
+      background:
+        radial-gradient(ellipse 80% 70% at 50% 120%, rgba(200,151,58,.22) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 35% at 85% 15%, rgba(200,151,58,.10) 0%, transparent 60%),
+        radial-gradient(ellipse 30% 25% at 10% 80%, rgba(200,151,58,.07) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 7vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      position: relative;
+      margin-bottom: 4px;
+    }
+    .hero-year {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      color: var(--gold-lt);
+      font-weight: 600;
+      position: relative;
+      margin-bottom: 16px;
+    }
+    .gold-rule {
+      width: 52px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin: 16px auto;
+      position: relative;
+    }
+    .hero-motto {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--gold-lt);
+      position: relative;
+    }
+    .hero-sub {
+      font-size: .82rem;
+      color: rgba(255,255,255,.55);
+      margin-top: 6px;
+      position: relative;
+    }
+
+    /* ── INFO STRIP ── */
+    .info-strip {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 14px 16px;
+    }
+    .info-strip-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 32px;
+      justify-content: center;
+      align-items: center;
+    }
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: .8rem;
+      font-weight: 500;
+    }
+
+    /* ── MAIN ── */
+    .main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 16px 72px;
+    }
+
+    /* ── SECTION DIVIDER ── */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .section-divider-line { flex: 1; height: 1px; background: var(--stone); }
+    .section-divider-label {
+      font-size: .66rem;
+      font-weight: 500;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── CARD GRID ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 520px) {
+      .card-grid { grid-template-columns: 1fr; gap: 16px; }
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow .22s, transform .22s;
+      position: relative;
+    }
+    .card:hover {
+      box-shadow: var(--shadow-lift);
+      transform: translateY(-3px);
+    }
+    .card:active { transform: translateY(-1px); }
+
+    /* ── CARD THUMBNAIL ── */
+    .card-thumb {
+      position: relative;
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .card-thumb::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,.28) 100%);
+      pointer-events: none;
+    }
+
+    .card-agenda   .card-thumb { background: var(--card-agenda); }
+    .card-snacks   .card-thumb { background: var(--card-snacks); }
+    .card-checklist .card-thumb { background: var(--card-checklist); }
+    .card-calendar .card-thumb { background: var(--card-calendar); }
+
+    /* Decorative pattern per card */
+    .card-thumb-pattern {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    /* Thumb emoji */
+    .card-thumb-icon {
+      font-size: 3.8rem;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,.3));
+      line-height: 1;
+      transition: transform .25s;
+    }
+    .card:hover .card-thumb-icon { transform: scale(1.08); }
+
+    /* Label pill on thumb */
+    .card-thumb-label {
+      position: absolute;
+      bottom: 12px;
+      left: 14px;
+      z-index: 2;
+      font-size: .58rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      background: rgba(255,255,255,.18);
+      color: rgba(255,255,255,.9);
+      padding: 3px 10px;
+      border-radius: 999px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,.2);
+    }
+
+    /* ── CARD BODY ── */
+    .card-body {
+      padding: 18px 18px 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 6px;
+    }
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--navy);
+    }
+    .card-desc {
+      font-size: .78rem;
+      color: var(--muted);
+      line-height: 1.5;
+      flex: 1;
+    }
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: .72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-top: 8px;
+      transition: gap .18s;
+    }
+    .card-agenda    .card-cta { color: var(--card-agenda); }
+    .card-snacks    .card-cta { color: var(--card-snacks); }
+    .card-checklist .card-cta { color: var(--card-checklist); }
+    .card-calendar  .card-cta { color: var(--card-calendar); }
+    .card:hover .card-cta { gap: 8px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,.45);
+      text-align: center;
+      padding: 24px 16px;
+      font-size: .72rem;
+      letter-spacing: .04em;
+      line-height: 1.9;
+    }
+    footer strong { color: var(--gold-lt); }
+    footer .motto { color: var(--gold-lt); font-style: italic; display: block; margin-top: 2px; font-size: .7rem; }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <p class="hero-eyebrow">LU3 Stake Young Men</p>
+  <h1>Camp Resources</h1>
+  <p class="hero-year">Cobblecreek Camp · 2026</p>
+  <div class="gold-rule"></div>
+  <p class="hero-motto">"Walk with me." — Moses 6:34</p>
+  <p class="hero-sub">June 29 – July 2 · Huntsville, Utah</p>
+</header>
+
+<!-- INFO STRIP -->
+<section class="info-strip">
+  <div class="info-strip-inner">
+    <div class="info-item">📅 June 29 – July 2, 2026</div>
+    <div class="info-item">📍 Cobblecreek Campground, Huntsville, UT</div>
+    <div class="info-item">👥 ~30 Campers</div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main class="main">
+
+  <div class="section-divider">
+    <span class="section-divider-line"></span>
+    <span class="section-divider-label">All Camp Documents</span>
+    <span class="section-divider-line"></span>
+  </div>
+
+  <div class="card-grid">
+
+    <!-- CAMP AGENDA -->
+    <a class="card card-agenda" href="schedule.html">
+      <div class="card-thumb">
+        <svg class="card-thumb-pattern" viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="340" cy="-20" r="120" fill="rgba(255,255,255,.05)"/>
+          <circle cx="380" cy="130" r="80" fill="rgba(255,255,255,.04)"/>
+          <circle cx="20" cy="140" r="90" fill="rgba(255,255,255,.04)"/>
+          <rect x="0" y="0" width="400" height="160" fill="url(#grid-agenda)"/>
+          <defs>
+            <pattern id="grid-agenda" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+              <path d="M32 0L0 0 0 32" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+            </pattern>
+          </defs>
+        </svg>
+        <span class="card-thumb-icon">📋</span>
+        <span class="card-thumb-label">4-Day Program</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Camp Agenda</div>
+        <p class="card-desc">Full 4-day schedule — devotionals, workshops, lake day, tribal councils, and ward time.</p>
+        <span class="card-cta">View Schedule →</span>
+      </div>
+    </a>
+
+    <!-- CAMP SNACKS MENU -->
+    <a class="card card-snacks" href="snacks.html">
+      <div class="card-thumb">
+        <svg class="card-thumb-pattern" viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="-10" r="100" fill="rgba(255,255,255,.05)"/>
+          <circle cx="370" cy="150" r="110" fill="rgba(255,255,255,.04)"/>
+          <circle cx="200" cy="180" r="80" fill="rgba(255,255,255,.04)"/>
+          <rect x="0" y="0" width="400" height="160" fill="url(#dots-snacks)"/>
+          <defs>
+            <pattern id="dots-snacks" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+              <circle cx="10" cy="10" r="1.2" fill="rgba(255,255,255,.08)"/>
+            </pattern>
+          </defs>
+        </svg>
+        <span class="card-thumb-icon">🔥</span>
+        <span class="card-thumb-label">Mon – Wed</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Camp Snack Menu</div>
+        <p class="card-desc">Campfire nachos, banana boats, cup of noodle bars, hydration station, and more.</p>
+        <span class="card-cta">View Menu →</span>
+      </div>
+    </a>
+
+    <!-- GEAR CHECKLIST -->
+    <a class="card card-checklist" href="checklist.html">
+      <div class="card-thumb">
+        <svg class="card-thumb-pattern" viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="360" cy="30" r="130" fill="rgba(255,255,255,.05)"/>
+          <circle cx="10" cy="160" r="90" fill="rgba(255,255,255,.04)"/>
+          <rect x="0" y="0" width="400" height="160" fill="url(#diag-checklist)"/>
+          <defs>
+            <pattern id="diag-checklist" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="24" x2="24" y2="0" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+            </pattern>
+          </defs>
+        </svg>
+        <span class="card-thumb-icon">✅</span>
+        <span class="card-thumb-label">Pack &amp; Go</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Gear Checklist</div>
+        <p class="card-desc">Interactive packing checklist — clothes, gear, and personal items. Download as PDF when ready.</p>
+        <span class="card-cta">Open Checklist →</span>
+      </div>
+    </a>
+
+    <!-- YOUNG MEN CALENDAR -->
+    <a class="card card-calendar" href="calendar.html">
+      <div class="card-thumb">
+        <svg class="card-thumb-pattern" viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="200" cy="-40" r="140" fill="rgba(255,255,255,.05)"/>
+          <circle cx="400" cy="160" r="100" fill="rgba(255,255,255,.04)"/>
+          <rect x="0" y="0" width="400" height="160" fill="url(#cross-cal)"/>
+          <defs>
+            <pattern id="cross-cal" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+              <line x1="14" y1="0" x2="14" y2="28" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+              <line x1="0" y1="14" x2="28" y2="14" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+            </pattern>
+          </defs>
+        </svg>
+        <span class="card-thumb-icon">📅</span>
+        <span class="card-thumb-label">Annual Schedule</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Young Men Calendar</div>
+        <p class="card-desc">Full-year activity calendar, monthly events, and upcoming Young Men program dates.</p>
+        <span class="card-cta">View Calendar →</span>
+      </div>
+    </a>
+
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <strong>LU3 Stake Young Men's Camp</strong> · Cobblecreek Camp · Huntsville, Utah · 2026<br/>
+  All dates and information tentative. Confirm with your bishopric.
+  <span class="motto">"Walk with me." — Moses 6:34</span>
+</footer>
+
+</body>
+</html>
       filter: brightness(0.78);
     }
 
