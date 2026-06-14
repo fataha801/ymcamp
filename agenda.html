@@ -1,1 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lehi 41st Ward Parent Meeting Agenda · LU3 Stake Young Men Camp 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:   #1a2744;
+      --navy-mid: #243257;
+      --gold:   #c8973a;
+      --gold-lt:#e6b86a;
+      --cream:  #f7f3ec;
+      --stone:  #e8e0d4;
+      --muted:  #8a8178;
+      --white:  #ffffff;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --shadow-card: 0 2px 12px rgba(26,39,68,.10);
+      --shadow-lift: 0 6px 24px rgba(26,39,68,.16);
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'DM Sans', sans-serif;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 16px;
+      --spacing-lg: 24px;
+      --spacing-xl: 40px;
+      --spacing-2xl: 64px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--cream); color: var(--navy); min-height: 100vh; font-size: 15px; line-height: 1.6; }
+
+    .hero { background: var(--navy); color: var(--white); padding: var(--spacing-xl) var(--spacing-md); text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 110%, rgba(200,151,58,.18) 0%, transparent 70%), radial-gradient(ellipse 40% 30% at 80% 20%, rgba(200,151,58,.08) 0%, transparent 60%); pointer-events: none; }
+    .hero-eyebrow { font-weight: 500; font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-lt); margin-bottom: var(--spacing-sm); position: relative; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(1.7rem, 6vw, 2.8rem); font-weight: 700; line-height: 1.15; position: relative; }
+    .hero-sub { font-size: .85rem; color: rgba(255,255,255,.65); margin-top: var(--spacing-sm); max-width: 400px; margin-inline: auto; position: relative; }
+    .gold-rule { width: 48px; height: 3px; background: var(--gold); border-radius: 2px; margin: var(--spacing-md) auto; position: relative; }
+    .hero-dates { font-family: var(--font-display); font-size: 1.1rem; color: var(--gold-lt); font-weight: 600; position: relative; }
+
+    .info-strip { background: var(--gold); color: var(--navy); padding: var(--spacing-md); }
+    .info-strip-inner { max-width: 700px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: var(--spacing-sm) var(--spacing-xl); justify-content: center; align-items: center; }
+    .info-item { display: flex; align-items: center; gap: 8px; font-size: .82rem; font-weight: 500; }
+
+    .print-bar { background: var(--white); border-bottom: 1px solid var(--stone); padding: var(--spacing-sm) var(--spacing-md); display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-md); }
+    .print-bar-label { font-size: .75rem; font-weight: 500; color: var(--muted); letter-spacing: .04em; }
+    .print-btn { background: var(--navy); color: var(--white); border: none; border-radius: var(--radius-sm); padding: 6px 14px; font-family: var(--font-body); font-size: .72rem; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all .2s; }
+    .print-btn:hover { background: var(--navy-mid); transform: translateY(-1px); box-shadow: 0 3px 8px rgba(26,39,68,.2); }
+
+    .main { max-width: 700px; margin: 0 auto; padding: var(--spacing-xl) var(--spacing-md) var(--spacing-2xl); }
+
+    .section-divider { display: flex; align-items: center; gap: var(--spacing-md); margin-bottom: var(--spacing-lg); }
+    .section-divider-line { flex: 1; height: 1px; background: var(--stone); }
+    .section-divider-label { font-size: .68rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+
+    .prayer-card { background: var(--white); border-radius: var(--radius-md); box-shadow: var(--shadow-card); padding: var(--spacing-md); display: flex; align-items: center; gap: var(--spacing-md); }
+    .prayer-emoji { font-size: 1.4rem; width: 42px; height: 42px; min-width: 42px; background: var(--cream); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; }
+    .prayer-label { font-size: .62rem; font-weight: 600; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin-bottom: 2px; }
+    .prayer-name { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: var(--navy); }
+    .prayer-badge { margin-left: auto; background: var(--navy); color: var(--gold-lt); font-size: .62rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+
+    .agenda-list { display: flex; flex-direction: column; gap: var(--spacing-sm); }
+
+    .agenda-card { background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); overflow: hidden; transition: box-shadow .2s; }
+    .agenda-card:hover { box-shadow: var(--shadow-lift); }
+    .agenda-card-header { display: flex; align-items: center; gap: var(--spacing-md); padding: var(--spacing-md); cursor: pointer; user-select: none; }
+
+    .step-num { width: 30px; height: 30px; min-width: 30px; border-radius: 50%; background: var(--navy); color: var(--white); font-size: .72rem; font-weight: 700; display: flex; align-items: center; justify-content: center; transition: background .2s; }
+    .agenda-card.open .step-num { background: var(--gold); color: var(--navy); }
+
+    .card-title-wrap { flex: 1; }
+    .card-title { font-size: .92rem; font-weight: 500; color: var(--navy); line-height: 1.3; }
+    .card-sub { font-size: .72rem; color: var(--muted); font-style: italic; margin-top: 1px; }
+
+    .time-pill { background: var(--cream); border: 1px solid var(--stone); border-radius: 999px; padding: 3px 10px; font-size: .65rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--navy-mid); white-space: nowrap; }
+    .time-pill.flex { background: #fff8ee; border-color: #e8d9c0; color: var(--gold); }
+
+    .chevron { font-size: .68rem; color: var(--muted); transition: transform .25s; }
+    .agenda-card.open .chevron { transform: rotate(180deg); }
+
+    .expand-panel { display: none; border-top: 1px solid var(--stone); background: var(--cream); padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) 58px; }
+    .agenda-card.open .expand-panel { display: block; }
+
+    .bullet-list { list-style: none; margin-bottom: var(--spacing-md); }
+    .bullet-list li { display: flex; align-items: flex-start; gap: 8px; font-size: .78rem; color: var(--navy); padding: 3px 0; line-height: 1.45; }
+    .bullet-list li::before { content: '·'; color: var(--gold); font-size: 1.1rem; line-height: 1.2; flex-shrink: 0; font-weight: 700; }
+
+    .notes-label { font-size: .62rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 6px; display: block; }
+    .notes-textarea { width: 100%; background: var(--white); border: 1px solid var(--stone); border-radius: var(--radius-sm); padding: 8px 12px; font-family: var(--font-body); font-size: .8rem; color: var(--navy); resize: vertical; min-height: 68px; outline: none; transition: border-color .2s; line-height: 1.5; }
+    .notes-textarea:focus { border-color: var(--navy-mid); }
+    .notes-textarea::placeholder { color: var(--muted); }
+
+    .questions-block { background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: var(--spacing-md); display: flex; align-items: flex-start; gap: var(--spacing-md); }
+    .q-emoji { font-size: 1.4rem; width: 42px; height: 42px; min-width: 42px; background: var(--cream); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; }
+    .q-body { flex: 1; }
+    .q-title { font-size: .92rem; font-weight: 500; color: var(--navy); margin-bottom: 2px; }
+    .q-sub { font-size: .75rem; color: var(--muted); font-style: italic; line-height: 1.45; }
+    .q-pill { background: #fff8ee; border: 1px solid #e8d9c0; border-radius: 999px; padding: 3px 10px; font-size: .65rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--gold); white-space: nowrap; height: fit-content; margin-top: 2px; }
+
+    footer { background: var(--navy); color: rgba(255,255,255,.5); text-align: center; padding: var(--spacing-lg) var(--spacing-md); font-size: .72rem; letter-spacing: .04em; }
+    footer strong { color: var(--gold-lt); }
+    footer .motto { color: var(--gold-lt); font-style: italic; margin-top: 4px; font-size: .7rem; }
+
+    @media print {
+      .print-bar, .chevron { display: none !important; }
+      .expand-panel { display: block !important; }
+      .agenda-card { break-inside: avoid; }
+      .hero, .info-strip, footer { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      body { background: white; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <p class="hero-eyebrow">LU3 Stake Young Men · Walk With Me · Moses 6:34</p>
+  <h1>Young Men & Parent Meeting Agenda</h1>
+  <div class="gold-rule"></div>
+  <p class="hero-dates">Brotherhood · Strength · Skill · Spirit</p>
+  <p class="hero-sub">Cobblecreek Campground · Huntsville, Utah</p>
+</header>
+
+<section class="info-strip">
+  <div class="info-strip-inner">
+    <div class="info-item"><span>⏱️</span> 12:35pm - 1:00pm</div>
+    <div class="info-item"><span>📅</span> June 29 – July 2, 2026</div>
+    <div class="info-item"><span>📍</span> Cobblecreek Campground, Huntsville, UT</div>
+  </div>
+</section>
+
+<div class="print-bar">
+  <span class="print-bar-label">Tap any item to expand notes</span>
+  <button class="print-btn" onclick="window.print()">🖨️ Print / PDF</button>
+</div>
+
+<main class="main">
+
+  <div class="section-divider">
+    <span class="section-divider-line"></span>
+    <span class="section-divider-label">Opening</span>
+    <span class="section-divider-line"></span>
+  </div>
+
+  <div class="prayer-card">
+    <div class="prayer-emoji">🙏</div>
+    <div>
+      <div class="prayer-label">Opening Prayer</div>
+      <div class="prayer-name">Tank Mahe</div>
+    </div>
+    <span class="prayer-badge">Opening</span>
+  </div>
+
+  <div class="section-divider" style="margin-top: var(--spacing-xl);">
+    <span class="section-divider-line"></span>
+    <span class="section-divider-label">Agenda Items</span>
+    <span class="section-divider-line"></span>
+  </div>
+
+  <div class="agenda-list">
+
+    <div class="agenda-card" id="item-1">
+      <div class="agenda-card-header" onclick="toggleItem('item-1')">
+        <div class="step-num">1</div>
+        <div class="card-title-wrap">
+          <div class="card-title">Welcome &amp; Theme</div>
+          <div class="card-sub">Walk With Me · Moses 6:34</div>
+        </div>
+        <span class="time-pill">5 min</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="expand-panel">
+        <ul class="bullet-list">
+          <li>Theme Scripture: Moses 6:34 — "Walk with me"</li>
+          <li>11 Wards | 198 Young Men Registered | 10 Priesthood Leaders | 21 Young Men | 31 Total Ward Individuals</li>
+        </ul>
+        <span class="notes-label">Notes</span>
+        <textarea class="notes-textarea" placeholder="Add notes here…"></textarea>
+      </div>
+    </div>
+
+    <div class="agenda-card" id="item-2">
+      <div class="agenda-card-header" onclick="toggleItem('item-2')">
+        <div class="step-num">2</div>
+        <div class="card-title-wrap">
+          <div class="card-title">Schedule Overview</div>
+          <div class="card-sub">Dates, times &amp; daily structure</div>
+        </div>
+        <span class="time-pill">5 min</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="expand-panel">
+        <ul class="bullet-list">
+          <li>Review camp dates and departure/return times</li>
+          <li><a href="https://lehi41.com/ymcamp/schedule.html" target=_blank">Walk through the daily schedule at Cobblecreek</a></li>
+        </ul>
+        <span class="notes-label">Notes</span>
+        <textarea class="notes-textarea" placeholder="Add notes here…"></textarea>
+      </div>
+    </div>
+
+    <div class="agenda-card" id="item-3">
+      <div class="agenda-card-header" onclick="toggleItem('item-3')">
+        <div class="step-num">3</div>
+        <div class="card-title-wrap">
+          <div class="card-title">Packing &amp; Weather</div>
+          <div class="card-sub">What to bring · Prepare for inclement weather</div>
+        </div>
+        <span class="time-pill">5 min</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="expand-panel">
+        <ul class="bullet-list">
+          <li>Temperatures - Warm Day (89) | Cool Evening (50)</li>
+          <li>Distribute or reference the <a href="https://lehi41.com/ymcamp/checklist.html" target=_blank">Young Men Packing List</a></li>
+          <li>Rain poncho, warm pajamas, and a jacket are essential</li>
+        </ul>
+        <span class="notes-label">Notes</span>
+        <textarea class="notes-textarea" placeholder="Add notes here…"></textarea>
+      </div>
+    </div>
+
+    <div class="agenda-card" id="item-4">
+      <div class="agenda-card-header" onclick="toggleItem('item-4')">
+        <div class="step-num">4</div>
+        <div class="card-title-wrap">
+          <div class="card-title">Safety &amp; Medical Procedures</div>
+          <div class="card-sub">Emergency protocols &amp; health forms</div>
+        </div>
+        <span class="time-pill">5 min</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="expand-panel">
+        <ul class="bullet-list">
+          <li>All Young Men committed already signed the Waiver</li>
+          <li><a href="https://www.churchofjesuschrist.org/callings/safety/protecting-children-and-youth?lang=eng" target="_blank">Adults - Youth Protection Training</a></li>
+          <li>Note any allergies or medications to be aware of</li>
+          <li>First-aid kit locations at camp</li>
+        </ul>
+        <span class="notes-label">Notes</span>
+        <textarea class="notes-textarea" placeholder="Add notes here…"></textarea>
+      </div>
+    </div>
+
+    <div class="agenda-card" id="item-5">
+      <div class="agenda-card-header" onclick="toggleItem('item-5')">
+        <div class="step-num">5</div>
+        <div class="card-title-wrap">
+          <div class="card-title">Camp Standards &amp; Expectations</div>
+          <div class="card-sub">Guidelines for a spiritual, uplifting experience</div>
+        </div>
+        <span class="time-pill">5 min</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="expand-panel">
+        <ul class="bullet-list">
+          <li>Kindness and langauge towards one another throughout camp</li>
+          <li>Technology &amp; phone policy - let it not be a distraction</li>
+          <li>Buddy system - stay in a buddy system at all times when you leave the campsite</li>
+          <li>Be aware of your surroundings - pick up trash anywhere on campsite</li>          
+        </ul>
+        <span class="notes-label">Notes</span>
+        <textarea class="notes-textarea" placeholder="Add notes here…"></textarea>
+      </div>
+    </div>
+
+    <div class="agenda-card" id="item-6">
+      <div class="agenda-card-header" onclick="toggleItem('item-6')">
+        <div class="step-num">6</div>
+        <div class="card-title-wrap">
+          <div class="card-title">Transportation &amp; Communication</div>
+          <div class="card-sub">Carpool logistics &amp; staying in touch</div>
+        </div>
+        <span class="time-pill">5 min</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="expand-panel">
+        <ul class="bullet-list">
+          <li>Skyridge Athletic Wing — Load Up, Devotional & Light Lunch Meet 9:45 – 9:55 AM. Depart before 10:00 AM. No later.</li>
+          <li>How leaders will communicate updates to parents - Priesthood Leaders in attendance</li>
+          <li>2 Vans (10 seaters), 2-3 Trucks and Vehicles to transport the group | Enough for 32 seats to haul group equipment)
+          <li>Cell service may be limited — primary contact info (Bishopric, Brother Bowman or Brother Faga</li>
+          <li>Thursday Morning - July 2nd: Wards stop together on the way home to eat and reflect on camp. Golden Corral Buffet & Grill, 665 7200 S, Midvale, UT 84047 or Chuck-A-Rama, 12344 Minuteman Dr, Draper, UT 84020. Both opens at 11:00 AM. Plan for 12:30-1pm pickup at Skyridge spot</li>
+        </ul>
+        <span class="notes-label">Notes</span>
+        <textarea class="notes-textarea" placeholder="Add notes here…"></textarea>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-divider" style="margin-top: var(--spacing-xl);">
+    <span class="section-divider-line"></span>
+    <span class="section-divider-label">Open Discussion</span>
+    <span class="section-divider-line"></span>
+  </div>
+
+  <div class="questions-block">
+    <div class="q-emoji">❓</div>
+    <div class="q-body">
+      <div class="q-title">Questions &amp; Open Discussion</div>
+      <div class="q-sub">Open the floor to parents and Young Men. Address any concerns, clarify details, and make sure everyone feels prepared and excited for camp.</div>
+    </div>
+    <span class="q-pill">5–10 min</span>
+  </div>
+
+  <div class="section-divider" style="margin-top: var(--spacing-xl);">
+    <span class="section-divider-line"></span>
+    <span class="section-divider-label">Closing</span>
+    <span class="section-divider-line"></span>
+  </div>
+
+  <div class="prayer-card">
+    <div class="prayer-emoji">🙏</div>
+    <div>
+      <div class="prayer-label">Closing Prayer</div>
+      <div class="prayer-name">Lueli Aumoeualogo</div>
+    </div>
+    <span class="prayer-badge">Closing</span>
+  </div>
+
+</main>
+
+<footer>
+  <strong>LU3 Stake Young Men Camp</strong> · Cobblecreek Camp · Huntsville, Utah · 2026<br/>
+  <span class="motto">"Walk with me." — Moses 6:34</span>
+</footer>
+
+<script>
+  function toggleItem(id) {
+    document.getElementById(id).classList.toggle('open');
+  }
+  document.querySelectorAll('.notes-textarea').forEach((ta, i) => {
+    const key = 'agenda-note-' + i;
+    try { if (localStorage.getItem(key)) ta.value = localStorage.getItem(key); } catch(e) {}
+    ta.addEventListener('input', () => { try { localStorage.setItem(key, ta.value); } catch(e) {} });
+  });
+</script>
+</body>
+</html>
 
