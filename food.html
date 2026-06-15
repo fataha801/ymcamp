@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Camp Meal Schedule 2026 — LU3 Stake YM Camp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:      #1a2744;
+      --navy-mid:  #243257;
+      --gold:      #c8973a;
+      --gold-lt:   #e6b86a;
+      --cream:     #f7f3ec;
+      --stone:     #e8e0d4;
+      --muted:     #8a8178;
+      --white:     #ffffff;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --shadow-card: 0 2px 12px rgba(26,39,68,.10);
+      --shadow-lift: 0 6px 24px rgba(26,39,68,.16);
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'DM Sans', sans-serif;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 16px;
+      --spacing-lg: 24px;
+      --spacing-xl: 40px;
+      --spacing-2xl: 64px;
+
+      /* Meal type colors */
+      --breakfast:    #d4891a;
+      --breakfast-lt: #fef6e8;
+      --lunch:        #2a7a4b;
+      --lunch-lt:     #e8f5ee;
+      --dinner:       #1a3f6f;
+      --dinner-lt:    #e8eef8;
+      --snack:        #6b5b95;
+      --snack-lt:     #f0edf8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--cream); color: var(--navy); min-height: 100vh; font-size: 15px; line-height: 1.6; }
+
+    /* ── HERO ── */
+    .hero { background: var(--navy); color: var(--white); padding: var(--spacing-xl) var(--spacing-md); text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 110%, rgba(200,151,58,.18) 0%, transparent 70%), radial-gradient(ellipse 40% 30% at 80% 20%, rgba(200,151,58,.08) 0%, transparent 60%); pointer-events: none; }
+    .hero-eyebrow { font-weight: 500; font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-lt); margin-bottom: var(--spacing-sm); position: relative; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(1.7rem, 6vw, 2.8rem); font-weight: 700; line-height: 1.15; position: relative; }
+    .hero-sub { font-size: .85rem; color: rgba(255,255,255,.65); margin-top: var(--spacing-sm); max-width: 420px; margin-inline: auto; position: relative; }
+    .gold-rule { width: 48px; height: 3px; background: var(--gold); border-radius: 2px; margin: var(--spacing-md) auto; position: relative; }
+    .hero-dates { font-family: var(--font-display); font-size: 1.1rem; color: var(--gold-lt); font-weight: 600; position: relative; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: .75rem; font-weight: 500; color: var(--gold-lt); text-decoration: none; opacity: .8; transition: opacity .18s; position: relative; z-index: 1; margin-bottom: var(--spacing-md); }
+    .back-link:hover { opacity: 1; }
+
+    /* ── INFO STRIP ── */
+    .info-strip { background: var(--gold); color: var(--navy); padding: var(--spacing-md); }
+    .info-strip-inner { max-width: 960px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: var(--spacing-sm) var(--spacing-xl); justify-content: center; align-items: center; }
+    .info-item { display: flex; align-items: center; gap: 8px; font-size: .82rem; font-weight: 500; }
+
+    /* ── LEGEND ── */
+    .legend-bar { background: var(--white); border-bottom: 1px solid var(--stone); padding: var(--spacing-sm) var(--spacing-md); }
+    .legend-inner { max-width: 960px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: var(--spacing-sm) var(--spacing-lg); align-items: center; justify-content: center; }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: .7rem; font-weight: 600; color: var(--navy); }
+    .legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+    .legend-dot.breakfast { background: var(--breakfast); }
+    .legend-dot.lunch     { background: var(--lunch); }
+    .legend-dot.dinner    { background: var(--dinner); }
+    .legend-dot.snack     { background: var(--snack); }
+    .print-btn-wrap { margin-left: auto; }
+    .print-btn { background: var(--navy); color: var(--white); border: none; border-radius: var(--radius-sm); padding: 5px 12px; font-family: var(--font-body); font-size: .7rem; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 5px; transition: all .2s; }
+    .print-btn:hover { background: var(--navy-mid); transform: translateY(-1px); }
+
+    /* ── MAIN ── */
+    .main { max-width: 960px; margin: 0 auto; padding: var(--spacing-xl) var(--spacing-md) var(--spacing-2xl); }
+
+    /* ── SECTION DIVIDER ── */
+    .section-divider { display: flex; align-items: center; gap: var(--spacing-md); margin-bottom: var(--spacing-lg); margin-top: var(--spacing-xl); }
+    .section-divider:first-child { margin-top: 0; }
+    .section-divider-line { flex: 1; height: 1px; background: var(--stone); }
+    .section-divider-label { font-size: .68rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+
+    /* ── DAY BLOCK ── */
+    .day-block { margin-bottom: var(--spacing-xl); }
+    .day-label-row { display: flex; align-items: center; gap: var(--spacing-md); margin-bottom: var(--spacing-md); }
+    .day-pill { background: var(--navy); color: var(--gold-lt); font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 5px 14px; border-radius: 999px; white-space: nowrap; }
+    .day-title { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--navy); }
+    .day-date { font-size: .75rem; color: var(--muted); margin-left: auto; white-space: nowrap; }
+
+    /* ── MEAL GRID ── */
+    .meal-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-md); align-items: start; }
+    @media (max-width: 780px) { .meal-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .meal-grid { grid-template-columns: 1fr; } }
+
+    /* ── MEAL CARD ── */
+    .meal-card { background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); overflow: hidden; transition: box-shadow .2s; }
+    .meal-card:hover { box-shadow: var(--shadow-lift); }
+
+    .meal-card-header { padding: var(--spacing-md); color: var(--white); position: relative; }
+    .meal-card-header.breakfast { background: var(--breakfast); }
+    .meal-card-header.lunch     { background: var(--lunch); }
+    .meal-card-header.dinner    { background: var(--dinner); }
+    .meal-card-header.snack     { background: var(--snack); }
+    .meal-card-header.pending   { background: var(--muted); }
+
+    .meal-type-label { font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .16em; opacity: .8; margin-bottom: 3px; }
+    .meal-name { font-family: var(--font-display); font-size: .95rem; font-weight: 700; line-height: 1.2; }
+    .meal-time { font-size: .65rem; opacity: .75; margin-top: 3px; font-weight: 500; letter-spacing: .05em; }
+
+    .meal-items { padding: var(--spacing-sm) var(--spacing-md) var(--spacing-md); list-style: none; display: flex; flex-direction: column; gap: 1px; }
+    .meal-item { display: flex; align-items: flex-start; gap: 7px; padding: 6px 0; border-bottom: 1px solid var(--stone); font-size: .8rem; color: var(--navy); font-weight: 400; line-height: 1.35; }
+    .meal-item:last-child { border-bottom: none; }
+    .meal-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+    .meal-dot.breakfast { background: var(--breakfast); }
+    .meal-dot.lunch     { background: var(--lunch); }
+    .meal-dot.dinner    { background: var(--dinner); }
+    .meal-dot.snack     { background: var(--snack); }
+    .meal-dot.pending   { background: var(--muted); }
+
+    .meal-note { font-size: .68rem; color: var(--muted); font-style: italic; padding: 0 var(--spacing-md) var(--spacing-sm); margin-top: -4px; }
+
+    /* Pending card */
+    .pending-body { padding: var(--spacing-md); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-height: 80px; text-align: center; }
+    .pending-icon { font-size: 1.4rem; opacity: .4; }
+    .pending-text { font-size: .75rem; color: var(--muted); font-style: italic; }
+
+    /* ── SNACK SECTION ── */
+    .snack-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-md); align-items: start; }
+    @media (max-width: 680px) { .snack-grid { grid-template-columns: 1fr; } }
+
+    .snack-card { background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); overflow: hidden; transition: box-shadow .2s; }
+    .snack-card:hover { box-shadow: var(--shadow-lift); }
+    .snack-card-header { padding: var(--spacing-md); color: var(--white); background: var(--snack); }
+    .snack-day-sub { font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; opacity: .8; margin-bottom: 2px; }
+    .snack-name { font-family: var(--font-display); font-size: .95rem; font-weight: 700; line-height: 1.2; }
+    .snack-occasion { font-size: .65rem; opacity: .75; margin-top: 3px; }
+    .snack-items { padding: var(--spacing-sm) var(--spacing-md) var(--spacing-md); list-style: none; display: flex; flex-direction: column; gap: 1px; }
+    .snack-item { display: flex; align-items: center; gap: 7px; padding: 6px 0; border-bottom: 1px solid var(--stone); font-size: .8rem; color: var(--navy); }
+    .snack-item:last-child { border-bottom: none; }
+    .snack-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; background: var(--snack); }
+    .snack-note { font-size: .68rem; color: var(--muted); font-style: italic; padding: 0 var(--spacing-md) var(--spacing-sm); margin-top: -4px; }
+
+    /* ── HYDRATION ── */
+    .water-card { background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); overflow: hidden; }
+    .water-header { background: #2a6496; color: var(--white); padding: var(--spacing-md) var(--spacing-lg); display: flex; align-items: center; gap: var(--spacing-md); }
+    .water-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; }
+    .water-sub { font-size: .7rem; opacity: .75; margin-top: 2px; }
+    .water-body { padding: var(--spacing-md) var(--spacing-lg); display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md); }
+    @media (max-width: 500px) { .water-body { grid-template-columns: 1fr; } }
+    .water-stat { background: #e8f2fb; border-radius: var(--radius-md); padding: var(--spacing-md); text-align: center; }
+    .water-stat-num { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: #2a6496; line-height: 1; margin-bottom: 4px; }
+    .water-stat-label { font-size: .72rem; font-weight: 500; color: var(--navy); line-height: 1.3; }
+    .hydration-extras { padding: 0 var(--spacing-lg) var(--spacing-lg); display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-sm); }
+    @media (max-width: 500px) { .hydration-extras { grid-template-columns: 1fr; } }
+    .hydration-tag { background: var(--cream); border: 1px solid var(--stone); border-radius: var(--radius-sm); padding: var(--spacing-sm) var(--spacing-md); text-align: center; }
+    .hydration-tag-icon { font-size: 1.1rem; margin-bottom: 4px; }
+    .hydration-tag-name { font-size: .72rem; font-weight: 600; color: var(--navy); line-height: 1.2; }
+    .hydration-tag-when { font-size: .62rem; color: var(--muted); font-style: italic; margin-top: 2px; }
+    .beach-note { margin: 0 var(--spacing-lg) var(--spacing-lg); background: #e8f2fb; border-left: 3px solid #2a6496; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: var(--spacing-sm) var(--spacing-md); }
+    .beach-note-label { font-size: .62rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: #2a6496; margin-bottom: 2px; }
+    .beach-note-text { font-size: .75rem; color: var(--navy); }
+
+    /* ── TINFOIL ── */
+    .options-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--spacing-md); align-items: start; }
+    @media (max-width: 540px) { .options-grid { grid-template-columns: 1fr; } }
+    .option-card { background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); overflow: hidden; transition: box-shadow .2s; }
+    .option-card:hover { box-shadow: var(--shadow-lift); }
+    .option-header { padding: var(--spacing-md); color: var(--white); }
+    .option-header.nachos  { background: #b5451b; }
+    .option-header.pizza   { background: #6b2d8c; }
+    .option-header.banana  { background: #7a5010; }
+    .option-header.apple   { background: #4a7c59; }
+    .option-num { font-size: .6rem; font-weight: 600; text-transform: uppercase; letter-spacing: .16em; opacity: .7; margin-bottom: 2px; }
+    .option-title { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; line-height: 1.2; }
+    .option-meta { font-size: .68rem; opacity: .75; margin-top: 3px; }
+    .fav-badge { display: inline-block; background: var(--gold); color: var(--navy); font-size: .55rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; padding: 2px 7px; border-radius: 999px; margin-left: 6px; vertical-align: middle; }
+    .option-body { padding: var(--spacing-sm) var(--spacing-md) var(--spacing-md); }
+    .option-section-label { font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin: var(--spacing-sm) 0 4px; }
+    .option-list { list-style: none; display: flex; flex-direction: column; gap: 1px; }
+    .option-list li { font-size: .78rem; color: var(--navy); padding: 4px 0 4px 14px; position: relative; border-bottom: 1px solid var(--stone); line-height: 1.35; }
+    .option-list li:last-child { border-bottom: none; }
+    .option-list li::before { content: '·'; position: absolute; left: 3px; font-weight: 700; color: var(--gold); }
+    .cook-pill { display: inline-flex; align-items: center; gap: 5px; background: var(--cream); border: 1px solid var(--stone); border-radius: 999px; font-size: .65rem; font-weight: 600; color: var(--navy); padding: 3px 10px; margin-top: var(--spacing-sm); }
+
+    /* ── NOODLES ── */
+    .noodles-card { background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); overflow: hidden; }
+    .noodles-header { background: var(--navy-mid); color: var(--white); padding: var(--spacing-md) var(--spacing-lg); display: flex; align-items: center; gap: var(--spacing-md); }
+    .noodles-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; }
+    .noodles-sub { font-size: .7rem; opacity: .75; margin-top: 2px; }
+    .noodles-body { padding: var(--spacing-md) var(--spacing-lg); display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md); }
+    @media (max-width: 500px) { .noodles-body { grid-template-columns: 1fr; } }
+    .noodles-why { background: var(--cream); border-radius: var(--radius-md); padding: var(--spacing-md); }
+    .noodles-why-title { font-size: .62rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: var(--spacing-sm); }
+    .why-list { list-style: none; }
+    .why-list li { font-size: .78rem; color: var(--navy); padding: 3px 0 3px 14px; position: relative; line-height: 1.4; }
+    .why-list li::before { content: '✓'; position: absolute; left: 0; font-size: .65rem; color: #4a7c59; font-weight: 700; }
+    .noodles-qty { background: var(--navy); border-radius: var(--radius-md); padding: var(--spacing-md); color: var(--white); text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+    .noodles-qty-num { font-family: var(--font-display); font-size: 2.4rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .noodles-qty-label { font-size: .72rem; opacity: .75; }
+    .flavors-row { padding: 0 var(--spacing-lg) var(--spacing-lg); display: flex; gap: var(--spacing-sm); flex-wrap: wrap; }
+    .flavor-tag { background: var(--navy); color: var(--white); font-size: .68rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; padding: 5px 14px; border-radius: var(--radius-sm); }
+    .flavor-tag.gold { background: var(--gold); color: var(--navy); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--navy); color: rgba(255,255,255,.5); text-align: center; padding: var(--spacing-lg) var(--spacing-md); font-size: .72rem; letter-spacing: .04em; line-height: 1.8; }
+    footer strong { color: var(--gold-lt); }
+    footer .motto { color: var(--gold-lt); font-style: italic; margin-top: 4px; font-size: .7rem; display: block; }
+
+    @media print {
+      .legend-bar .print-btn { display: none; }
+      body { background: white; }
+      .hero, .info-strip, footer { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .meal-card-header, .snack-card-header, .option-header, .water-header, .noodles-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <a class="back-link" href="index.html">← Back to Schedule</a>
+  <p class="hero-eyebrow">LU3 Stake Young Men · Cobblecreek Camp · 2026</p>
+  <h1>Camp Meal Schedule</h1>
+  <div class="gold-rule"></div>
+  <p class="hero-dates">Monday – Wednesday</p>
+  <p class="hero-sub">Brotherhood · Strength · Skill · Spirit</p>
+</header>
+
+<section class="info-strip">
+  <div class="info-strip-inner">
+    <div class="info-item"><span>👥</span> ~30 Campers</div>
+    <div class="info-item"><span>📅</span> June 29 – July 2, 2026</div>
+    <div class="info-item"><span>📍</span> Cobblecreek Campground, Huntsville, UT</div>
+  </div>
+</section>
+
+<div class="legend-bar">
+  <div class="legend-inner">
+    <div class="legend-item"><div class="legend-dot breakfast"></div> Breakfast</div>
+    <div class="legend-item"><div class="legend-dot lunch"></div> Lunch</div>
+    <div class="legend-item"><div class="legend-dot dinner"></div> Dinner</div>
+    <div class="legend-item"><div class="legend-dot snack"></div> Snack</div>
+    <div class="print-btn-wrap">
+      <button class="print-btn" onclick="window.print()">🖨️ Print / PDF</button>
+    </div>
+  </div>
+</div>
+
+<main class="main">
+
+  <!-- ═══════════════ MONDAY ═══════════════ -->
+  <div class="section-divider" style="margin-top:0;">
+    <span class="section-divider-line"></span>
+    <span class="section-divider-label">Day 1</span>
+    <span class="section-divider-line"></span>
+  </div>
+
+  <div class="day-block">
+    <div class="day-label-row">
+      <span class="day-pill">Day 1</span>
+      <span class="day-title">Monday</span>
+      <span class="day-date">June 29, 2026</span>
+    </div>
+    <div class="meal-grid">
+
+      <!-- Monday Breakfast — arrive at camp, no scheduled breakfast -->
+      <div class="meal-card">
+        <div class="meal-card-header pending">
+          <div class="meal-type-label">☀️ Breakfast</div>
+          <div class="meal-name">Skyridge Send-Off</div>
+          <div class="meal-time">Before Departure · 9:45 AM</div>
+        </div>
+        <ul class="meal-items">
+          <li class="meal-item"><span class="meal-dot pending"></span>Light lunch / snack at Skyridge before loading up</li>
+        </ul>
+        <p class="meal-note">Eat before you arrive · depart no later than 10:00 AM</p>
+      </div>
+
+      <!-- Monday Lunch -->
+      <div class="meal-card">
+        <div class="meal-card-header lunch">
+          <div class="meal-type-label">🥗 Lunch</div>
+          <div class="meal-name">Musubi &amp; Sandwiches</div>
+          <div class="meal-time">Midday · After Arrival</div>
+        </div>
+        <ul class="meal-items">
+          <li class="meal-item"><span class="meal-dot lunch"></span>🍙 Spam Musubi</li>
+          <li class="meal-item"><span class="meal-dot lunch"></span>🥪 Sandwiches</li>
+        </ul>
+      </div>
+
+      <!-- Monday Dinner -->
+      <div class="meal-card">
+        <div class="meal-card-header dinner">
+          <div class="meal-type-label">🌮 Dinner</div>
+          <div class="meal-name">Taco Night</div>
+          <div class="meal-time">5:30 PM · Wear your mission badge</div>
+        </div>
+        <ul class="meal-items">
+          <li class="meal-item"><span class="meal-dot dinner"></span>🌮 Tacos</li>
+          <li class="meal-item"><span class="meal-dot dinner"></span>Toppings bar · cheese, salsa, sour cream</li>
+          <li class="meal-item"><span class="meal-dot dinner"></span>Tortillas — flour &amp; corn</li>
+        </ul>
+      </div>
+
+      <!-- Monday Evening Snack -->
+      <div class="meal-card">
+        <div class="meal-card-header snack">
+          <div class="meal-type-label">🌙 Evening Snack</div>
+          <div class="meal-name">Banana Boats</div>
+          <div class="meal-time">After Ward Time · Camp Crawl</div>
+        </div>
+        <ul class="meal-items">
+          <li class="meal-item"><span class="meal-dot snack"></span>🍌 Banana Boats</li>
+          <li class="meal-item"><span class="meal-dot snack"></span>☕ Hot Chocolate</li>
+          <li class="meal-item"><span class="meal-dot snack"></span>🍋 Lemonade</li>
+        </ul>
+        <p class="meal-note">Hot chocolate if cool; lemonade if warm</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════ TUESDAY ═══════════════ -->
+  <div class="section-divider">
+    <span class="section-divider-line"></span>
+    <span class="section-divider-label">Day 2</span>
+    <span class="section-divider-line"></span>
+  </div>
+
+  <div class="day-block">
+    <div class="day-label-row">
+      <span class="day-pill">Day 2</span>
+      <span class="day-title">Tuesday</span>
+      <span class="day-date">June 30, 2026</span>
+    </div>
+    <div class="meal-grid">
+
+      <!-- Tuesday Breakfast -->
+      <div class="meal-card">
+        <div class="meal-card-header pending">
+          <div class="meal-type-label">☀️ Breakfast</div>
+          <div class="meal-name">Pending</div>
+          <div class="meal-time">Morning · Flag Ceremony 7:00 AM</div>
+        </div>
+        <div class="pending-body">
+          <div class="pending-icon">⏳</div>
+          <div class="pending-text">Menu TBD — confirm with ward leaders</div>
+        </div>
+      </div>
+
+      <!-- Tuesday Lunch -->
+      <div class="meal-card">
+        <div class="meal-card-header lunch">
+          <div class="meal-type-label">🥗 Lunch</div>
+          <div class="meal-name">Catered Sandwiches</div>
+          <div class="meal-time">12:00 PM · Smith's Catering</div>
+        </div>
+        <ul class="meal-items">
+          <li class="meal-item"><span class="meal-dot lunch"></span>🥪 Catered sandwiches from Smith's</li>
+          <li class="meal-item"><span class="meal-dot lunch"></span>Variety of fillings &amp; options</li>
+        </ul>
+        <p class="meal-note">Catered — coordinate order in advance</p>
+      </div>
+
+      <!-- Tuesday Dinner -->
+      <div class="meal-card">
+        <div class="meal-card-header dinner">
+          <div class="meal-type-label">🍽️ Dinner</div>
+          <div class="meal-name">Pacific Plate Night</div>
+          <div class="meal-time">5:30 PM · Tribal Council #1</div>
+        </div>
+        <ul class="meal-items">
+          <li class="meal-item"><span class="meal-dot dinner"></span>🍗 Teriyaki Chicken</li>
+          <li class="meal-item"><span class="meal-dot dinner"></span>🥩 Teriyaki Beef</li>
+          <li class="meal-item"><span class="meal-dot dinner"></span>🐷 Kalua Pork</li>
+          <li class="meal-item"><span class="meal-dot dinner"></span>🍚 White Rice</li>
+        </ul>
+        <p class="meal-note">Tribal Council during first 15 min · Theme: Choose Your Path</p>
+      </div>
+
+      <!-- Tuesday Evening Snack -->
+      <div class="meal-card">
+        <div class="meal-card-header snack">
+          <div class="meal-type-label">🌙 Evening Snack</div>
+          <div class="meal-name">S'mores &amp; Noodles</div>
+          <div class="meal-time">9:00 PM · Night Activity</div>
+        </div>
+        <ul class="meal-items">
+          <li class="meal-item"><span class="meal-dot snack"></span>🔥 Campfire S'mores</li>
+          <li class="meal-item"><span class="meal-dot snack"></span>🍜 Cup of Noodles Bar</li>
+        </ul>
+        <p class="meal-note">Chicken, beef &amp; shrimp flavors · see noodle plan below</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════ WEDNESDAY ═══════════════ -->
+  <div class="section-divider">
+    <span class="section-divider-line"></span>
+    <span class="section-divider-label">Day 3</span>
+    <span class="section-divider-line"></span>
+  </div>
+
+  <div class="day-block">
+    <div class="day-label-row">
+      <span class="day-pill">Day 3</span>
+      <span class="day-title">Wednesday — Lake Day 🏖️</span>
+      <span class="day-date">July 1, 2026</span>
+    </div>
+    <div class="meal-grid">
+
+      <!-- Wednesday Breakfast -->
+      <div class="meal-card">
+        <div class="meal-card-header pending">
+          <div class="meal-type-label">☀️ Breakfast</div>
+          <div class="meal-name">Pending</div>
+          <div class="meal-time">8:30 AM · Breakfast at the Beach</div>
+        </div>
+        <div class="pending-body">
+          <div class="pending-icon">⏳</div>
+          <div class="pending-text">Menu TBD — confirm with ward leaders</div>
+        </div>
+      </div>
+
+      <!-- Wednesday Lunch -->
+      <div class="meal-card">
+        <div class="meal-card-header lunch">
+          <div class="meal-type-label">🌭 Lunch</div>
+          <div class="meal-name">Chili Hot Dogs</div>
+          <div class="meal-time">1:00 PM · Lunch at the Beach</div>
+        </div>
+        <ul class="meal-items">
+          <li class="meal-item"><span class="meal-dot lunch"></span>🌭 Hot Dogs</li>
+          <li class="meal-item"><span class="meal-dot lunch"></span>🥫 Chili topping</li>
+          <li class="meal-item"><span class="meal-dot lunch"></span>Buns, cheese, onions</li>
+        </ul>
+        <p class="meal-note">Beachside — keep it simple and easy</p>
+      </div>
+
+      <!-- Wednesday Dinner -->
+      <div class="meal-card">
+        <div class="meal-card-header dinner">
+          <div class="meal-type-label">🍽️ Dinner</div>
+          <div class="meal-name">Hawaiian Night</div>
+          <div class="meal-time">6:00 PM · Tribal Council #2</div>
+        </div>
+        <ul class="meal-items">
+          <li class="meal-item"><span class="meal-dot dinner"></span>🔥 Huli Huli Chicken</li>
+          <li class="meal-item"><span class="meal-dot dinner"></span>🥗 Chop Suey</li>
+        </ul>
+        <p class="meal-note">Tribal Council — Theme: Walk Together</p>
+      </div>
+
+      <!-- Wednesday Evening Snack -->
+      <div class="meal-card">
+        <div class="meal-card-header snack">
+          <div class="meal-type-label">🔥 Evening Snack</div>
+          <div class="meal-name">Campfire Nachos</div>
+          <div class="meal-time">After Dinner · Campfire Time</div>
+        </div>
+        <ul class="meal-items">
+          <li class="meal-item"><span class="meal-dot snack"></span>🌮 Tinfoil Nacho Packets</li>
+          <li class="meal-item"><span class="meal-dot snack"></span>Chips, cheese, taco meat</li>
+          <li class="meal-item"><span class="meal-dot snack"></span>Salsa &amp; jalapeños</li>
+        </ul>
+        <p class="meal-note">Tinfoil packets over campfire · see options below</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════ HYDRATION ═══════════════ -->
+  <div class="section-divider">
+    <span class="section-divider-line"></span>
+    <span class="section-divider-label">Hydration Station</span>
+    <span class="section-divider-line"></span>
+  </div>
+
+  <div class="water-card">
+    <div class="water-header">
+      <div style="font-size:1.8rem">💧</div>
+      <div>
+        <div class="water-title">Water Supply Plan</div>
+        <div class="water-sub">Hot weather hydration · 30 campers</div>
+      </div>
+    </div>
+    <div class="water-body">
+      <div class="water-stat">
+        <div class="water-stat-num">400</div>
+        <div class="water-stat-label">Total Bottles<br /><span style="color:var(--muted);font-size:.65rem;">10 cases × 40 bottles/pack</span></div>
+      </div>
+      <div class="water-stat">
+        <div class="water-stat-num">~13</div>
+        <div class="water-stat-label">Bottles Per Person<br /><span style="color:var(--muted);font-size:.65rem;">Right for hot weather camp</span></div>
+      </div>
+    </div>
+    <div class="beach-note">
+      <div class="beach-note-label">🏖️ Wednesday Beach Day</div>
+      <div class="beach-note-text">+3 extra bottles at beach + 4 daily limit = <strong>7 bottles total on Wednesday</strong></div>
+    </div>
+    <div style="padding: 0 var(--spacing-lg) var(--spacing-sm);">
+      <div class="option-section-label">Drink Extras</div>
+    </div>
+    <div class="hydration-extras">
+      <div class="hydration-tag">
+        <div class="hydration-tag-icon">🍋</div>
+        <div class="hydration-tag-name">Lemonade Mix</div>
+        <div class="hydration-tag-when">Beach day &amp; breakfast</div>
+      </div>
+      <div class="hydration-tag">
+        <div class="hydration-tag-icon">⚡</div>
+        <div class="hydration-tag-name">Gatorade Powder</div>
+        <div class="hydration-tag-when">Beach day &amp; dinner only</div>
+      </div>
+      <div class="hydration-tag">
+        <div class="hydration-tag-icon">💊</div>
+        <div class="hydration-tag-name">Liquid IV Packets</div>
+        <div class="hydration-tag-when">Daily consumption</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ CUP OF NOODLES ═══════════════ -->
+  <div class="section-divider">
+    <span class="section-divider-line"></span>
+    <span class="section-divider-label">Cup of Noodles Plan</span>
+    <span class="section-divider-line"></span>
+  </div>
+
+  <div class="noodles-card">
+    <div class="noodles-header">
+      <div style="font-size:1.8rem">🍜</div>
+      <div>
+        <div class="noodles-title">Cup of Noodles Bar</div>
+        <div class="noodles-sub">Tuesday Evening · Snack Time</div>
+      </div>
+    </div>
+    <div class="noodles-body">
+      <div class="noodles-why">
+        <div class="noodles-why-title">Why It Works</div>
+        <ul class="why-list">
+          <li>Only requires boiling water</li>
+          <li>Minimal dishes</li>
+          <li>Great evening camp snack</li>
+          <li>Youth camp favorite</li>
+        </ul>
+      </div>
+      <div class="noodles-qty">
+        <div class="noodles-qty-num">70</div>
+        <div class="noodles-qty-label">cups per snack day<br />(30 people + extra)</div>
+      </div>
+    </div>
+    <div style="padding: 0 var(--spacing-lg) var(--spacing-sm);">
+      <div class="option-section-label">Mix of Flavors</div>
+    </div>
+    <div class="flavors-row">
+      <span class="flavor-tag gold">🍗 Chicken</span>
+      <span class="flavor-tag">🥩 Beef</span>
+      <span class="flavor-tag">🍤 Shrimp</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ TINFOIL OPTIONS ═══════════════ -->
+  <div class="section-divider">
+    <span class="section-divider-line"></span>
+    <span class="section-divider-label">Tinfoil Snack Options · Campfire</span>
+    <span class="section-divider-line"></span>
+  </div>
+
+  <div class="options-grid">
+
+    <div class="option-card">
+      <div class="option-header nachos">
+        <div class="option-num">Option 1</div>
+        <div class="option-title">Campfire Nachos</div>
+        <div class="option-meta">🌮 Very popular and easy</div>
+      </div>
+      <div class="option-body">
+        <div class="option-section-label">Each Person Gets</div>
+        <ul class="option-list">
+          <li>Small sheet of foil</li>
+          <li>Tortilla chips</li>
+          <li>Shredded cheese</li>
+          <li>Taco meat (optional)</li>
+          <li>Jalapeños</li>
+          <li>Salsa packets</li>
+        </ul>
+        <div class="option-section-label">Supplies · 30 People</div>
+        <ul class="option-list">
+          <li>3 large bags tortilla chips</li>
+          <li>5 lbs shredded cheese</li>
+          <li>3–4 lbs taco meat</li>
+        </ul>
+        <div class="cook-pill">🔥 Cook 5–10 min over fire</div>
+      </div>
+    </div>
+
+    <div class="option-card">
+      <div class="option-header pizza">
+        <div class="option-num">Option 2</div>
+        <div class="option-title">Pizza Packets</div>
+        <div class="option-meta">🍕 Over coals</div>
+      </div>
+      <div class="option-body">
+        <div class="option-section-label">Each Person Gets</div>
+        <ul class="option-list">
+          <li>English muffin or pita</li>
+          <li>Pizza sauce</li>
+          <li>Mozzarella cheese</li>
+          <li>Pepperoni</li>
+        </ul>
+        <div class="option-section-label">Supplies · 30 People</div>
+        <ul class="option-list">
+          <li>30 English muffins</li>
+          <li>2 lbs pepperoni</li>
+          <li>5 lbs cheese</li>
+          <li>2 jars pizza sauce</li>
+        </ul>
+        <div class="cook-pill">🔥 Cook 5–8 min over coals</div>
+      </div>
+    </div>
+
+    <div class="option-card">
+      <div class="option-header banana">
+        <div class="option-num">Option 3</div>
+        <div class="option-title">Banana Boats <span class="fav-badge">⭐ Fav</span></div>
+        <div class="option-meta">🍌 Youth love these · Zero cleanup</div>
+      </div>
+      <div class="option-body">
+        <div class="option-section-label">Stuff the Banana With</div>
+        <ul class="option-list">
+          <li>Chocolate chips</li>
+          <li>Mini marshmallows</li>
+          <li>Peanut butter chips</li>
+        </ul>
+        <p style="font-size:.7rem;color:var(--muted);font-style:italic;margin:6px 0;">Slice banana lengthwise · wrap in foil · eat with spoon</p>
+        <div class="option-section-label">Supplies · 30 People</div>
+        <ul class="option-list">
+          <li>30 bananas</li>
+          <li>2 bags chocolate chips</li>
+          <li>2 bags mini marshmallows</li>
+        </ul>
+        <div class="cook-pill">🔥 Heat 5 min · almost no cleanup</div>
+      </div>
+    </div>
+
+    <div class="option-card">
+      <div class="option-header apple">
+        <div class="option-num">Option 4</div>
+        <div class="option-title">Cinnamon Apple Packets</div>
+        <div class="option-meta">🍎 Healthier dessert option</div>
+      </div>
+      <div class="option-body">
+        <div class="option-section-label">Foil Packet Ingredients</div>
+        <ul class="option-list">
+          <li>Apple slices</li>
+          <li>Brown sugar</li>
+          <li>Cinnamon</li>
+          <li>Tiny butter pat</li>
+        </ul>
+        <div class="option-section-label">Supplies · 30 People</div>
+        <ul class="option-list">
+          <li>30 apples</li>
+          <li>Brown sugar</li>
+          <li>Cinnamon</li>
+        </ul>
+        <div class="cook-pill">🔥 Cook 10 min · dessert + healthy</div>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  <strong>LU3 Stake Young Men's Camp</strong> · Cobblecreek Camp · Huntsville, Utah · 2026<br />
+  All dates and quantities tentative. Confirm with ward leaders.<br />
+  <span class="motto">"Walk with me." — Moses 6:34</span>
+</footer>
+
+</body>
+</html>
