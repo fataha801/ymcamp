@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donate a Snack — LU3 Stake YM Camp 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:      #1a2744;
+      --navy-mid:  #243257;
+      --gold:      #c8973a;
+      --gold-lt:   #e6b86a;
+      --cream:     #f7f3ec;
+      --stone:     #e8e0d4;
+      --muted:     #8a8178;
+      --white:     #ffffff;
+      --green:     #4a7c59;
+      --green-lt:  #eef5ee;
+      --red:       #c0392b;
+      --red-lt:    #fdecea;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --shadow-card: 0 2px 12px rgba(26,39,68,.10);
+      --shadow-lift: 0 8px 32px rgba(26,39,68,.18);
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'DM Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--navy);
+      min-height: 100vh;
+      font-size: 15px;
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--navy);
+      color: var(--white);
+      padding: 48px 16px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 110%, rgba(200,151,58,.18) 0%, transparent 70%),
+        radial-gradient(ellipse 35% 30% at 85% 15%, rgba(200,151,58,.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 6vw, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      position: relative;
+    }
+    .hero-sub {
+      font-size: .85rem;
+      color: rgba(255,255,255,.6);
+      margin-top: 8px;
+      max-width: 420px;
+      margin-inline: auto;
+      position: relative;
+    }
+    .gold-rule {
+      width: 48px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin: 14px auto;
+      position: relative;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .73rem;
+      font-weight: 500;
+      color: var(--gold-lt);
+      text-decoration: none;
+      opacity: .8;
+      transition: opacity .18s;
+      position: relative;
+      margin-bottom: 16px;
+    }
+    .back-link:hover { opacity: 1; }
+
+    /* ── INFO STRIP ── */
+    .info-strip {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 12px 16px;
+    }
+    .info-strip-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 28px;
+      justify-content: center;
+      align-items: center;
+    }
+    .info-item { font-size: .8rem; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+
+    /* ── MAIN ── */
+    .main {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 40px 16px 60px;
+    }
+
+    /* ── SECTION DIVIDER ── */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .section-divider-line { flex: 1; height: 1px; background: var(--stone); }
+    .section-divider-label {
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── PROGRESS SUMMARY ── */
+    .summary-bar {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      padding: 20px 22px;
+      margin-bottom: 28px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .summary-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      min-width: 80px;
+    }
+    .summary-num {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .summary-num.gold { color: var(--gold); }
+    .summary-num.green { color: var(--green); }
+    .summary-label { font-size: .65rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-top: 3px; }
+    .summary-divider { width: 1px; height: 40px; background: var(--stone); }
+
+    /* ── SNACK CARDS ── */
+    .snack-list { display: flex; flex-direction: column; gap: 14px; }
+
+    .snack-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      transition: box-shadow .2s;
+    }
+    .snack-card:hover { box-shadow: var(--shadow-lift); }
+    .snack-card.is-other { border: 1.5px dashed var(--gold); }
+
+    .snack-card-main {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 18px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .snack-icon {
+      font-size: 1.8rem;
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--cream);
+    }
+
+    .snack-info { flex: 1; min-width: 0; }
+    .snack-name {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 2px;
+    }
+    .snack-meta {
+      font-size: .72rem;
+      color: var(--muted);
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .snack-meta-pill {
+      background: var(--cream);
+      border-radius: 999px;
+      padding: 2px 9px;
+      font-weight: 500;
+    }
+    .snack-meta-pill.price { background: #fdf6ec; color: var(--gold); font-weight: 700; }
+
+    .snack-status {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+    .status-badge {
+      font-size: .62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+    .status-badge.open     { background: var(--green-lt); color: var(--green); }
+    .status-badge.claimed  { background: #fdf6ec; color: var(--gold); }
+    .status-badge.full     { background: #f0f0f0; color: var(--muted); }
+    .status-badge.unlimited { background: #fdf6ec; color: var(--gold); }
+
+    .snack-slots {
+      font-size: .68rem;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    /* Slot bar */
+    .slot-bar-wrap { padding: 0 18px 14px; }
+    .slot-bar-track {
+      background: var(--stone);
+      border-radius: 999px;
+      height: 5px;
+      overflow: hidden;
+    }
+    .slot-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--green), var(--gold));
+      transition: width .4s ease;
+    }
+
+    /* Signups list */
+    .signups-panel {
+      border-top: 1px solid var(--stone);
+      background: var(--cream);
+      padding: 14px 18px;
+      display: none;
+    }
+    .signups-panel.open { display: block; }
+
+    .signups-label {
+      font-size: .62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .signup-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 10px;
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      margin-bottom: 6px;
+      font-size: .8rem;
+      gap: 10px;
+    }
+    .signup-row-info { flex: 1; min-width: 0; }
+    .signup-name { font-weight: 600; color: var(--navy); }
+    .signup-note { font-size: .7rem; color: var(--muted); font-style: italic; }
+    .signup-remove {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: .75rem;
+      cursor: pointer;
+      padding: 3px 6px;
+      border-radius: var(--radius-sm);
+      transition: background .15s, color .15s;
+      flex-shrink: 0;
+    }
+    .signup-remove:hover { background: var(--red-lt); color: var(--red); }
+
+    /* Signup form */
+    .signup-form {
+      margin-top: 10px;
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      border: 1.5px solid var(--stone);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+
+    .form-field { display: flex; flex-direction: column; gap: 4px; }
+    .form-field.full { grid-column: 1 / -1; }
+
+    .form-label {
+      font-size: .65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--muted);
+    }
+    .form-input {
+      font-family: var(--font-body);
+      font-size: .85rem;
+      padding: 9px 12px;
+      border: 1.5px solid var(--stone);
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      color: var(--navy);
+      outline: none;
+      transition: border-color .18s;
+      width: 100%;
+    }
+    .form-input:focus { border-color: var(--gold); }
+    .form-input::placeholder { color: var(--muted); opacity: .7; }
+
+    .qty-row { display: flex; align-items: center; gap: 8px; }
+    .qty-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--stone);
+      background: var(--white);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s;
+      flex-shrink: 0;
+    }
+    .qty-btn:hover { background: var(--cream); }
+    .qty-display {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      width: 28px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .qty-label { font-size: .72rem; color: var(--muted); }
+
+    .form-actions { display: flex; gap: 8px; margin-top: 12px; }
+    .btn {
+      padding: 10px 18px;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: .82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .18s;
+    }
+    .btn-primary {
+      background: var(--navy);
+      color: var(--white);
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 80%, rgba(200,151,58,.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .btn-primary:hover { background: var(--navy-mid); }
+    .btn-secondary {
+      background: var(--white);
+      color: var(--muted);
+      border: 1.5px solid var(--stone);
+    }
+    .btn-secondary:hover { background: var(--cream); color: var(--navy); }
+
+    /* Address card */
+    .address-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      padding: 20px 22px;
+      margin-bottom: 28px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .address-icon { font-size: 1.8rem; flex-shrink: 0; }
+    .address-body { flex: 1; }
+    .address-title { font-family: var(--font-display); font-size: .95rem; font-weight: 700; margin-bottom: 4px; }
+    .address-text { font-size: .82rem; color: var(--navy); font-weight: 500; line-height: 1.5; }
+    .address-note { font-size: .72rem; color: var(--muted); margin-top: 4px; }
+    .address-map-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--gold);
+      text-decoration: none;
+      margin-top: 8px;
+      transition: opacity .15s;
+    }
+    .address-map-link:hover { opacity: .75; }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(16px);
+      background: var(--navy);
+      color: var(--gold-lt);
+      padding: 11px 22px;
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-lift);
+      opacity: 0;
+      transition: all .3s ease;
+      z-index: 999;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* Loading state */
+    .loading-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+    .loading-spinner {
+      width: 28px;
+      height: 28px;
+      border: 3px solid var(--stone);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      margin: 0 auto 12px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,.45);
+      text-align: center;
+      padding: 22px 16px;
+      font-size: .72rem;
+      line-height: 1.9;
+    }
+    footer strong { color: var(--gold-lt); }
+    footer .motto { color: var(--gold-lt); font-style: italic; display: block; margin-top: 2px; }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <a class="back-link" href="index.html">← Back to Camp Hub</a>
+  <p class="hero-eyebrow">LU3 Stake Young Men · Camp 2026</p>
+  <h1>Donate a Snack</h1>
+  <div class="gold-rule"></div>
+  <p class="hero-sub">Sign up to donate a snack item for camp. Items will be delivered directly to the address below.</p>
+</header>
+
+<section class="info-strip">
+  <div class="info-strip-inner">
+    <div class="info-item">📅 Camp: June 29 – July 2, 2026</div>
+    <div class="info-item">🙏 Every donation helps feed 30 young men</div>
+  </div>
+</section>
+
+<main class="main">
+
+  <!-- DELIVERY ADDRESS -->
+  <div class="section-divider">
+    <span class="section-divider-line"></span>
+    <span class="section-divider-label">Delivery Address</span>
+    <span class="section-divider-line"></span>
+  </div>
+
+  <div class="address-card">
+    <div class="address-icon">📦</div>
+    <div class="address-body">
+      <div class="address-title">Ship or Drop Off Here</div>
+      <div class="address-text">513 W 2450 N<br/>Lehi, UT 84043</div>
+      <div class="address-note">Please deliver by June 27, 2026 · Contact your ward leader with any questions</div>
+      <a class="address-map-link" href="https://maps.google.com/?q=513+W+2450+N+Lehi+UT+84043" target="_blank">📍 Open in Maps →</a>
+    </div>
+  </div>
+
+  <!-- PROGRESS SUMMARY -->
+  <div class="summary-bar" id="summaryBar">
+    <div class="summary-stat">
+      <span class="summary-num" id="statTotal">—</span>
+      <span class="summary-label">Items Needed</span>
+    </div>
+    <div class="summary-divider"></div>
+    <div class="summary-stat">
+      <span class="summary-num green" id="statClaimed">—</span>
+      <span class="summary-label">Claimed</span>
+    </div>
+    <div class="summary-divider"></div>
+    <div class="summary-stat">
+      <span class="summary-num gold" id="statOpen">—</span>
+      <span class="summary-label">Still Needed</span>
+    </div>
+    <div class="summary-divider"></div>
+    <div class="summary-stat">
+      <span class="summary-num" id="statSignups">—</span>
+      <span class="summary-label">Donors</span>
+    </div>
+  </div>
+
+  <!-- SNACK LIST -->
+  <div class="section-divider">
+    <span class="section-divider-line"></span>
+    <span class="section-divider-label">Snack Sign-Ups</span>
+    <span class="section-divider-line"></span>
+  </div>
+
+  <div id="snackList" class="snack-list">
+    <div class="loading-state">
+      <div class="loading-spinner"></div>
+      Loading sign-up list…
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <strong>LU3 Stake Young Men's Camp 2026</strong><br/>
+  Questions? Contact your ward's Young Men presidency.
+  <span class="motto">"Walk with me." — Moses 6:34</span>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ── DATA ──
+  // slots: number = limited slots | null = unlimited (Other)
+  const SNACKS = [
+    { id: 'muffins',      name: 'Little Bites Muffins',                    icon: '🧁', unit: '20-pouches', price: '$11.78', slots: 6,    sams: 'https://www.samsclub.com/ip/Entenmann-s-Little-Bites-Chocolate-Chip-Muffins-1-5-oz-20-pk/19626220292?classType=REGULAR' },
+    { id: 'chips',        name: 'Frito-Lay Flavor Mix Chips, Variety Pack', icon: '🥔', unit: '50 pk / 1oz', price: '$18.48', slots: 3,   sams: 'https://www.samsclub.com/ip/Frito-Lay-Flavor-Mix-Chips-Variety-Pack-50-pk/13585600798?classType=REGULAR&from=/search' },
+    { id: 'fruit',        name: 'Dole Fruit Cup Variety Pack',              icon: '🍑', unit: '10-pack',    price: '$9.98',  slots: 4,    sams: 'https://www.samsclub.com/s?searchTerm=dole+fruit+cup' },
+    { id: 'poptarts',     name: 'Pop Tarts',                                icon: '🍞', unit: '48 pieces',  price: '$9.98',  slots: 1,    sams: 'https://www.samsclub.com/s?searchTerm=pop+tarts' },
+    { id: 'uncrustables', name: 'Uncrustables',                             icon: '🥪', unit: '24-count',   price: '$14.87', slots: 4,    sams: 'https://www.samsclub.com/s?searchTerm=uncrustables' },
+    { id: 'ricekrisp',    name: 'Rice Krispies Treats',                     icon: '🍬', unit: '60-count',   price: '$12.98', slots: 2,    sams: 'https://www.samsclub.com/ip/Rice-Krispies-Treats-Original-Snack-Bars-60-ct/13577316630?classType=REGULAR&from=/search' },
+    { id: 'water',        name: 'Water Bottles 16.9 fl. oz.',               icon: '💧', unit: '40-pack',    price: '$3.98',  slots: 10,   sams: 'https://www.samsclub.com/ip/Member-s-Mark-Purified-Water-16-9-fl-oz-40-pk/7874202847?classType=REGULAR&from=/search' },
+    { id: 'gatorade',     name: 'Gatorade Liberty Variety Pack 12 fl. oz.', icon: '⚡', unit: '28-pack',    price: '$12.58', slots: 5,    sams: 'https://www.samsclub.com/ip/Gatorade-Liberty-Variety-Pack-12-fl-oz-28-pk/13600304846?classType=REGULAR&from=/search' },
+    { id: 'nesquik',      name: 'Nesquik Chocolate Milk',                   icon: '🍫', unit: '15-pack',    price: '$11.98', slots: 3,    sams: 'https://www.samsclub.com/ip/nesquik-chocolate-low-fat-milk-15-8-oz-calcium-kosher-gluten-free/13592921663' },
+    { id: 'other',        name: 'Other — Bring Something!',                 icon: '🎁', unit: 'your choice', price: 'Any amount', slots: null, sams: '', placeholder: 'e.g. Granola bars, juice boxes, fruit snacks…' },
+  ];
+
+  // ── STATE ──
+  let signups = {};
+  let openPanel = null;
+  let currentQty = {};
+
+  // ── STORAGE ──
+  async function loadSignups() {
+    try {
+      const result = await window.storage.get('donate-signups', true);
+      if (result && result.value) signups = JSON.parse(result.value);
+    } catch(e) { signups = {}; }
+  }
+
+  async function saveSignups() {
+    try {
+      await window.storage.set('donate-signups', JSON.stringify(signups), true);
+    } catch(e) {}
+  }
+
+  // ── HELPERS ──
+  function getSignupsFor(id) { return signups[id] || []; }
+  function isUnlimited(snack) { return snack.slots === null; }
+
+  function countDonorsTotal() {
+    return Object.values(signups).reduce((acc, arr) => acc + arr.length, 0);
+  }
+
+  // Only count limited-slot items toward "claimed" and "still needed"
+  function countClaimed() {
+    return SNACKS.filter(s => !isUnlimited(s) && getSignupsFor(s.id).length > 0).length;
+  }
+
+  function countLimitedItems() {
+    return SNACKS.filter(s => !isUnlimited(s)).length;
+  }
+
+  // ── SUMMARY ──
+  function updateSummary() {
+    const limited = countLimitedItems();
+    const claimed = countClaimed();
+    const open    = limited - claimed;
+    const donors  = countDonorsTotal();
+    document.getElementById('statTotal').textContent   = limited;
+    document.getElementById('statClaimed').textContent = claimed;
+    document.getElementById('statOpen').textContent    = open;
+    document.getElementById('statSignups').textContent = donors;
+  }
+
+  // ── RENDER ──
+  function renderAll() {
+    updateSummary();
+    const list = document.getElementById('snackList');
+    list.innerHTML = '';
+
+    SNACKS.forEach(snack => {
+      const rows      = getSignupsFor(snack.id);
+      const isOpen    = openPanel === snack.id;
+      const unlimited = isUnlimited(snack);
+      const maxSlots  = unlimited ? null : snack.slots;
+      const isFull    = !unlimited && rows.length >= maxSlots;
+      const filledPct = unlimited ? 0 : Math.min(100, Math.round((rows.length / maxSlots) * 100));
+
+      // Badge
+      let badgeClass, badgeText;
+      if (unlimited) {
+        badgeClass = 'unlimited'; badgeText = 'Open — No Limit';
+      } else if (isFull) {
+        badgeClass = 'full'; badgeText = 'Filled';
+      } else if (rows.length > 0) {
+        badgeClass = 'claimed'; badgeText = 'Partially Claimed';
+      } else {
+        badgeClass = 'open'; badgeText = 'Open';
+      }
+
+      // Slot label
+      const slotLabel = unlimited
+        ? `${rows.length} donor${rows.length !== 1 ? 's' : ''} · unlimited`
+        : `${rows.length} / ${maxSlots} slots`;
+
+      // Shop link
+      const shopLink = snack.sams
+        ? `<a href="${snack.sams}" target="_blank" style="color:var(--gold);text-decoration:none;font-weight:600;">Find on Sam's Club →</a>`
+        : '';
+
+      // Note placeholder
+      const notePlaceholder = snack.placeholder || 'e.g. Ordering from Sam\'s Club';
+
+      const card = document.createElement('div');
+      card.className = 'snack-card' + (unlimited ? ' is-other' : '');
+      card.id = 'card-' + snack.id;
+
+      card.innerHTML = `
+        <div class="snack-card-main" onclick="togglePanel('${snack.id}')">
+          <div class="snack-icon">${snack.icon}</div>
+          <div class="snack-info">
+            <div class="snack-name">${snack.name}</div>
+            <div class="snack-meta">
+              <span class="snack-meta-pill">${snack.unit}</span>
+              <span class="snack-meta-pill price">${snack.price}</span>
+              ${rows.length > 0 ? `<span class="snack-meta-pill">${rows.length} donor${rows.length !== 1 ? 's' : ''}</span>` : ''}
+            </div>
+          </div>
+          <div class="snack-status">
+            <span class="status-badge ${badgeClass}">${badgeText}</span>
+            <span class="snack-slots">${slotLabel}</span>
+          </div>
+        </div>
+
+        <div class="slot-bar-wrap">
+          <div class="slot-bar-track">
+            <div class="slot-bar-fill" style="width:${filledPct}%"></div>
+          </div>
+        </div>
+
+        <div class="signups-panel${isOpen ? ' open' : ''}" id="panel-${snack.id}">
+          ${rows.length > 0 ? `
+            <div class="signups-label">Current Donors</div>
+            ${rows.map((r, i) => `
+              <div class="signup-row">
+                <div class="signup-row-info">
+                  <div class="signup-name">${escHtml(r.name)}${r.qty > 1 ? ` <span style="color:var(--gold);font-size:.72rem;">(×${r.qty})</span>` : ''}</div>
+                  ${r.note ? `<div class="signup-note">${escHtml(r.note)}</div>` : ''}
+                </div>
+                <button class="signup-remove" onclick="removeSignup('${snack.id}', ${i})">✕ Remove</button>
+              </div>
+            `).join('')}
+          ` : `<div class="signups-label" style="margin-bottom:4px;">No donors yet — be the first! 🙌</div>`}
+
+          ${!isFull ? `
+            <div class="signup-form" id="form-${snack.id}">
+              ${unlimited ? `
+                <div style="background:var(--cream);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:10px;font-size:.78rem;color:var(--navy);">
+                  🎁 <strong>Bring anything you'd like!</strong> Use the note field to tell us what you're donating so we don't get duplicates.
+                </div>
+              ` : ''}
+              <div class="form-row">
+                <div class="form-field">
+                  <label class="form-label">Your Name *</label>
+                  <input class="form-input" id="name-${snack.id}" type="text" placeholder="Sister Smith" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Phone / Email</label>
+                  <input class="form-input" id="contact-${snack.id}" type="text" placeholder="Optional" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-field">
+                  <label class="form-label">Quantity</label>
+                  <div class="qty-row">
+                    <button class="qty-btn" onclick="changeQty('${snack.id}',-1)">−</button>
+                    <span class="qty-display" id="qty-${snack.id}">${currentQty[snack.id] || 1}</span>
+                    <button class="qty-btn" onclick="changeQty('${snack.id}',1)">+</button>
+                    <span class="qty-label">${unlimited ? 'item(s)' : 'pack(s)'}</span>
+                  </div>
+                </div>
+                <div class="form-field">
+                  <label class="form-label">${unlimited ? 'What are you bringing? *' : 'Note'} <span style="font-weight:400;text-transform:none;letter-spacing:0;">${unlimited ? '' : '(optional)'}</span></label>
+                  <input class="form-input" id="note-${snack.id}" type="text" placeholder="${notePlaceholder}" />
+                </div>
+              </div>
+              <div style="font-size:.7rem;color:var(--muted);margin-bottom:10px;">
+                📦 Deliver to: <strong style="color:var(--navy);">513 W 2450 N, Lehi, UT 84043</strong> by June 27
+                ${shopLink ? `&nbsp;·&nbsp; ${shopLink}` : ''}
+              </div>
+              <div class="form-actions">
+                <button class="btn btn-secondary" onclick="togglePanel('${snack.id}')">Cancel</button>
+                <button class="btn btn-primary" onclick="submitSignup('${snack.id}', ${unlimited})">✓ Sign Me Up</button>
+              </div>
+            </div>
+          ` : `<div style="text-align:center;padding:14px 0;font-size:.8rem;color:var(--muted);">✅ This item is fully covered — thank you, donors!</div>`}
+        </div>
+      `;
+
+      list.appendChild(card);
+    });
+  }
+
+  function escHtml(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // ── INTERACTIONS ──
+  function togglePanel(id) {
+    openPanel = openPanel === id ? null : id;
+    if (!currentQty[id]) currentQty[id] = 1;
+    renderAll();
+    if (openPanel) {
+      setTimeout(() => {
+        const panel = document.getElementById('panel-' + id);
+        if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 80);
+    }
+  }
+
+  function changeQty(id, delta) {
+    currentQty[id] = Math.max(1, Math.min(10, (currentQty[id] || 1) + delta));
+    const el = document.getElementById('qty-' + id);
+    if (el) el.textContent = currentQty[id];
+  }
+
+  async function submitSignup(id, unlimited = false) {
+    const nameEl = document.getElementById('name-' + id);
+    const noteEl = document.getElementById('note-' + id);
+    const name   = nameEl ? nameEl.value.trim() : '';
+    const note   = noteEl ? noteEl.value.trim() : '';
+    const qty    = currentQty[id] || 1;
+
+    // Name is always required
+    if (!name) {
+      nameEl.style.borderColor = 'var(--red)';
+      nameEl.focus();
+      setTimeout(() => { nameEl.style.borderColor = ''; }, 2000);
+      return;
+    }
+
+    // For "Other", the note describing what they're bringing is also required
+    if (unlimited && !note) {
+      noteEl.style.borderColor = 'var(--red)';
+      noteEl.focus();
+      setTimeout(() => { noteEl.style.borderColor = ''; }, 2000);
+      showToast('⚠️ Please tell us what you\'re bringing!');
+      return;
+    }
+
+    if (!signups[id]) signups[id] = [];
+    signups[id].push({ name, note, qty, ts: Date.now() });
+    currentQty[id] = 1;
+    openPanel = null;
+    await saveSignups();
+    renderAll();
+    showToast('🙌 Thank you, ' + name + '! You\'re signed up.');
+  }
+
+  async function removeSignup(id, index) {
+    if (!signups[id]) return;
+    const removed = signups[id].splice(index, 1);
+    if (signups[id].length === 0) delete signups[id];
+    await saveSignups();
+    renderAll();
+    showToast('Removed signup' + (removed[0] ? ' for ' + removed[0].name : '') + '.');
+  }
+
+  let toastTimer;
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
+  // ── INIT ──
+  (async () => {
+    await loadSignups();
+    renderAll();
+  })();
+</script>
+</body>
+</html>
