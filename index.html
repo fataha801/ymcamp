@@ -30,6 +30,8 @@
       --card-snacks:   #c0392b;
       --card-checklist:#2563eb;
       --card-calendar: #7a5010;
+      --card-donate: #2e7060;
+
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -207,6 +209,9 @@
     .card-checklist .card-thumb { background: var(--card-checklist); }
     .card-calendar .card-thumb { background: var(--card-calendar); }
 
+    .card-donate  .card-thumb { background: var(--card-donate); }
+.card-donate  .card-cta   { color: var(--card-donate); }
+
     /* Decorative pattern per card */
     .card-thumb-pattern {
       position: absolute;
@@ -351,6 +356,32 @@
         <span class="card-cta">View Schedule →</span>
       </div>
     </a>
+
+    <!-- DONATE A SNACK -->
+<a class="card card-donate" href="donate.html">
+  <div class="card-thumb">
+    <svg class="card-thumb-pattern" viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="80" cy="170" r="120" fill="rgba(255,255,255,.05)"/>
+      <circle cx="350" cy="-10" r="100" fill="rgba(255,255,255,.04)"/>
+      <circle cx="200" cy="80" r="140" fill="rgba(255,255,255,.03)"/>
+      <rect x="0" y="0" width="400" height="160" fill="url(#hearts-donate)"/>
+      <defs>
+        <pattern id="hearts-donate" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+          <circle cx="14" cy="14" r="1.5" fill="rgba(255,255,255,.07)"/>
+          <circle cx="0"  cy="0"  r="1"   fill="rgba(255,255,255,.04)"/>
+          <circle cx="28" cy="28" r="1"   fill="rgba(255,255,255,.04)"/>
+        </pattern>
+      </defs>
+    </svg>
+    <span class="card-thumb-icon">🎁</span>
+    <span class="card-thumb-label">Ward Sign-Up</span>
+  </div>
+  <div class="card-body">
+    <div class="card-title">Donate a Snack</div>
+    <p class="card-desc">Sign up to donate snacks for camp. Choose an item, claim your slot, and ship directly to the drop-off address.</p>
+    <span class="card-cta">Sign Up →</span>
+  </div>
+</a>
 
     <!-- CAMP SNACKS MENU -->
     <a class="card card-snacks" href="food.html">
