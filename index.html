@@ -35,14 +35,7 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font-body);
-      background: var(--cream);
-      color: var(--navy);
-      min-height: 100vh;
-      font-size: 15px;
-      line-height: 1.6;
-    }
+    body { font-family: var(--font-body); background: var(--cream); color: var(--navy); min-height: 100vh; font-size: 15px; line-height: 1.6; }
 
     /* ── HERO ── */
     .hero { background: var(--navy); color: var(--white); padding: 56px 16px 48px; text-align: center; position: relative; overflow: hidden; }
@@ -66,6 +59,30 @@
     .section-divider { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; }
     .section-divider-line { flex: 1; height: 1px; background: var(--stone); }
     .section-divider-label { font-size: .66rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+
+    /* ── SCROLL GALLERY ── */
+    .gallery-section { margin-bottom: 56px; }
+    .gallery-scroll-wrap { position: relative; }
+    .gallery-scroll-wrap::before,
+    .gallery-scroll-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; width: 48px; z-index: 2; pointer-events: none; }
+    .gallery-scroll-wrap::before { left: 0; background: linear-gradient(to right, var(--cream), transparent); }
+    .gallery-scroll-wrap::after  { right: 0; background: linear-gradient(to left, var(--cream), transparent); }
+    .gallery-track { display: flex; gap: 14px; overflow-x: auto; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: 8px 48px 16px; cursor: grab; }
+    .gallery-track:active { cursor: grabbing; }
+    .gallery-track::-webkit-scrollbar { display: none; }
+    .gallery-slide { flex-shrink: 0; width: 280px; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); background: var(--white); transition: box-shadow .22s, transform .22s; cursor: pointer; }
+    .gallery-slide:hover { box-shadow: var(--shadow-lift); transform: translateY(-3px); }
+    .gallery-slide-img { width: 100%; height: 200px; object-fit: cover; display: block; transition: transform .35s ease; }
+    .gallery-slide:hover .gallery-slide-img { transform: scale(1.04); }
+    .gallery-slide-body { padding: 12px 14px 14px; }
+    .gallery-slide-caption { font-size: .8rem; font-weight: 600; color: var(--navy); line-height: 1.35; }
+    .gallery-slide-sub { font-size: .7rem; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+    .gallery-dots { display: flex; justify-content: center; gap: 6px; margin-top: 14px; flex-wrap: wrap; }
+    .gallery-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--stone); transition: background .2s, transform .2s; cursor: pointer; }
+    .gallery-dot.active { background: var(--gold); transform: scale(1.3); }
+    .gallery-nav { display: flex; justify-content: center; gap: 10px; margin-top: 16px; }
+    .gallery-arrow { width: 40px; height: 40px; border-radius: 50%; background: var(--white); border: 1.5px solid var(--stone); box-shadow: var(--shadow-card); color: var(--navy); font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .18s, box-shadow .18s, transform .18s; -webkit-tap-highlight-color: transparent; }
+    .gallery-arrow:hover { background: var(--navy); color: var(--white); box-shadow: var(--shadow-lift); transform: scale(1.05); }
 
     /* ── CARD GRID ── */
     .card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
@@ -98,119 +115,6 @@
     .card-donate    .card-cta { color: var(--card-donate); }
     .card-tent      .card-cta { color: var(--card-tent); }
     .card:hover .card-cta { gap: 8px; }
-
-    /* ── SCROLL GALLERY ── */
-    .gallery-section { margin-top: 56px; }
-
-    .gallery-scroll-wrap {
-      position: relative;
-    }
-
-    /* Fade edges */
-    .gallery-scroll-wrap::before,
-    .gallery-scroll-wrap::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 48px;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .gallery-scroll-wrap::before { left: 0; background: linear-gradient(to right, var(--cream), transparent); }
-    .gallery-scroll-wrap::after  { right: 0; background: linear-gradient(to left, var(--cream), transparent); }
-
-    .gallery-track {
-      display: flex;
-      gap: 14px;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      padding: 8px 48px 16px;
-      cursor: grab;
-    }
-    .gallery-track:active { cursor: grabbing; }
-    .gallery-track::-webkit-scrollbar { display: none; }
-
-    .gallery-slide {
-      flex-shrink: 0;
-      width: 280px;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-card);
-      background: var(--white);
-      transition: box-shadow .22s, transform .22s;
-      cursor: pointer;
-    }
-    .gallery-slide:hover { box-shadow: var(--shadow-lift); transform: translateY(-3px); }
-
-    .gallery-slide-img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      display: block;
-      transition: transform .35s ease;
-    }
-    .gallery-slide:hover .gallery-slide-img { transform: scale(1.04); }
-
-    .gallery-slide-body {
-      padding: 12px 14px 14px;
-    }
-    .gallery-slide-caption {
-      font-size: .8rem;
-      font-weight: 600;
-      color: var(--navy);
-      line-height: 1.35;
-    }
-    .gallery-slide-sub {
-      font-size: .7rem;
-      color: var(--muted);
-      margin-top: 3px;
-      line-height: 1.4;
-    }
-
-    /* Nav arrows */
-    .gallery-nav {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 16px;
-    }
-    .gallery-arrow {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--white);
-      border: 1.5px solid var(--stone);
-      box-shadow: var(--shadow-card);
-      color: var(--navy);
-      font-size: 1.1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background .18s, box-shadow .18s, transform .18s;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .gallery-arrow:hover { background: var(--navy); color: var(--white); box-shadow: var(--shadow-lift); transform: scale(1.05); }
-
-    /* Dots */
-    .gallery-dots {
-      display: flex;
-      justify-content: center;
-      gap: 6px;
-      margin-top: 14px;
-    }
-    .gallery-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--stone);
-      transition: background .2s, transform .2s;
-      cursor: pointer;
-    }
-    .gallery-dot.active { background: var(--gold); transform: scale(1.3); }
 
     /* ── LIGHTBOX ── */
     .lightbox { display: none; position: fixed; inset: 0; background: rgba(10,16,32,.93); z-index: 1000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
@@ -254,9 +158,200 @@
   </div>
 </section>
 
-<!-- MAIN -->
 <main class="main">
 
+  <!-- ── PHOTO GALLERY ── -->
+  <div class="gallery-section">
+    <div class="section-divider">
+      <span class="section-divider-line"></span>
+      <span class="section-divider-label">Cobblecreek Camp · Photo Gallery</span>
+      <span class="section-divider-line"></span>
+    </div>
+
+    <div class="gallery-scroll-wrap">
+      <div class="gallery-track" id="galleryTrack">
+
+        <div class="gallery-slide" onclick="openLightbox(0)">
+          <img class="gallery-slide-img" src="photo0.png" alt="Camp Map" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">🗺️ Camp Map</div>
+            <div class="gallery-slide-sub">Trail &amp; site overview of Cobble Creek Camp</div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" onclick="openLightbox(1)">
+          <img class="gallery-slide-img" src="photo1.png" alt="Road to Camp" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">🛣️ Road to Camp</div>
+            <div class="gallery-slide-sub">3/4 mile dirt road from the main highway</div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" onclick="openLightbox(2)">
+          <img class="gallery-slide-img" src="photo2.png" alt="Camp Entrance" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">⛺ Camp Entrance</div>
+            <div class="gallery-slide-sub">Welcome to Cobble Creek Camp, Huntsville UT</div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" onclick="openLightbox(3)">
+          <img class="gallery-slide-img" src="photo3.png" alt="Amphitheater" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">🎭 Amphitheater</div>
+            <div class="gallery-slide-sub">Seating for 150+, shade sails &amp; firepit nearby</div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" onclick="openLightbox(4)">
+          <img class="gallery-slide-img" src="photo4.png" alt="Water Spigot" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">💧 Water Spigot</div>
+            <div class="gallery-slide-sub">Each campsite has water &amp; fire extinguishing bucket</div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" onclick="openLightbox(5)">
+          <img class="gallery-slide-img" src="photo5.png" alt="Restroom Facility" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">🚻 Restrooms</div>
+            <div class="gallery-slide-sub">Flush toilets &amp; sinks — upper area facility</div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" onclick="openLightbox(6)">
+          <img class="gallery-slide-img" src="photo6.png" alt="Showers" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">🚿 Showers</div>
+            <div class="gallery-slide-sub">Hot water showers — upper area facility</div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" onclick="openLightbox(7)">
+          <img class="gallery-slide-img" src="photo7.png" alt="Handicap Restroom" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">♿ Handicap Restroom</div>
+            <div class="gallery-slide-sub">Accessible facilities for all campers</div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" onclick="openLightbox(8)">
+          <img class="gallery-slide-img" src="photo8.png" alt="Main Restrooms and Showers" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">🚻 Main Restrooms &amp; Showers</div>
+            <div class="gallery-slide-sub">Central facilities in the main camp area</div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" onclick="openLightbox(9)">
+          <img class="gallery-slide-img" src="photo9.png" alt="Site 17 Firepit" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">🔥 Site 17 — Lehi 41 Firepit</div>
+            <div class="gallery-slide-sub">Cozy campfire experience at our site</div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" onclick="openLightbox(10)">
+          <img class="gallery-slide-img" src="photo10.png" alt="Volleyball" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">🏐 Volleyball Area</div>
+            <div class="gallery-slide-sub">By the main pavilion — great for group games</div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" onclick="openLightbox(11)">
+          <img class="gallery-slide-img" src="photo11.png" alt="Tetherball" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">🏐 Tetherball</div>
+            <div class="gallery-slide-sub">Enjoy a game of tetherball with friends</div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" onclick="openLightbox(12)">
+          <img class="gallery-slide-img" src="photo12.png" alt="Large Bowery" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">🏛️ Large Bowery — Main Meals</div>
+            <div class="gallery-slide-sub">Breakfast, lunch &amp; dinner provided most days</div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" onclick="openLightbox(13)">
+          <img class="gallery-slide-img" src="photo13.png" alt="Site 17 Long Table" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">🪑 Site 17 — Long Table</div>
+            <div class="gallery-slide-sub">Need 2–3 canopies to cover the area</div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" onclick="openLightbox(14)">
+          <img class="gallery-slide-img" src="photo14.png" alt="Grill and Griddle" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">🍳 Grill &amp; Griddle</div>
+            <div class="gallery-slide-sub">At main pavilion — not located at campsite</div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" onclick="openLightbox(15)">
+          <img class="gallery-slide-img" src="photo15.png" alt="Flag Poles" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">🚩 Flag Poles</div>
+            <div class="gallery-slide-sub">Common area — fly your tribal flag</div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" onclick="openLightbox(16)">
+          <img class="gallery-slide-img" src="photo16.png" alt="Large Bowery Pavilion" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">🏛️ Large Bowery Pavilion</div>
+            <div class="gallery-slide-sub">Spacious pavilion for meals and gatherings</div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" onclick="openLightbox(17)">
+          <img class="gallery-slide-img" src="photo17.png" alt="Handicap Restroom 2" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">♿ Accessible Restroom</div>
+            <div class="gallery-slide-sub">Accessible facilities throughout camp</div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" onclick="openLightbox(18)">
+          <img class="gallery-slide-img" src="photo18.png" alt="Refrigerator" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">❄️ Refrigerator</div>
+            <div class="gallery-slide-sub">Keep perishables cool and fresh</div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" onclick="openLightbox(19)">
+          <img class="gallery-slide-img" src="photo19.png" alt="Satellite View" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">🛰️ Satellite View</div>
+            <div class="gallery-slide-sub">Bird's-eye view of the entire campground</div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" onclick="openLightbox(20)">
+          <img class="gallery-slide-img" src="photo20.png" alt="Pineview Reservoir" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">🏞️ Pineview Reservoir</div>
+            <div class="gallery-slide-sub">Scenic beauty just minutes from camp</div>
+          </div>
+        </div>
+
+      </div><!-- end gallery-track -->
+    </div><!-- end gallery-scroll-wrap -->
+
+    <div class="gallery-dots" id="galleryDots"></div>
+
+    <div class="gallery-nav">
+      <button class="gallery-arrow" onclick="scrollGallery(-1)" aria-label="Previous">‹</button>
+      <button class="gallery-arrow" onclick="scrollGallery(1)"  aria-label="Next">›</button>
+    </div>
+
+  </div><!-- end gallery-section -->
+
+  <!-- ── CAMP DOCUMENTS ── -->
   <div class="section-divider">
     <span class="section-divider-line"></span>
     <span class="section-divider-label">All Camp Documents</span>
@@ -268,7 +363,7 @@
     <a class="card card-agenda" href="schedule.html">
       <div class="card-thumb">
         <svg class="card-thumb-pattern" viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="340" cy="-20" r="120" fill="rgba(255,255,255,.05)"/><circle cx="380" cy="130" r="80" fill="rgba(255,255,255,.04)"/><circle cx="20" cy="140" r="90" fill="rgba(255,255,255,.04)"/>
+          <circle cx="340" cy="-20" r="120" fill="rgba(255,255,255,.05)"/><circle cx="380" cy="130" r="80" fill="rgba(255,255,255,.04)"/>
           <rect x="0" y="0" width="400" height="160" fill="url(#grid-agenda)"/>
           <defs><pattern id="grid-agenda" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0L0 0 0 32" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/></pattern></defs>
         </svg>
@@ -287,7 +382,7 @@
         <svg class="card-thumb-pattern" viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
           <circle cx="80" cy="170" r="120" fill="rgba(255,255,255,.05)"/><circle cx="350" cy="-10" r="100" fill="rgba(255,255,255,.04)"/>
           <rect x="0" y="0" width="400" height="160" fill="url(#hearts-donate)"/>
-          <defs><pattern id="hearts-donate" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="14" cy="14" r="1.5" fill="rgba(255,255,255,.07)"/><circle cx="0" cy="0" r="1" fill="rgba(255,255,255,.04)"/><circle cx="28" cy="28" r="1" fill="rgba(255,255,255,.04)"/></pattern></defs>
+          <defs><pattern id="hearts-donate" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="14" cy="14" r="1.5" fill="rgba(255,255,255,.07)"/><circle cx="0" cy="0" r="1" fill="rgba(255,255,255,.04)"/></pattern></defs>
         </svg>
         <span class="card-thumb-icon">🥫</span>
         <span class="card-thumb-label">Ward Sign-Up</span>
@@ -367,80 +462,7 @@
       </div>
     </a>
 
-  </div>
-
-  <!-- ── SCROLL GALLERY ── -->
-  <div class="gallery-section">
-    <div class="section-divider">
-      <span class="section-divider-line"></span>
-      <span class="section-divider-label">Cobblecreek Camp · Photo Gallery</span>
-      <span class="section-divider-line"></span>
-    </div>
-
-    <div class="gallery-scroll-wrap">
-      <div class="gallery-track" id="galleryTrack">
-
-        <div class="gallery-slide" onclick="openLightbox(0)">
-          <img class="gallery-slide-img" src="photo0.png" alt="Camp Map" loading="lazy" />
-          <div class="gallery-slide-body">
-            <div class="gallery-slide-caption">🗺️ Camp Map</div>
-            <div class="gallery-slide-sub">Trail & site overview of Cobble Creek Camp</div>
-          </div>
-        </div>
-
-        <div class="gallery-slide" onclick="openLightbox(1)">
-          <img class="gallery-slide-img" src="photo1.png" alt="Road to Camp" loading="lazy" />
-          <div class="gallery-slide-body">
-            <div class="gallery-slide-caption">🛣️ Road to Camp</div>
-            <div class="gallery-slide-sub">3/4 mile dirt road from the main highway</div>
-          </div>
-        </div>
-
-        <div class="gallery-slide" onclick="openLightbox(2)">
-          <img class="gallery-slide-img" src="photo2.png" alt="Camp Entrance" loading="lazy" />
-          <div class="gallery-slide-body">
-            <div class="gallery-slide-caption">⛺ Camp Entrance</div>
-            <div class="gallery-slide-sub">Welcome to Cobble Creek Camp, Huntsville UT</div>
-          </div>
-        </div>
-
-        <div class="gallery-slide" onclick="openLightbox(3)">
-          <img class="gallery-slide-img" src="photo3.png" alt="Amphitheater" loading="lazy" />
-          <div class="gallery-slide-body">
-            <div class="gallery-slide-caption">🎭 Amphitheater</div>
-            <div class="gallery-slide-sub">Seating for 150+, shade sails & firepit nearby</div>
-          </div>
-        </div>
-
-        <div class="gallery-slide" onclick="openLightbox(4)">
-          <img class="gallery-slide-img" src="photo4.png" alt="Water Spigot" loading="lazy" />
-          <div class="gallery-slide-body">
-            <div class="gallery-slide-caption">💧 Water Spigot</div>
-            <div class="gallery-slide-sub">Each campsite has water & fire extinguishing bucket</div>
-          </div>
-        </div>
-
-        <div class="gallery-slide" onclick="openLightbox(5)">
-          <img class="gallery-slide-img" src="photo5.png" alt="Restroom Facility" loading="lazy" />
-          <div class="gallery-slide-body">
-            <div class="gallery-slide-caption">🚻 Restrooms</div>
-            <div class="gallery-slide-sub">Flush toilets & sinks — upper area facility</div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Arrow nav -->
-    <div class="gallery-nav">
-      <button class="gallery-arrow" onclick="scrollGallery(-1)" aria-label="Previous">‹</button>
-      <button class="gallery-arrow" onclick="scrollGallery(1)"  aria-label="Next">›</button>
-    </div>
-
-    <!-- Dots -->
-    <div class="gallery-dots" id="galleryDots"></div>
-
-  </div>
+  </div><!-- end card-grid -->
 
 </main>
 
@@ -464,33 +486,32 @@
 </footer>
 
 <script>
-  // ── GALLERY DATA ──
   const PHOTOS = [
-    { src: 'photo0.png', caption: 'Cobble Creek Camp — Trail & Site Map' },
-    { src: 'photo1.png', caption: '3/4 Mile Road to Cobble Creek Camp from main highway' },
-    { src: 'photo2.png', caption: 'Welcome to Cobble Creek Camp — Huntsville, UT' },
-    { src: 'photo3.png', caption: 'Amphitheater — Seating for 150+, shade sails & firepit nearby' },
-    { src: 'photo4.png', caption: 'Each campsite has a Water Spigot & Fire Extinguishing Bucket' },
-    { src: 'photo5.png', caption: 'Restroom with flush toilets & sinks — upper area facility' },
-    { src: 'photo6.png', caption: 'Main Restroom Sinks and Mirrors' },
-    { src: 'photo7.png', caption: 'Handicap Restroom' },
-    { src: 'photo8.png', caption: 'Main Restrooms and Showers' },
-    { src: 'photo9.png', caption: 'Site 17 - Lehi 41 Ward Camp Firepit' },
+    { src: 'photo0.png',  caption: 'Cobble Creek Camp — Trail & Site Map' },
+    { src: 'photo1.png',  caption: '3/4 Mile Road to Cobble Creek Camp from main highway' },
+    { src: 'photo2.png',  caption: 'Welcome to Cobble Creek Camp — Huntsville, UT' },
+    { src: 'photo3.png',  caption: 'Amphitheater — Seating for 150+, shade sails & firepit nearby' },
+    { src: 'photo4.png',  caption: 'Each campsite has a Water Spigot & Fire Extinguishing Bucket' },
+    { src: 'photo5.png',  caption: 'Restroom with flush toilets & sinks — upper area facility' },
+    { src: 'photo6.png',  caption: 'Hot water showers — upper area facility' },
+    { src: 'photo7.png',  caption: 'Handicap Restroom — accessible for all campers' },
+    { src: 'photo8.png',  caption: 'Main Restrooms and Showers — central camp area' },
+    { src: 'photo9.png',  caption: 'Site 17 — Lehi 41 Ward Camp Firepit' },
     { src: 'photo10.png', caption: 'Volleyball Area by Main Pavilion' },
-    { src: 'photo11.png', caption: 'Tetherball' },
-    { src: 'photo12.png', caption: 'Large Bowery - Main Meals Breakfast, Lunch and Dinners will be provided for most of the days' },
-    { src: 'photo13.png', caption: 'Site 17 - Lehi 41 Long Table (just need 2-3 canopies to cover over area)' },
-    { src: 'photo14.png', caption: 'Grill and Griddle at Main Pavilion not at campsite' },
-    { src: 'photo15.png', caption: 'Flag Poles in the Common Area' },
-    { src: 'photo16.png', caption: 'Large Bowery Pavilion' },
-    { src: 'photo17.png', caption: 'Handicap Restroom' },
-    { src: 'photo18.png', caption: 'Refrigerator' },
+    { src: 'photo11.png', caption: 'Tetherball — fun for everyone' },
+    { src: 'photo12.png', caption: 'Large Bowery — Breakfast, Lunch & Dinner provided most days' },
+    { src: 'photo13.png', caption: 'Site 17 — Lehi 41 Long Table (need 2–3 canopies)' },
+    { src: 'photo14.png', caption: 'Grill & Griddle at Main Pavilion — not at campsite' },
+    { src: 'photo15.png', caption: 'Flag Poles in the Common Area — fly your tribal flag' },
+    { src: 'photo16.png', caption: 'Large Bowery Pavilion — spacious for meals and gatherings' },
+    { src: 'photo17.png', caption: 'Accessible Restroom facilities throughout camp' },
+    { src: 'photo18.png', caption: 'Refrigerator — keep perishables cool' },
     { src: 'photo19.png', caption: 'Satellite View of Cobble Creek Campgrounds' },
-    { src: 'photo20.png', caption: 'Pineview Reservoir View' },
+    { src: 'photo20.png', caption: 'Pineview Reservoir — scenic beauty nearby' },
   ];
 
-  // ── DOTS ──
-  const track = document.getElementById('galleryTrack');
+  // ── BUILD DOTS ──
+  const track  = document.getElementById('galleryTrack');
   const dotsEl = document.getElementById('galleryDots');
 
   PHOTOS.forEach((_, i) => {
@@ -515,58 +536,29 @@
 
   track.addEventListener('scroll', updateDots, { passive: true });
 
-  function scrollToSlide(index) {
+  function scrollToSlide(i) {
     const slides = track.querySelectorAll('.gallery-slide');
-    if (slides[index]) {
-      slides[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-    }
+    if (slides[i]) slides[i].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
   }
 
   function scrollGallery(dir) {
-    const slideWidth = 280 + 14; // width + gap
-    track.scrollBy({ left: dir * slideWidth, behavior: 'smooth' });
+    track.scrollBy({ left: dir * (280 + 14), behavior: 'smooth' });
   }
 
   // ── DRAG TO SCROLL ──
   let isDown = false, startX, scrollLeft;
-  track.addEventListener('mousedown', e => {
-    isDown = true;
-    track.style.cursor = 'grabbing';
-    startX = e.pageX - track.offsetLeft;
-    scrollLeft = track.scrollLeft;
-  });
+  track.addEventListener('mousedown', e => { isDown = true; track.style.cursor = 'grabbing'; startX = e.pageX - track.offsetLeft; scrollLeft = track.scrollLeft; });
   track.addEventListener('mouseleave', () => { isDown = false; track.style.cursor = 'grab'; });
   track.addEventListener('mouseup',    () => { isDown = false; track.style.cursor = 'grab'; });
-  track.addEventListener('mousemove',  e => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - track.offsetLeft;
-    track.scrollLeft = scrollLeft - (x - startX) * 1.4;
-  });
+  track.addEventListener('mousemove',  e => { if (!isDown) return; e.preventDefault(); track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.4; });
 
   // ── LIGHTBOX ──
   let current = 0;
 
-  function openLightbox(index) {
-    current = index;
-    updateLightbox();
-    document.getElementById('lightbox').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  function closeLightboxOutside(e) {
-    if (e.target === document.getElementById('lightbox')) closeLightbox();
-  }
-
-  function navLightbox(dir) {
-    current = (current + dir + PHOTOS.length) % PHOTOS.length;
-    updateLightbox();
-  }
+  function openLightbox(i) { current = i; updateLightbox(); document.getElementById('lightbox').classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeLightbox()  { document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow = ''; }
+  function closeLightboxOutside(e) { if (e.target === document.getElementById('lightbox')) closeLightbox(); }
+  function navLightbox(dir) { current = (current + dir + PHOTOS.length) % PHOTOS.length; updateLightbox(); }
 
   function updateLightbox() {
     const p = PHOTOS[current];
