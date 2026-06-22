@@ -31,6 +31,7 @@
       --card-checklist:#2563eb;
       --card-calendar: #7a5010;
       --card-donate: #2e7060;
+      --card-tent: #5b6e3f;
 
     }
 
@@ -286,6 +287,7 @@
     .card-checklist .card-cta { color: var(--card-checklist); }
     .card-calendar  .card-cta { color: var(--card-calendar); }
     .card:hover .card-cta { gap: 8px; }
+    
 
     /* ── FOOTER ── */
     footer {
@@ -406,6 +408,30 @@
         <span class="card-cta">View Menu →</span>
       </div>
     </a>
+
+    <!-- TENT & TRANSPORT ASSIGNMENTS -->
+<a class="card card-tent" href="assignments.html">
+  <div class="card-thumb">
+    <svg class="card-thumb-pattern" viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="360" cy="30" r="130" fill="rgba(255,255,255,.05)"/>
+      <circle cx="10" cy="160" r="90" fill="rgba(255,255,255,.04)"/>
+      <circle cx="200" cy="200" r="100" fill="rgba(255,255,255,.03)"/>
+      <rect x="0" y="0" width="400" height="160" fill="url(#tent-pattern)"/>
+      <defs>
+        <pattern id="tent-pattern" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+          <path d="M15 0 L30 30 L0 30 Z" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+        </pattern>
+      </defs>
+    </svg>
+    <span class="card-thumb-icon">⛺</span>
+    <span class="card-thumb-label">Sleep &amp; Ride</span>
+  </div>
+  <div class="card-body">
+    <div class="card-title">Tent &amp; Transport Assignments</div>
+    <p class="card-desc">See your tent group, bunkmates, and vehicle assignment for the drive to Cobblecreek Camp.</p>
+    <span class="card-cta">View Assignments →</span>
+  </div>
+</a>
 
     <!-- GEAR CHECKLIST -->
     <a class="card card-checklist" href="checklist.html">
