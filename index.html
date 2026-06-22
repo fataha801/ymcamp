@@ -25,14 +25,12 @@
       --shadow-lift: 0 8px 32px rgba(26,39,68,.18);
       --font-display: 'Playfair Display', Georgia, serif;
       --font-body:    'DM Sans', sans-serif;
-
       --card-agenda:   #4a7c59;
       --card-snacks:   #c0392b;
       --card-checklist:#2563eb;
       --card-calendar: #7a5010;
-      --card-donate: #2e7060;
-      --card-tent: #5b6e3f;
-
+      --card-donate:   #2e7060;
+      --card-tent:     #5b6e3f;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -47,258 +45,190 @@
     }
 
     /* ── HERO ── */
-    .hero {
-      background: var(--navy);
-      color: var(--white);
-      padding: 56px var(--spacing-md, 16px) 48px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 80% 70% at 50% 120%, rgba(200,151,58,.22) 0%, transparent 65%),
-        radial-gradient(ellipse 40% 35% at 85% 15%, rgba(200,151,58,.10) 0%, transparent 60%),
-        radial-gradient(ellipse 30% 25% at 10% 80%, rgba(200,151,58,.07) 0%, transparent 55%);
-      pointer-events: none;
-    }
-    .hero-eyebrow {
-      font-size: .68rem;
-      font-weight: 500;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--gold-lt);
-      margin-bottom: 12px;
-      position: relative;
-    }
-    .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 7vw, 3.4rem);
-      font-weight: 700;
-      line-height: 1.1;
-      position: relative;
-      margin-bottom: 4px;
-    }
-    .hero-year {
-      font-family: var(--font-display);
-      font-size: clamp(1rem, 3vw, 1.4rem);
-      color: var(--gold-lt);
-      font-weight: 600;
-      position: relative;
-      margin-bottom: 16px;
-    }
-    .gold-rule {
-      width: 52px;
-      height: 3px;
-      background: var(--gold);
-      border-radius: 2px;
-      margin: 16px auto;
-      position: relative;
-    }
-    .hero-motto {
-      font-family: var(--font-display);
-      font-size: 1rem;
-      font-style: italic;
-      color: var(--gold-lt);
-      position: relative;
-    }
-    .hero-sub {
-      font-size: .82rem;
-      color: rgba(255,255,255,.55);
-      margin-top: 6px;
-      position: relative;
-    }
+    .hero { background: var(--navy); color: var(--white); padding: 56px 16px 48px; text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 70% at 50% 120%, rgba(200,151,58,.22) 0%, transparent 65%), radial-gradient(ellipse 40% 35% at 85% 15%, rgba(200,151,58,.10) 0%, transparent 60%), radial-gradient(ellipse 30% 25% at 10% 80%, rgba(200,151,58,.07) 0%, transparent 55%); pointer-events: none; }
+    .hero-eyebrow { font-size: .68rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--gold-lt); margin-bottom: 12px; position: relative; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 7vw, 3.4rem); font-weight: 700; line-height: 1.1; position: relative; margin-bottom: 4px; }
+    .hero-year { font-family: var(--font-display); font-size: clamp(1rem, 3vw, 1.4rem); color: var(--gold-lt); font-weight: 600; position: relative; margin-bottom: 16px; }
+    .gold-rule { width: 52px; height: 3px; background: var(--gold); border-radius: 2px; margin: 16px auto; position: relative; }
+    .hero-motto { font-family: var(--font-display); font-size: 1rem; font-style: italic; color: var(--gold-lt); position: relative; }
+    .hero-sub { font-size: .82rem; color: rgba(255,255,255,.55); margin-top: 6px; position: relative; }
 
     /* ── INFO STRIP ── */
-    .info-strip {
-      background: var(--gold);
-      color: var(--navy);
-      padding: 14px 16px;
-    }
-    .info-strip-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px 32px;
-      justify-content: center;
-      align-items: center;
-    }
-    .info-item {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      font-size: .8rem;
-      font-weight: 500;
-    }
+    .info-strip { background: var(--gold); color: var(--navy); padding: 14px 16px; }
+    .info-strip-inner { max-width: 900px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 6px 32px; justify-content: center; align-items: center; }
+    .info-item { display: flex; align-items: center; gap: 7px; font-size: .8rem; font-weight: 500; }
 
     /* ── MAIN ── */
-    .main {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 48px 16px 72px;
-    }
+    .main { max-width: 960px; margin: 0 auto; padding: 48px 16px 72px; }
 
     /* ── SECTION DIVIDER ── */
-    .section-divider {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 32px;
-    }
+    .section-divider { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; }
     .section-divider-line { flex: 1; height: 1px; background: var(--stone); }
-    .section-divider-label {
-      font-size: .66rem;
-      font-weight: 500;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
+    .section-divider-label { font-size: .66rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
 
     /* ── CARD GRID ── */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-    @media (max-width: 520px) {
-      .card-grid { grid-template-columns: 1fr; gap: 16px; }
-    }
+    .card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    @media (max-width: 520px) { .card-grid { grid-template-columns: 1fr; gap: 16px; } }
 
     /* ── CARD ── */
-    .card {
-      background: var(--white);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow-card);
-      overflow: hidden;
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      transition: box-shadow .22s, transform .22s;
-      position: relative;
-    }
-    .card:hover {
-      box-shadow: var(--shadow-lift);
-      transform: translateY(-3px);
-    }
+    .card { background: var(--white); border-radius: var(--radius-xl); box-shadow: var(--shadow-card); overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: box-shadow .22s, transform .22s; position: relative; }
+    .card:hover { box-shadow: var(--shadow-lift); transform: translateY(-3px); }
     .card:active { transform: translateY(-1px); }
-
-    /* ── CARD THUMBNAIL ── */
-    .card-thumb {
-      position: relative;
-      height: 160px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-    .card-thumb::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,.28) 100%);
-      pointer-events: none;
-    }
-
-    .card-agenda   .card-thumb { background: var(--card-agenda); }
-    .card-snacks   .card-thumb { background: var(--card-snacks); }
+    .card-thumb { position: relative; height: 160px; display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
+    .card-thumb::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,.28) 100%); pointer-events: none; }
+    .card-agenda    .card-thumb { background: var(--card-agenda); }
+    .card-snacks    .card-thumb { background: var(--card-snacks); }
     .card-checklist .card-thumb { background: var(--card-checklist); }
-    .card-calendar .card-thumb { background: var(--card-calendar); }
-
-    .card-donate  .card-thumb { background: var(--card-donate); }
-.card-donate  .card-cta   { color: var(--card-donate); }
-
-    /* Decorative pattern per card */
-    .card-thumb-pattern {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
-
-    /* Thumb emoji */
-    .card-thumb-icon {
-      font-size: 3.8rem;
-      position: relative;
-      z-index: 1;
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,.3));
-      line-height: 1;
-      transition: transform .25s;
-    }
+    .card-calendar  .card-thumb { background: var(--card-calendar); }
+    .card-donate    .card-thumb { background: var(--card-donate); }
+    .card-tent      .card-thumb { background: var(--card-tent); }
+    .card-thumb-pattern { position: absolute; inset: 0; pointer-events: none; }
+    .card-thumb-icon { font-size: 3.8rem; position: relative; z-index: 1; filter: drop-shadow(0 4px 12px rgba(0,0,0,.3)); line-height: 1; transition: transform .25s; }
     .card:hover .card-thumb-icon { transform: scale(1.08); }
-
-    /* Label pill on thumb */
-    .card-thumb-label {
-      position: absolute;
-      bottom: 12px;
-      left: 14px;
-      z-index: 2;
-      font-size: .58rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .14em;
-      background: rgba(255,255,255,.18);
-      color: rgba(255,255,255,.9);
-      padding: 3px 10px;
-      border-radius: 999px;
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      border: 1px solid rgba(255,255,255,.2);
-    }
-
-    /* ── CARD BODY ── */
-    .card-body {
-      padding: 18px 18px 20px;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      gap: 6px;
-    }
-    .card-title {
-      font-family: var(--font-display);
-      font-size: 1.05rem;
-      font-weight: 700;
-      line-height: 1.2;
-      color: var(--navy);
-    }
-    .card-desc {
-      font-size: .78rem;
-      color: var(--muted);
-      line-height: 1.5;
-      flex: 1;
-    }
-    .card-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: .72rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      margin-top: 8px;
-      transition: gap .18s;
-    }
+    .card-thumb-label { position: absolute; bottom: 12px; left: 14px; z-index: 2; font-size: .58rem; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; background: rgba(255,255,255,.18); color: rgba(255,255,255,.9); padding: 3px 10px; border-radius: 999px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.2); }
+    .card-body { padding: 18px 18px 20px; display: flex; flex-direction: column; flex: 1; gap: 6px; }
+    .card-title { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; line-height: 1.2; color: var(--navy); }
+    .card-desc { font-size: .78rem; color: var(--muted); line-height: 1.5; flex: 1; }
+    .card-cta { display: inline-flex; align-items: center; gap: 5px; font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; margin-top: 8px; transition: gap .18s; }
     .card-agenda    .card-cta { color: var(--card-agenda); }
     .card-snacks    .card-cta { color: var(--card-snacks); }
     .card-checklist .card-cta { color: var(--card-checklist); }
     .card-calendar  .card-cta { color: var(--card-calendar); }
+    .card-donate    .card-cta { color: var(--card-donate); }
+    .card-tent      .card-cta { color: var(--card-tent); }
     .card:hover .card-cta { gap: 8px; }
-    
+
+    /* ── SCROLL GALLERY ── */
+    .gallery-section { margin-top: 56px; }
+
+    .gallery-scroll-wrap {
+      position: relative;
+    }
+
+    /* Fade edges */
+    .gallery-scroll-wrap::before,
+    .gallery-scroll-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 48px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .gallery-scroll-wrap::before { left: 0; background: linear-gradient(to right, var(--cream), transparent); }
+    .gallery-scroll-wrap::after  { right: 0; background: linear-gradient(to left, var(--cream), transparent); }
+
+    .gallery-track {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 8px 48px 16px;
+      cursor: grab;
+    }
+    .gallery-track:active { cursor: grabbing; }
+    .gallery-track::-webkit-scrollbar { display: none; }
+
+    .gallery-slide {
+      flex-shrink: 0;
+      width: 280px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      background: var(--white);
+      transition: box-shadow .22s, transform .22s;
+      cursor: pointer;
+    }
+    .gallery-slide:hover { box-shadow: var(--shadow-lift); transform: translateY(-3px); }
+
+    .gallery-slide-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      transition: transform .35s ease;
+    }
+    .gallery-slide:hover .gallery-slide-img { transform: scale(1.04); }
+
+    .gallery-slide-body {
+      padding: 12px 14px 14px;
+    }
+    .gallery-slide-caption {
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.35;
+    }
+    .gallery-slide-sub {
+      font-size: .7rem;
+      color: var(--muted);
+      margin-top: 3px;
+      line-height: 1.4;
+    }
+
+    /* Nav arrows */
+    .gallery-nav {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .gallery-arrow {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 1.5px solid var(--stone);
+      box-shadow: var(--shadow-card);
+      color: var(--navy);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .18s, box-shadow .18s, transform .18s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .gallery-arrow:hover { background: var(--navy); color: var(--white); box-shadow: var(--shadow-lift); transform: scale(1.05); }
+
+    /* Dots */
+    .gallery-dots {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 14px;
+    }
+    .gallery-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--stone);
+      transition: background .2s, transform .2s;
+      cursor: pointer;
+    }
+    .gallery-dot.active { background: var(--gold); transform: scale(1.3); }
+
+    /* ── LIGHTBOX ── */
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(10,16,32,.93); z-index: 1000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+    .lightbox.open { display: flex; }
+    .lightbox-inner { position: relative; max-width: 900px; width: 100%; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    .lightbox img { width: 100%; max-height: 78vh; object-fit: contain; border-radius: var(--radius-lg); box-shadow: 0 24px 64px rgba(0,0,0,.5); }
+    .lightbox-caption { font-size: .85rem; color: rgba(255,255,255,.75); text-align: center; font-style: italic; }
+    .lightbox-close { position: absolute; top: -14px; right: -14px; width: 36px; height: 36px; border-radius: 50%; background: var(--gold); color: var(--navy); border: none; font-size: 1rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,.3); z-index: 1; transition: background .15s; }
+    .lightbox-close:hover { background: var(--gold-lt); }
+    .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25); color: var(--white); font-size: 1.3rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .15s; backdrop-filter: blur(4px); }
+    .lightbox-nav:hover { background: rgba(255,255,255,.28); }
+    .lightbox-prev { left: -56px; }
+    .lightbox-next { right: -56px; }
+    @media (max-width: 680px) { .lightbox-prev { left: 4px; } .lightbox-next { right: 4px; } }
+    .lightbox-counter { font-size: .72rem; color: rgba(255,255,255,.45); letter-spacing: .1em; }
 
     /* ── FOOTER ── */
-    footer {
-      background: var(--navy);
-      color: rgba(255,255,255,.45);
-      text-align: center;
-      padding: 24px 16px;
-      font-size: .72rem;
-      letter-spacing: .04em;
-      line-height: 1.9;
-    }
+    footer { background: var(--navy); color: rgba(255,255,255,.45); text-align: center; padding: 24px 16px; font-size: .72rem; letter-spacing: .04em; line-height: 1.9; }
     footer strong { color: var(--gold-lt); }
     footer .motto { color: var(--gold-lt); font-style: italic; display: block; margin-top: 2px; font-size: .7rem; }
   </style>
@@ -335,19 +265,12 @@
 
   <div class="card-grid">
 
-    <!-- CAMP AGENDA -->
     <a class="card card-agenda" href="schedule.html">
       <div class="card-thumb">
         <svg class="card-thumb-pattern" viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="340" cy="-20" r="120" fill="rgba(255,255,255,.05)"/>
-          <circle cx="380" cy="130" r="80" fill="rgba(255,255,255,.04)"/>
-          <circle cx="20" cy="140" r="90" fill="rgba(255,255,255,.04)"/>
+          <circle cx="340" cy="-20" r="120" fill="rgba(255,255,255,.05)"/><circle cx="380" cy="130" r="80" fill="rgba(255,255,255,.04)"/><circle cx="20" cy="140" r="90" fill="rgba(255,255,255,.04)"/>
           <rect x="0" y="0" width="400" height="160" fill="url(#grid-agenda)"/>
-          <defs>
-            <pattern id="grid-agenda" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
-              <path d="M32 0L0 0 0 32" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-            </pattern>
-          </defs>
+          <defs><pattern id="grid-agenda" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0L0 0 0 32" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/></pattern></defs>
         </svg>
         <span class="card-thumb-icon">📋</span>
         <span class="card-thumb-label">4-Day Program</span>
@@ -359,45 +282,29 @@
       </div>
     </a>
 
-    <!-- DONATE A SNACK -->
-<a class="card card-donate" href="snacksignup.html">
-  <div class="card-thumb">
-    <svg class="card-thumb-pattern" viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="80" cy="170" r="120" fill="rgba(255,255,255,.05)"/>
-      <circle cx="350" cy="-10" r="100" fill="rgba(255,255,255,.04)"/>
-      <circle cx="200" cy="80" r="140" fill="rgba(255,255,255,.03)"/>
-      <rect x="0" y="0" width="400" height="160" fill="url(#hearts-donate)"/>
-      <defs>
-        <pattern id="hearts-donate" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
-          <circle cx="14" cy="14" r="1.5" fill="rgba(255,255,255,.07)"/>
-          <circle cx="0"  cy="0"  r="1"   fill="rgba(255,255,255,.04)"/>
-          <circle cx="28" cy="28" r="1"   fill="rgba(255,255,255,.04)"/>
-        </pattern>
-      </defs>
-    </svg>
-    <span class="card-thumb-icon">🎁</span>
-    <span class="card-thumb-label">Ward Sign-Up</span>
-  </div>
-  <div class="card-body">
-    <div class="card-title">Donate a Snack</div>
-    <p class="card-desc">Sign up to donate snacks for camp. Choose an item, claim your slot, and ship directly to the drop-off address.</p>
-    <span class="card-cta">Sign Up →</span>
-  </div>
-</a>
+    <a class="card card-donate" href="snacksignup.html">
+      <div class="card-thumb">
+        <svg class="card-thumb-pattern" viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="80" cy="170" r="120" fill="rgba(255,255,255,.05)"/><circle cx="350" cy="-10" r="100" fill="rgba(255,255,255,.04)"/>
+          <rect x="0" y="0" width="400" height="160" fill="url(#hearts-donate)"/>
+          <defs><pattern id="hearts-donate" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="14" cy="14" r="1.5" fill="rgba(255,255,255,.07)"/><circle cx="0" cy="0" r="1" fill="rgba(255,255,255,.04)"/><circle cx="28" cy="28" r="1" fill="rgba(255,255,255,.04)"/></pattern></defs>
+        </svg>
+        <span class="card-thumb-icon">🥫</span>
+        <span class="card-thumb-label">Ward Sign-Up</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Donate a Snack</div>
+        <p class="card-desc">Sign up to donate snacks for camp. Choose an item, claim your slot, and ship directly to the drop-off address.</p>
+        <span class="card-cta">Sign Up →</span>
+      </div>
+    </a>
 
-    <!-- CAMP SNACKS MENU -->
     <a class="card card-snacks" href="food.html">
       <div class="card-thumb">
         <svg class="card-thumb-pattern" viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="50" cy="-10" r="100" fill="rgba(255,255,255,.05)"/>
-          <circle cx="370" cy="150" r="110" fill="rgba(255,255,255,.04)"/>
-          <circle cx="200" cy="180" r="80" fill="rgba(255,255,255,.04)"/>
+          <circle cx="50" cy="-10" r="100" fill="rgba(255,255,255,.05)"/><circle cx="370" cy="150" r="110" fill="rgba(255,255,255,.04)"/>
           <rect x="0" y="0" width="400" height="160" fill="url(#dots-snacks)"/>
-          <defs>
-            <pattern id="dots-snacks" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-              <circle cx="10" cy="10" r="1.2" fill="rgba(255,255,255,.08)"/>
-            </pattern>
-          </defs>
+          <defs><pattern id="dots-snacks" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1.2" fill="rgba(255,255,255,.08)"/></pattern></defs>
         </svg>
         <span class="card-thumb-icon">🔥</span>
         <span class="card-thumb-label">Mon – Thu</span>
@@ -409,42 +316,29 @@
       </div>
     </a>
 
-    <!-- TENT & TRANSPORT ASSIGNMENTS -->
-<a class="card card-tent" href="sleep.html">
-  <div class="card-thumb">
-    <svg class="card-thumb-pattern" viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="360" cy="30" r="130" fill="rgba(255,255,255,.05)"/>
-      <circle cx="10" cy="160" r="90" fill="rgba(255,255,255,.04)"/>
-      <circle cx="200" cy="200" r="100" fill="rgba(255,255,255,.03)"/>
-      <rect x="0" y="0" width="400" height="160" fill="url(#tent-pattern)"/>
-      <defs>
-        <pattern id="tent-pattern" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
-          <path d="M15 0 L30 30 L0 30 Z" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-        </pattern>
-      </defs>
-    </svg>
-    <span class="card-thumb-icon">⛺</span>
-    <span class="card-thumb-label">Sleep &amp; Ride</span>
-  </div>
-  <div class="card-body">
-    <div class="card-title">Tent &amp; Transport Assignments</div>
-    <p class="card-desc">See your tent group, bunkmates, and vehicle assignment for the drive to Cobblecreek Camp.</p>
-    <span class="card-cta">View Assignments →</span>
-  </div>
-</a>
+    <a class="card card-tent" href="sleep.html">
+      <div class="card-thumb">
+        <svg class="card-thumb-pattern" viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="360" cy="30" r="130" fill="rgba(255,255,255,.05)"/><circle cx="10" cy="160" r="90" fill="rgba(255,255,255,.04)"/>
+          <rect x="0" y="0" width="400" height="160" fill="url(#tent-pattern)"/>
+          <defs><pattern id="tent-pattern" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M15 0 L30 30 L0 30 Z" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/></pattern></defs>
+        </svg>
+        <span class="card-thumb-icon">⛺</span>
+        <span class="card-thumb-label">Sleep &amp; Ride</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Tent &amp; Transport Assignments</div>
+        <p class="card-desc">See your tent group, bunkmates, and vehicle assignment for the drive to Cobblecreek Camp.</p>
+        <span class="card-cta">View Assignments →</span>
+      </div>
+    </a>
 
-    <!-- GEAR CHECKLIST -->
     <a class="card card-checklist" href="checklist.html">
       <div class="card-thumb">
         <svg class="card-thumb-pattern" viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="360" cy="30" r="130" fill="rgba(255,255,255,.05)"/>
-          <circle cx="10" cy="160" r="90" fill="rgba(255,255,255,.04)"/>
+          <circle cx="360" cy="30" r="130" fill="rgba(255,255,255,.05)"/><circle cx="10" cy="160" r="90" fill="rgba(255,255,255,.04)"/>
           <rect x="0" y="0" width="400" height="160" fill="url(#diag-checklist)"/>
-          <defs>
-            <pattern id="diag-checklist" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
-              <line x1="0" y1="24" x2="24" y2="0" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-            </pattern>
-          </defs>
+          <defs><pattern id="diag-checklist" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse"><line x1="0" y1="24" x2="24" y2="0" stroke="rgba(255,255,255,.06)" stroke-width="1"/></pattern></defs>
         </svg>
         <span class="card-thumb-icon">✅</span>
         <span class="card-thumb-label">Pack &amp; Go</span>
@@ -456,19 +350,12 @@
       </div>
     </a>
 
-    <!-- YOUNG MEN CALENDAR -->
     <a class="card card-calendar" href="https://lehi41.com/ym/index.html">
       <div class="card-thumb">
         <svg class="card-thumb-pattern" viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="200" cy="-40" r="140" fill="rgba(255,255,255,.05)"/>
-          <circle cx="400" cy="160" r="100" fill="rgba(255,255,255,.04)"/>
+          <circle cx="200" cy="-40" r="140" fill="rgba(255,255,255,.05)"/><circle cx="400" cy="160" r="100" fill="rgba(255,255,255,.04)"/>
           <rect x="0" y="0" width="400" height="160" fill="url(#cross-cal)"/>
-          <defs>
-            <pattern id="cross-cal" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
-              <line x1="14" y1="0" x2="14" y2="28" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-              <line x1="0" y1="14" x2="28" y2="14" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-            </pattern>
-          </defs>
+          <defs><pattern id="cross-cal" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse"><line x1="14" y1="0" x2="14" y2="28" stroke="rgba(255,255,255,.06)" stroke-width="1"/><line x1="0" y1="14" x2="28" y2="14" stroke="rgba(255,255,255,.06)" stroke-width="1"/></pattern></defs>
         </svg>
         <span class="card-thumb-icon">📅</span>
         <span class="card-thumb-label">Annual Schedule</span>
@@ -482,7 +369,92 @@
 
   </div>
 
+  <!-- ── SCROLL GALLERY ── -->
+  <div class="gallery-section">
+    <div class="section-divider">
+      <span class="section-divider-line"></span>
+      <span class="section-divider-label">Cobblecreek Camp · Photo Gallery</span>
+      <span class="section-divider-line"></span>
+    </div>
+
+    <div class="gallery-scroll-wrap">
+      <div class="gallery-track" id="galleryTrack">
+
+        <div class="gallery-slide" onclick="openLightbox(0)">
+          <img class="gallery-slide-img" src="photo0.png" alt="Camp Map" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">🗺️ Camp Map</div>
+            <div class="gallery-slide-sub">Trail & site overview of Cobble Creek Camp</div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" onclick="openLightbox(1)">
+          <img class="gallery-slide-img" src="photo1.png" alt="Road to Camp" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">🛣️ Road to Camp</div>
+            <div class="gallery-slide-sub">3/4 mile dirt road from the main highway</div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" onclick="openLightbox(2)">
+          <img class="gallery-slide-img" src="photo2.png" alt="Camp Entrance" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">⛺ Camp Entrance</div>
+            <div class="gallery-slide-sub">Welcome to Cobble Creek Camp, Huntsville UT</div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" onclick="openLightbox(3)">
+          <img class="gallery-slide-img" src="photo3.png" alt="Amphitheater" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">🎭 Amphitheater</div>
+            <div class="gallery-slide-sub">Seating for 150+, shade sails & firepit nearby</div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" onclick="openLightbox(4)">
+          <img class="gallery-slide-img" src="photo4.png" alt="Water Spigot" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">💧 Water Spigot</div>
+            <div class="gallery-slide-sub">Each campsite has water & fire extinguishing bucket</div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" onclick="openLightbox(5)">
+          <img class="gallery-slide-img" src="photo5.png" alt="Restroom Facility" loading="lazy" />
+          <div class="gallery-slide-body">
+            <div class="gallery-slide-caption">🚻 Restrooms</div>
+            <div class="gallery-slide-sub">Flush toilets & sinks — upper area facility</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Arrow nav -->
+    <div class="gallery-nav">
+      <button class="gallery-arrow" onclick="scrollGallery(-1)" aria-label="Previous">‹</button>
+      <button class="gallery-arrow" onclick="scrollGallery(1)"  aria-label="Next">›</button>
+    </div>
+
+    <!-- Dots -->
+    <div class="gallery-dots" id="galleryDots"></div>
+
+  </div>
+
 </main>
+
+<!-- ── LIGHTBOX ── -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1)">‹</button>
+    <button class="lightbox-nav lightbox-next" onclick="navLightbox(1)">›</button>
+    <img id="lightbox-img" src="" alt="" />
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+    <div class="lightbox-counter" id="lightbox-counter"></div>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -490,6 +462,127 @@
   All dates and information tentative. Confirm with your bishopric.
   <span class="motto">"Walk with me." — Moses 6:34</span>
 </footer>
+
+<script>
+  // ── GALLERY DATA ──
+  const PHOTOS = [
+    { src: 'photo0.png', caption: 'Cobble Creek Camp — Trail & Site Map' },
+    { src: 'photo1.png', caption: '3/4 Mile Road to Cobble Creek Camp from main highway' },
+    { src: 'photo2.png', caption: 'Welcome to Cobble Creek Camp — Huntsville, UT' },
+    { src: 'photo3.png', caption: 'Amphitheater — Seating for 150+, shade sails & firepit nearby' },
+    { src: 'photo4.png', caption: 'Each campsite has a Water Spigot & Fire Extinguishing Bucket' },
+    { src: 'photo5.png', caption: 'Restroom with flush toilets & sinks — upper area facility' },
+    { src: 'photo6.png', caption: 'Main Restroom Sinks and Mirrors' },
+    { src: 'photo7.png', caption: 'Handicap Restroom' },
+    { src: 'photo8.png', caption: 'Main Restrooms and Showers' },
+    { src: 'photo9.png', caption: 'Site 17 - Lehi 41 Ward Camp Firepit' },
+    { src: 'photo10.png', caption: 'Volleyball Area by Main Pavilion' },
+    { src: 'photo11.png', caption: 'Tetherball' },
+    { src: 'photo12.png', caption: 'Large Bowery - Main Meals Breakfast, Lunch and Dinners will be provided for most of the days' },
+    { src: 'photo13.png', caption: 'Site 17 - Lehi 41 Long Table (just need 2-3 canopies to cover over area)' },
+    { src: 'photo14.png', caption: 'Grill and Griddle at Main Pavilion not at campsite' },
+    { src: 'photo15.png', caption: 'Flag Poles in the Common Area' },
+    { src: 'photo16.png', caption: 'Large Bowery Pavilion' },
+    { src: 'photo17.png', caption: 'Handicap Restroom' },
+    { src: 'photo18.png', caption: 'Refrigerator' },
+    { src: 'photo19.png', caption: 'Satellite View of Cobble Creek Campgrounds' },
+    { src: 'photo20.png', caption: 'Pineview Reservoir View' },
+  ];
+
+  // ── DOTS ──
+  const track = document.getElementById('galleryTrack');
+  const dotsEl = document.getElementById('galleryDots');
+
+  PHOTOS.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => scrollToSlide(i);
+    dotsEl.appendChild(d);
+  });
+
+  function updateDots() {
+    const slides = track.querySelectorAll('.gallery-slide');
+    const trackLeft = track.getBoundingClientRect().left;
+    let closest = 0, minDist = Infinity;
+    slides.forEach((s, i) => {
+      const dist = Math.abs(s.getBoundingClientRect().left - trackLeft);
+      if (dist < minDist) { minDist = dist; closest = i; }
+    });
+    dotsEl.querySelectorAll('.gallery-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === closest);
+    });
+  }
+
+  track.addEventListener('scroll', updateDots, { passive: true });
+
+  function scrollToSlide(index) {
+    const slides = track.querySelectorAll('.gallery-slide');
+    if (slides[index]) {
+      slides[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    }
+  }
+
+  function scrollGallery(dir) {
+    const slideWidth = 280 + 14; // width + gap
+    track.scrollBy({ left: dir * slideWidth, behavior: 'smooth' });
+  }
+
+  // ── DRAG TO SCROLL ──
+  let isDown = false, startX, scrollLeft;
+  track.addEventListener('mousedown', e => {
+    isDown = true;
+    track.style.cursor = 'grabbing';
+    startX = e.pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
+  });
+  track.addEventListener('mouseleave', () => { isDown = false; track.style.cursor = 'grab'; });
+  track.addEventListener('mouseup',    () => { isDown = false; track.style.cursor = 'grab'; });
+  track.addEventListener('mousemove',  e => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - track.offsetLeft;
+    track.scrollLeft = scrollLeft - (x - startX) * 1.4;
+  });
+
+  // ── LIGHTBOX ──
+  let current = 0;
+
+  function openLightbox(index) {
+    current = index;
+    updateLightbox();
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeLightboxOutside(e) {
+    if (e.target === document.getElementById('lightbox')) closeLightbox();
+  }
+
+  function navLightbox(dir) {
+    current = (current + dir + PHOTOS.length) % PHOTOS.length;
+    updateLightbox();
+  }
+
+  function updateLightbox() {
+    const p = PHOTOS[current];
+    document.getElementById('lightbox-img').src = p.src;
+    document.getElementById('lightbox-img').alt = p.caption;
+    document.getElementById('lightbox-caption').textContent = p.caption;
+    document.getElementById('lightbox-counter').textContent = `${current + 1} / ${PHOTOS.length}`;
+  }
+
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'ArrowRight') navLightbox(1);
+    if (e.key === 'ArrowLeft')  navLightbox(-1);
+    if (e.key === 'Escape')     closeLightbox();
+  });
+</script>
 
 </body>
 </html>
