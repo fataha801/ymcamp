@@ -48,13 +48,49 @@
     .section-divider { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
     .section-divider-line { flex: 1; height: 1px; background: var(--stone); }
     .section-divider-label { font-size: .65rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
-    .summary-bar { background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: 20px 22px; margin-bottom: 28px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .summary-bar { background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: 20px 22px; margin-bottom: 16px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
     .summary-stat { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 80px; }
     .summary-num { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: var(--navy); line-height: 1; }
     .summary-num.gold { color: var(--gold); }
     .summary-num.green { color: var(--green); }
-    .summary-label { font-size: .65rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-top: 3px; }
+    .summary-num.red { color: var(--red); }
+    .summary-label { font-size: .65rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-top: 3px; text-align: center; }
     .summary-divider { width: 1px; height: 40px; background: var(--stone); }
+
+    /* ── STILL NEEDED BANNER ── */
+    .still-needed-banner {
+      background: var(--white);
+      border: 1.5px solid var(--gold);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      margin-bottom: 28px;
+      display: none;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .still-needed-banner.visible { display: flex; }
+    .still-needed-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .still-needed-body { flex: 1; }
+    .still-needed-title { font-family: var(--font-display); font-size: .9rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .still-needed-list { display: flex; flex-wrap: wrap; gap: 6px; }
+    .still-needed-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #fdf6ec;
+      border: 1px solid var(--gold);
+      border-radius: 999px;
+      padding: 3px 10px;
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--navy);
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .still-needed-tag:hover { background: var(--gold); color: var(--white); }
+    .still-needed-tag .slots-left { color: var(--gold); font-size: .65rem; }
+    .still-needed-tag:hover .slots-left { color: rgba(255,255,255,.8); }
+
     .address-card { background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: 20px 22px; margin-bottom: 28px; display: flex; gap: 16px; align-items: flex-start; }
     .address-icon { font-size: 1.8rem; flex-shrink: 0; }
     .address-body { flex: 1; }
@@ -67,6 +103,7 @@
     .snack-card { background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); overflow: hidden; transition: box-shadow .2s; }
     .snack-card:hover { box-shadow: var(--shadow-lift); }
     .snack-card.is-other { border: 1.5px dashed var(--gold); }
+    .snack-card.is-partial { border-left: 3px solid var(--gold); }
     .snack-card-main { display: flex; align-items: center; gap: 16px; padding: 16px 18px; cursor: pointer; user-select: none; }
     .snack-icon { font-size: 1.8rem; flex-shrink: 0; width: 48px; height: 48px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; background: var(--cream); }
     .snack-info { flex: 1; min-width: 0; }
@@ -74,12 +111,13 @@
     .snack-meta { font-size: .72rem; color: var(--muted); display: flex; gap: 10px; flex-wrap: wrap; }
     .snack-meta-pill { background: var(--cream); border-radius: 999px; padding: 2px 9px; font-weight: 500; }
     .snack-meta-pill.price { background: #fdf6ec; color: var(--gold); font-weight: 700; }
+    .snack-meta-pill.slots-remaining { background: #fdf6ec; color: var(--gold); font-weight: 700; }
     .snack-status { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
     .status-badge { font-size: .62rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; padding: 3px 10px; border-radius: 999px; }
     .status-badge.open      { background: var(--green-lt); color: var(--green); }
-    .status-badge.claimed   { background: #fdf6ec; color: var(--gold); }
+    .status-badge.partial   { background: #fdf6ec; color: var(--gold); }
     .status-badge.full      { background: #f0f0f0; color: var(--muted); }
-    .status-badge.unlimited { background: #fdf6ec; color: var(--gold); }
+    .status-badge.unlimited { background: var(--green-lt); color: var(--green); }
     .snack-slots { font-size: .68rem; color: var(--muted); text-align: right; }
     .slot-bar-wrap { padding: 0 18px 14px; }
     .slot-bar-track { background: var(--stone); border-radius: 999px; height: 5px; overflow: hidden; }
@@ -159,7 +197,8 @@
     <div class="address-body">
       <div class="address-title">Ship or Drop Off Here</div>
       <div class="address-text">513 W 2450 N<br/>Lehi, UT 84043</div>
-      <div class="address-note">Please deliver or drop off items by June 27, 2026 · Contact Brother Faga 801-865-5305 if you have any questions.</div>
+      <div class="address-note">Please deliver or drop off items by June 27, 2026</div>
+      <div class="address-note" style="margin-top:4px;color:var(--navy);font-weight:500;">📞 Questions? Contact Brother Faga · <a href="tel:8018655305" style="color:var(--gold);text-decoration:none;font-weight:700;">801-865-5305</a></div>
       <a class="address-map-link" href="https://maps.google.com/?q=513+W+2450+N+Lehi+UT+84043" target="_blank">📍 Open in Maps →</a>
     </div>
   </div>
@@ -169,14 +208,26 @@
     <span id="apiStatus">Connecting to database…</span>
   </div>
 
+  <!-- SUMMARY -->
   <div class="summary-bar">
     <div class="summary-stat"><span class="summary-num" id="statTotal">—</span><span class="summary-label">Items Needed</span></div>
     <div class="summary-divider"></div>
-    <div class="summary-stat"><span class="summary-num green" id="statClaimed">—</span><span class="summary-label">Claimed</span></div>
+    <div class="summary-stat"><span class="summary-num green" id="statFull">—</span><span class="summary-label">Fully Claimed</span></div>
     <div class="summary-divider"></div>
-    <div class="summary-stat"><span class="summary-num gold" id="statOpen">—</span><span class="summary-label">Still Needed</span></div>
+    <div class="summary-stat"><span class="summary-num gold" id="statPartial">—</span><span class="summary-label">Partially Claimed</span></div>
+    <div class="summary-divider"></div>
+    <div class="summary-stat"><span class="summary-num red" id="statUnclaimed">—</span><span class="summary-label">Still Needed</span></div>
     <div class="summary-divider"></div>
     <div class="summary-stat"><span class="summary-num" id="statSignups">—</span><span class="summary-label">Donors</span></div>
+  </div>
+
+  <!-- STILL NEEDED BANNER -->
+  <div class="still-needed-banner" id="stillNeededBanner">
+    <div class="still-needed-icon">⚠️</div>
+    <div class="still-needed-body">
+      <div class="still-needed-title">Still slots available — tap to jump to an item:</div>
+      <div class="still-needed-list" id="stillNeededList"></div>
+    </div>
   </div>
 
   <div class="section-divider">
@@ -196,53 +247,45 @@
 
 <footer>
   <strong>LU3 Stake Young Men's Camp 2026</strong><br/>
-  Questions? Contact your ward's Young Men presidency.
+  Questions? Contact Brother Faga · 801-865-5305
   <span class="motto">"Walk with me." — Moses 6:34</span>
 </footer>
 
 <div class="toast" id="toast"></div>
 
 <script>
-  // ── SUPABASE CONFIG ──
-  const SUPABASE_URL  = 'https://hkwtfdfgormwghtsrjly.supabase.co';
-  const SUPABASE_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhrd3RmZGZnb3Jtd2dodHNyamx5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE3MTc3ODAsImV4cCI6MjA5NzI5Mzc4MH0.ltrqGDspjuKG8S64sO8zd0UL05tlcpPCyp4haTMzggc';
+  const SUPABASE_URL = 'https://hkwtfdfgormwghtsrjly.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhrd3RmZGZnb3Jtd2dodHNyamx5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE3MTc3ODAsImV4cCI6MjA5NzI5Mzc4MH0.ltrqGDspjuKG8S64sO8zd0UL05tlcpPCyp4haTMzggc';
   const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-  // ── SNACK DEFINITIONS ──
   const SNACKS = [
-    { id:'muffins',      name:'Little Bites Muffins',                    icon:'🧁', unit:'20-pouches',  price:'$11.78', slots:6,    sams:'https://www.samsclub.com/ip/Entenmann-s-Little-Bites-Chocolate-Chip-Muffins-1-5-oz-20-pk/19626220292' },
-    { id:'chips',        name:'Frito-Lay Flavor Mix Chips, Variety Pack', icon:'🥔', unit:'50 pk / 1oz', price:'$18.48', slots:3,    sams:'https://www.samsclub.com/ip/Frito-Lay-Flavor-Mix-Chips-Variety-Pack-50-pk/13585600798' },
-    { id:'fruit',        name:'Dole Fruit Cup Variety Pack',              icon:'🍑', unit:'10-pack',     price:'$9.98',  slots:4,    sams:'https://www.samsclub.com/s?searchTerm=dole+fruit+cup' },
-    { id:'poptarts',     name:'Pop Tarts',                                icon:'🍞', unit:'48 pieces',   price:'$9.98',  slots:1,    sams:'https://www.samsclub.com/s?searchTerm=pop+tarts' },
-    { id:'uncrustables', name:'Uncrustables',                             icon:'🥪', unit:'24-count',    price:'$14.87', slots:4,    sams:'https://www.samsclub.com/s?searchTerm=uncrustables' },
-    { id:'cookies',      name:'Nabisco Classic Mix Cookie & Cracker, Variety Pack',                   icon:'🍪', unit:'40-pack',     price:'$12.98', slots:4,    sams:'https://www.samsclub.com/ip/Nabisco-Classic-Mix-Cookie-Cracker-Variety-Pack-40-pk/13879917726?classType=REGULAR' },
-    { id:'noodles',      name:'Nissin Cup Noodles, Chicken Flavor 2.25 oz.,',                   icon:'🍜', unit:'24-pack',     price:'$10.98', slots:2,    sams:'https://www.samsclub.com/ip/Nissin-Cup-Noodles-Chicken-Flavor-2-25-oz-24-ct/13881768901?classType=REGULAR' },
-    { id:'ricekrisp',    name:'Rice Krispies Treats',                     icon:'🍬', unit:'60-count',    price:'$12.98', slots:2,    sams:'https://www.samsclub.com/ip/Rice-Krispies-Treats-Original-Snack-Bars-60-ct/13577316630' },
-    { id:'water',        name:'Water Bottles 16.9 fl. oz.',               icon:'💧', unit:'40-pack',     price:'$3.98',  slots:10,   sams:'https://www.samsclub.com/ip/Member-s-Mark-Purified-Water-16-9-fl-oz-40-pk/7874202847' },
-    { id:'gatorade',     name:'Gatorade Liberty Variety Pack 12 fl. oz.', icon:'⚡', unit:'28-pack',     price:'$12.58', slots:5,    sams:'https://www.samsclub.com/ip/Gatorade-Liberty-Variety-Pack-12-fl-oz-28-pk/13600304846' },
-    { id:'nesquik',      name:'Nesquik Chocolate Milk',                   icon:'🍫', unit:'15-pack',     price:'$11.98', slots:3,    sams:'https://www.samsclub.com/ip/nesquik-chocolate-low-fat-milk-15-8-oz-calcium-kosher-gluten-free/13592921663' },
-    { id:'other',        name:'Other — Bring Something!',                 icon:'🥫', unit:'your choice', price:'Any amount', slots:null, sams:'', placeholder:'e.g. Granola bars, juice boxes, fruit snacks…' },
+    { id:'muffins',      name:'Little Bites Muffins',                     icon:'🧁', unit:'20-pouches',  price:'$11.78', slots:6,    sams:'https://www.samsclub.com/ip/Entenmann-s-Little-Bites-Chocolate-Chip-Muffins-1-5-oz-20-pk/19626220292' },
+    { id:'chips',        name:'Frito-Lay Flavor Mix Chips, Variety Pack',  icon:'🥔', unit:'50 pk / 1oz', price:'$18.48', slots:3,    sams:'https://www.samsclub.com/ip/Frito-Lay-Flavor-Mix-Chips-Variety-Pack-50-pk/13585600798' },
+    { id:'fruit',        name:'Dole Fruit Cup Variety Pack',               icon:'🍑', unit:'10-pack',     price:'$9.98',  slots:4,    sams:'https://www.samsclub.com/s?searchTerm=dole+fruit+cup' },
+    { id:'poptarts',     name:'Pop Tarts',                                 icon:'🍞', unit:'48 pieces',   price:'$9.98',  slots:1,    sams:'https://www.samsclub.com/s?searchTerm=pop+tarts' },
+    { id:'uncrustables', name:'Uncrustables',                              icon:'🥪', unit:'24-count',    price:'$14.87', slots:4,    sams:'https://www.samsclub.com/s?searchTerm=uncrustables' },
+    { id:'cookies',      name:'Nabisco Classic Mix Cookie & Cracker',      icon:'🍪', unit:'40-pack',     price:'$12.98', slots:4,    sams:'https://www.samsclub.com/ip/Nabisco-Classic-Mix-Cookie-Cracker-Variety-Pack-40-pk/13879917726' },
+    { id:'noodles',      name:'Nissin Cup Noodles, Chicken Flavor',        icon:'🍜', unit:'24-pack',     price:'$10.98', slots:2,    sams:'https://www.samsclub.com/ip/Nissin-Cup-Noodles-Chicken-Flavor-2-25-oz-24-ct/13881768901' },
+    { id:'ricekrisp',    name:'Rice Krispies Treats',                      icon:'🍬', unit:'60-count',    price:'$12.98', slots:2,    sams:'https://www.samsclub.com/ip/Rice-Krispies-Treats-Original-Snack-Bars-60-ct/13577316630' },
+    { id:'water',        name:'Water Bottles 16.9 fl. oz.',                icon:'💧', unit:'40-pack',     price:'$3.98',  slots:10,   sams:'https://www.samsclub.com/ip/Member-s-Mark-Purified-Water-16-9-fl-oz-40-pk/7874202847' },
+    { id:'gatorade',     name:'Gatorade Liberty Variety Pack 12 fl. oz.',  icon:'⚡', unit:'28-pack',     price:'$12.58', slots:5,    sams:'https://www.samsclub.com/ip/Gatorade-Liberty-Variety-Pack-12-fl-oz-28-pk/13600304846' },
+    { id:'nesquik',      name:'Nesquik Chocolate Milk',                    icon:'🍫', unit:'15-pack',     price:'$11.98', slots:3,    sams:'https://www.samsclub.com/ip/nesquik-chocolate-low-fat-milk-15-8-oz-calcium-kosher-gluten-free/13592921663' },
+    { id:'other',        name:'Other — Bring Something!',                  icon:'🥫', unit:'your choice', price:'Any amount', slots:null, sams:'', placeholder:'e.g. Granola bars, juice boxes, fruit snacks…' },
   ];
 
-  // ── STATE ──
   let signups    = {};
   let openPanel  = null;
   let currentQty = {};
 
-  // ── SUPABASE HELPERS ──
+  // ── SUPABASE ──
   async function loadSignups() {
     const { data, error } = await db
       .from('signups')
       .select('*')
       .order('created_at', { ascending: true });
 
-    if (error) {
-      console.error('Load error:', error);
-      setApiStatus(false, error.message);
-      return;
-    }
+    if (error) { setApiStatus(false, error.message); return; }
 
-    // Group by snack_id
     signups = {};
     data.forEach(r => {
       if (!signups[r.snack_id]) signups[r.snack_id] = [];
@@ -255,8 +298,7 @@
     const { data, error } = await db
       .from('signups')
       .insert([{ snack_id, name, contact: contact || null, note: note || null, qty }])
-      .select()
-      .single();
+      .select().single();
     if (error) throw error;
     return data;
   }
@@ -275,7 +317,6 @@
       : '🔴 Cannot reach database: ' + msg;
   }
 
-  // ── REALTIME — subscribe to changes so others' signups appear instantly ──
   function subscribeRealtime() {
     db.channel('signups-changes')
       .on('postgres_changes', { event: '*', schema: 'public', table: 'signups' }, async () => {
@@ -289,21 +330,77 @@
   function getSignupsFor(id) { return signups[id] || []; }
   function isUnlimited(s)    { return s.slots === null; }
 
+  // ── KEY FIX: slotsRemaining correctly counts how many more are needed ──
+  function slotsRemaining(snack) {
+    if (isUnlimited(snack)) return Infinity;
+    return Math.max(0, snack.slots - getSignupsFor(snack.id).length);
+  }
+
+  function isFullyFilled(snack) {
+    if (isUnlimited(snack)) return false;
+    return getSignupsFor(snack.id).length >= snack.slots;
+  }
+
+  function isPartiallyFilled(snack) {
+    if (isUnlimited(snack)) return false;
+    const rows = getSignupsFor(snack.id).length;
+    return rows > 0 && rows < snack.slots;
+  }
+
+  // ── SUMMARY (fixed) ──
   function updateSummary() {
-    const limited = SNACKS.filter(s => !isUnlimited(s)).length;
-    const claimed = SNACKS.filter(s => !isUnlimited(s) && getSignupsFor(s.id).length > 0).length;
-    const donors  = Object.values(signups).reduce((a, b) => a + b.length, 0);
-    document.getElementById('statTotal').textContent   = limited;
-    document.getElementById('statClaimed').textContent = claimed;
-    document.getElementById('statOpen').textContent    = limited - claimed;
-    document.getElementById('statSignups').textContent = donors;
+    const limited   = SNACKS.filter(s => !isUnlimited(s));
+    const fullCount = limited.filter(s => isFullyFilled(s)).length;
+    const partCount = limited.filter(s => isPartiallyFilled(s)).length;
+    // "Still Needed" = items with zero signups OR partially filled
+    const needCount = limited.filter(s => slotsRemaining(s) > 0).length;
+    const donors    = Object.values(signups).reduce((a, b) => a + b.length, 0);
+
+    document.getElementById('statTotal').textContent    = limited.length;
+    document.getElementById('statFull').textContent     = fullCount;
+    document.getElementById('statPartial').textContent  = partCount;
+    document.getElementById('statUnclaimed').textContent = needCount;
+    document.getElementById('statSignups').textContent  = donors;
+
+    // Still-needed banner
+    const banner   = document.getElementById('stillNeededBanner');
+    const tagsList = document.getElementById('stillNeededList');
+    const needing  = limited.filter(s => slotsRemaining(s) > 0);
+
+    if (needing.length > 0) {
+      banner.classList.add('visible');
+      tagsList.innerHTML = needing.map(s => {
+        const rem = slotsRemaining(s);
+        return `<span class="still-needed-tag" onclick="jumpTo('${s.id}')">
+          ${s.icon} ${s.name}
+          <span class="slots-left">(${rem} slot${rem !== 1 ? 's' : ''} left)</span>
+        </span>`;
+      }).join('');
+    } else {
+      banner.classList.remove('visible');
+      banner.innerHTML = `<div class="still-needed-icon">🎉</div>
+        <div class="still-needed-body">
+          <div class="still-needed-title">All items are fully claimed — thank you, donors!</div>
+        </div>`;
+      banner.classList.add('visible');
+    }
+  }
+
+  function jumpTo(id) {
+    openPanel = id;
+    if (!currentQty[id]) currentQty[id] = 1;
+    renderAll();
+    setTimeout(() => {
+      const card = document.getElementById('card-' + id);
+      if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 80);
   }
 
   function escHtml(s) {
     return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 
-  // ── RENDER ──
+  // ── RENDER (fixed badge logic) ──
   function renderAll() {
     updateSummary();
     const list = document.getElementById('snackList');
@@ -313,18 +410,22 @@
       const rows      = getSignupsFor(snack.id);
       const unlimited = isUnlimited(snack);
       const maxSlots  = unlimited ? null : snack.slots;
-      const isFull    = !unlimited && rows.length >= maxSlots;
+      const filled    = isFullyFilled(snack);
+      const partial   = isPartiallyFilled(snack);
+      const remaining = slotsRemaining(snack);
       const filledPct = unlimited ? 0 : Math.min(100, Math.round((rows.length / maxSlots) * 100));
       const isOpen    = openPanel === snack.id;
 
-      let badgeClass = 'open', badgeText = 'Open';
-      if (unlimited)        { badgeClass = 'unlimited'; badgeText = 'Open — No Limit'; }
-      else if (isFull)      { badgeClass = 'full';      badgeText = 'Filled'; }
-      else if (rows.length) { badgeClass = 'claimed';   badgeText = 'Partially Claimed'; }
+      // ── FIXED BADGE ──
+      let badgeClass, badgeText;
+      if (unlimited)    { badgeClass = 'unlimited'; badgeText = 'Open — No Limit'; }
+      else if (filled)  { badgeClass = 'full';      badgeText = 'Filled ✓'; }
+      else if (partial) { badgeClass = 'partial';   badgeText = `${remaining} Slot${remaining !== 1 ? 's' : ''} Left`; }
+      else              { badgeClass = 'open';       badgeText = 'Open'; }
 
       const slotLabel = unlimited
         ? `${rows.length} donor${rows.length !== 1 ? 's' : ''} · unlimited`
-        : `${rows.length} / ${maxSlots} slots`;
+        : `${rows.length} / ${maxSlots} filled`;
 
       const shopLink = snack.sams
         ? `<a href="${snack.sams}" target="_blank" style="color:var(--gold);text-decoration:none;font-weight:600;">Find on Sam's Club →</a>`
@@ -332,8 +433,13 @@
 
       const notePlaceholder = snack.placeholder || "e.g. Ordering from Sam's Club";
 
+      // Card border classes
+      let cardClass = 'snack-card';
+      if (unlimited) cardClass += ' is-other';
+      else if (partial) cardClass += ' is-partial';
+
       const card = document.createElement('div');
-      card.className = 'snack-card' + (unlimited ? ' is-other' : '');
+      card.className = cardClass;
       card.id = 'card-' + snack.id;
 
       card.innerHTML = `
@@ -345,6 +451,7 @@
               <span class="snack-meta-pill">${snack.unit}</span>
               <span class="snack-meta-pill price">${snack.price}</span>
               ${rows.length > 0 ? `<span class="snack-meta-pill">${rows.length} donor${rows.length !== 1 ? 's' : ''}</span>` : ''}
+              ${partial ? `<span class="snack-meta-pill slots-remaining">${remaining} slot${remaining !== 1 ? 's' : ''} still open</span>` : ''}
             </div>
           </div>
           <div class="snack-status">
@@ -364,13 +471,16 @@
                   <div class="signup-name">${escHtml(r.name)}${r.qty > 1 ? ` <span style="color:var(--gold);font-size:.72rem;">(×${r.qty})</span>` : ''}</div>
                   ${r.note ? `<div class="signup-note">${escHtml(r.note)}</div>` : ''}
                 </div>
-                <button class="signup-remove" onclick="removeSignup('${snack.id}', ${r.id})">✕ Remove</button>
               </div>
             `).join('')}
           ` : `<div class="signups-label" style="margin-bottom:4px;">No donors yet — be the first! 🙌</div>`}
 
-          ${!isFull ? `
+          ${!filled ? `
             <div class="signup-form" id="form-${snack.id}">
+              ${partial ? `
+                <div style="background:#fdf6ec;border-left:3px solid var(--gold);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:8px 12px;margin-bottom:10px;font-size:.78rem;color:var(--navy);">
+                  ✨ <strong>${remaining} slot${remaining !== 1 ? 's' : ''} still available</strong> — thank you for helping fill this one!
+                </div>` : ''}
               ${unlimited ? `
                 <div style="background:var(--cream);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:10px;font-size:.78rem;color:var(--navy);">
                   🥫 <strong>Bring anything you'd like!</strong> Use the note field to tell us what you're donating so we don't get duplicates.
@@ -416,7 +526,6 @@
     });
   }
 
-  // ── INTERACTIONS ──
   function togglePanel(id) {
     openPanel = openPanel === id ? null : id;
     if (!currentQty[id]) currentQty[id] = 1;
@@ -478,21 +587,6 @@
     }
   }
 
-  async function removeSignup(snackId, dbId) {
-    try {
-      await deleteSignup(dbId);
-      if (signups[snackId]) {
-        const removed = signups[snackId].find(r => r.id === dbId);
-        signups[snackId] = signups[snackId].filter(r => r.id !== dbId);
-        if (!signups[snackId].length) delete signups[snackId];
-        renderAll();
-        showToast('Removed signup' + (removed ? ' for ' + removed.name : '') + '.');
-      }
-    } catch(e) {
-      showToast('❌ Could not remove. Please try again.');
-    }
-  }
-
   let toastTimer;
   function showToast(msg) {
     const t = document.getElementById('toast');
@@ -502,7 +596,6 @@
     toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
   }
 
-  // ── INIT ──
   (async () => {
     await loadSignups();
     renderAll();
