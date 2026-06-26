@@ -53,9 +53,7 @@
       padding: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: var(--font-body);
@@ -152,9 +150,7 @@
       font-weight: 500;
     }
 
-    .info-icon {
-      font-size: 1rem;
-    }
+    .info-icon { font-size: 1rem; }
 
     /* ── TENTATIVE BANNER ── */
     .tentative-banner {
@@ -205,15 +201,11 @@
     }
 
     @media (max-width: 800px) {
-      .days-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .days-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 480px) {
-      .days-grid {
-        grid-template-columns: 1fr;
-      }
+      .days-grid { grid-template-columns: 1fr; }
     }
 
     /* ── DAY COLUMN ── */
@@ -224,9 +216,7 @@
       overflow: hidden;
     }
 
-    .day-col:hover {
-      box-shadow: var(--shadow-lift);
-    }
+    .day-col:hover { box-shadow: var(--shadow-lift); }
 
     .day-header {
       padding: var(--spacing-md);
@@ -234,21 +224,10 @@
       position: relative;
     }
 
-    .day-col:nth-child(1) .day-header {
-      background: var(--day1);
-    }
-
-    .day-col:nth-child(2) .day-header {
-      background: var(--day2);
-    }
-
-    .day-col:nth-child(3) .day-header {
-      background: var(--day3);
-    }
-
-    .day-col:nth-child(4) .day-header {
-      background: var(--navy-mid);
-    }
+    .day-col:nth-child(1) .day-header { background: var(--day1); }
+    .day-col:nth-child(2) .day-header { background: var(--day2); }
+    .day-col:nth-child(3) .day-header { background: var(--day3); }
+    .day-col:nth-child(4) .day-header { background: var(--navy-mid); }
 
     .day-num {
       font-size: .65rem;
@@ -291,9 +270,7 @@
       border-bottom: 1px solid var(--stone);
     }
 
-    .event-item:last-child {
-      border-bottom: none;
-    }
+    .event-item:last-child { border-bottom: none; }
 
     .event-icon {
       width: 22px;
@@ -307,26 +284,12 @@
       margin-top: 1px;
     }
 
-    .day-col:nth-child(1) .event-icon {
-      background: var(--day1-lt);
-    }
+    .day-col:nth-child(1) .event-icon { background: var(--day1-lt); }
+    .day-col:nth-child(2) .event-icon { background: var(--day2-lt); }
+    .day-col:nth-child(3) .event-icon { background: var(--day3-lt); }
+    .day-col:nth-child(4) .event-icon { background: var(--day4-lt); }
 
-    .day-col:nth-child(2) .event-icon {
-      background: var(--day2-lt);
-    }
-
-    .day-col:nth-child(3) .event-icon {
-      background: var(--day3-lt);
-    }
-
-    .day-col:nth-child(4) .event-icon {
-      background: var(--day4-lt);
-    }
-
-    .event-body {
-      flex: 1;
-      min-width: 0;
-    }
+    .event-body { flex: 1; min-width: 0; }
 
     .event-time {
       font-size: .62rem;
@@ -417,9 +380,7 @@
       margin-bottom: 6px;
     }
 
-    .notes-list {
-      list-style: none;
-    }
+    .notes-list { list-style: none; }
 
     .notes-list li {
       font-size: .72rem;
@@ -445,11 +406,7 @@
       margin-bottom: var(--spacing-xl);
     }
 
-    .section-divider-line {
-      flex: 1;
-      height: 1px;
-      background: var(--stone);
-    }
+    .section-divider-line { flex: 1; height: 1px; background: var(--stone); }
 
     .section-divider-label {
       font-size: .68rem;
@@ -460,9 +417,7 @@
     }
 
     /* ── THROUGHOUT CAMP ── */
-    .throughout-section {
-      margin-top: var(--spacing-xl);
-    }
+    .throughout-section { margin-top: var(--spacing-xl); }
 
     .throughout-grid {
       display: flex;
@@ -496,9 +451,7 @@
       letter-spacing: .04em;
     }
 
-    footer strong {
-      color: var(--gold-lt);
-    }
+    footer strong { color: var(--gold-lt); }
 
     footer .motto {
       color: var(--gold-lt);
@@ -523,9 +476,7 @@
       margin-bottom: var(--spacing-md);
     }
 
-    .back-link:hover {
-      opacity: 1;
-    }
+    .back-link:hover { opacity: 1; }
   </style>
 </head>
 
@@ -567,7 +518,7 @@
 
     <div class="days-grid">
 
-      <!-- DAY 1 -->
+      <!-- ── DAY 1 — MONDAY ── -->
       <div class="day-col">
         <div class="day-header">
           <div class="day-num">Day 1 — Monday</div>
@@ -588,34 +539,36 @@
           <div class="event-item">
             <div class="event-icon">🚐</div>
             <div class="event-body">
-              <div class="event-time">12:00 – 1:00 PM</div>
-              <div class="event-title">Ward Arrival &amp; Check-In</div>
-              <div class="event-sub">Receive mission call envelope at check-in</div>
+              <div class="event-time">1:00 PM</div>
+              <div class="event-title">Arrival &amp; Check-In</div>
+              <div class="event-sub">Main Bowery · Receive mission call envelope at check-in</div>
             </div>
           </div>
 
           <div class="event-item">
             <div class="event-icon">⛺</div>
             <div class="event-body">
-              <div class="event-time">1:00 – 3:00 PM</div>
-              <div class="event-title">Camp Setup</div>
+              <div class="event-time">1:30 PM</div>
+              <div class="event-title">Camp Setup (Wards)</div>
+              <div class="event-sub">Ward Camp Sites</div>
             </div>
           </div>
 
           <div class="event-item">
             <div class="event-icon">🧭</div>
             <div class="event-body">
-              <div class="event-time">3:00 – 4:00 PM</div>
-              <div class="event-title">Orientation with Missionaries</div>
+              <div class="event-time">3:30 PM</div>
+              <div class="event-title">Camp Kick-Off</div>
+              <div class="event-sub">Main Bowery</div>
             </div>
           </div>
 
           <div class="event-item">
             <div class="event-icon">✉️</div>
             <div class="event-body">
-              <div class="event-time">4:00 – 5:00 PM</div>
+              <div class="event-time">4:30 PM</div>
               <div class="event-title">Mission Call Opening</div>
-              <div class="event-sub">Ward campsites — open calls together</div>
+              <div class="event-sub">Main Bowery — open calls together</div>
             </div>
           </div>
 
@@ -623,36 +576,44 @@
             <div class="event-icon">🍽️</div>
             <div class="event-body">
               <div class="event-time">5:30 PM</div>
-              <div class="event-title">Dinner - Taco</div>
-              <div class="event-sub">Wear your mission badge</div>
+              <div class="event-title">Dinner — Taco</div>
+              <div class="event-sub">Main Bowery · Wear your mission badge</div>
             </div>
           </div>
 
           <div class="event-item">
             <div class="event-icon">🙏</div>
             <div class="event-body">
-              <div class="event-time">7:00 – 7:30 PM</div>
-              <div class="event-title">Opening Devotional — MTC Experience</div>
-              <div class="event-sub">Main Bowery &amp; Amphitheater</div>
+              <div class="event-time">7:00 PM</div>
+              <div class="event-title">MTC Experience</div>
+              <div class="event-sub">Main Bowery</div>
             </div>
           </div>
 
           <div class="event-item">
             <div class="event-icon">🌍</div>
             <div class="event-body">
-              <div class="event-time">7:30 – 9:30 PM</div>
+              <div class="event-time">7:30 – 9:00 PM</div>
               <div class="event-title">Mini Mission Experience</div>
-              <div class="event-sub">Mission pavilions · RM Panel · Closing thought</div>
+              <div class="event-sub">Assigned (Mission) Pavilions · RM Panel · Closing thought</div>
+            </div>
+          </div>
+
+          <div class="event-item">
+            <div class="event-icon">🏕️</div>
+            <div class="event-body">
+              <div class="event-time">9:30 PM</div>
+              <div class="event-title">End: MTC Mission Experience</div>
+              <div class="event-sub">Main Bowery</div>
             </div>
           </div>
 
           <div class="event-item">
             <div class="event-icon">🤝</div>
             <div class="event-body">
-              <div class="event-time">9:30 – 11:00 PM</div>
+              <div class="event-time">10:00 PM</div>
               <div class="event-title">Ward Time &amp; Camp Crawl</div>
-              <div class="event-sub">Begin collecting clues &amp; stamps · runs Mon–Wed · The Crossing opens Wed 9 PM
-              </div>
+              <div class="event-sub">Ward Camp Sites &amp; Entire Camp Ground · collecting clues &amp; stamps · runs Mon–Wed</div>
             </div>
           </div>
 
@@ -660,14 +621,15 @@
             <div class="event-icon">🌙</div>
             <div class="event-body">
               <div class="event-time">11:00 PM</div>
-              <div class="event-title">Lights Out</div>
+              <div class="event-title">Mandatory Quiet Time</div>
+              <div class="event-sub">Entire Camp Ground</div>
             </div>
           </div>
 
         </div>
       </div>
 
-      <!-- DAY 2 -->
+      <!-- ── DAY 2 — TUESDAY ── -->
       <div class="day-col">
         <div class="day-header">
           <div class="day-num">Day 2 — Tuesday</div>
@@ -680,16 +642,27 @@
             <div class="event-icon">🌄</div>
             <div class="event-body">
               <span class="event-optional">Optional</span>
-              <div class="event-time">Early AM</div>
-              <div class="event-title">Sunrise Hike</div>
+              <div class="event-time">6:00 AM</div>
+              <div class="event-title">Early Morning Hike</div>
+              <div class="event-sub">Shaded Trail Hike</div>
             </div>
           </div>
 
           <div class="event-item">
             <div class="event-icon">🇺🇸</div>
             <div class="event-body">
-              <div class="event-time">7:00 AM</div>
-              <div class="event-title">Flag Ceremony &amp; Breakfast</div>
+              <div class="event-time">7:30 AM</div>
+              <div class="event-title">Flag Ceremony</div>
+              <div class="event-sub">Flag Poles near Main Bowery</div>
+            </div>
+          </div>
+
+          <div class="event-item">
+            <div class="event-icon">🍳</div>
+            <div class="event-body">
+              <div class="event-time">8:00 AM</div>
+              <div class="event-title">Breakfast</div>
+              <div class="event-sub">Main Bowery</div>
             </div>
           </div>
 
@@ -720,8 +693,9 @@
           <div class="event-item">
             <div class="event-icon">🍽️</div>
             <div class="event-body">
-              <div class="event-time">12:00 PM</div>
-              <div class="event-title">Lunch - Catered Sandwiches from Smiths Stores</div>
+              <div class="event-time">12:30 PM</div>
+              <div class="event-title">Lunch — Catered Sandwiches from Smith's</div>
+              <div class="event-sub">Main Bowery</div>
             </div>
           </div>
 
@@ -769,8 +743,8 @@
             <div class="event-icon">🍽️</div>
             <div class="event-body">
               <div class="event-time">5:30 PM</div>
-              <div class="event-title">Dinner (Teriyaki Chicken, Beef, Kalua Pork and White Rice) + Tribal Council #1</div>
-              <div class="event-sub">First 15 min · Theme: Choose Your Path</div>
+              <div class="event-title">Dinner (Teriyaki Chicken, Beef, Kalua Pork &amp; White Rice) + Tribal Council #1</div>
+              <div class="event-sub">Main Bowery · First 15 min · Theme: Choose Your Path</div>
             </div>
           </div>
 
@@ -778,23 +752,42 @@
             <div class="event-icon">🎤</div>
             <div class="event-body">
               <div class="event-time">7:30 PM</div>
-              <div class="event-title">Evening Devotional</div>
-              <div class="event-sub">Keynote speaker</div>
+              <div class="event-title">Evening Devotional — Keynote Speaker</div>
+              <div class="event-sub">Amphitheater</div>
+            </div>
+          </div>
+
+          <div class="event-item">
+            <div class="event-icon">🔦</div>
+            <div class="event-body">
+              <div class="event-time">9:00 PM</div>
+              <div class="event-title">Torch Quest</div>
+              <div class="event-sub">The Crossing</div>
             </div>
           </div>
 
           <div class="event-item">
             <div class="event-icon">🤝</div>
             <div class="event-body">
-              <div class="event-time">9:00 – 11:00 PM</div>
+              <div class="event-time">9:00 PM</div>
               <div class="event-title">Ward Time</div>
+              <div class="event-sub">Ward Camp Sites</div>
+            </div>
+          </div>
+
+          <div class="event-item">
+            <div class="event-icon">🌙</div>
+            <div class="event-body">
+              <div class="event-time">11:00 PM</div>
+              <div class="event-title">Mandatory Quiet Time — Lights Out</div>
+              <div class="event-sub">Entire Camp</div>
             </div>
           </div>
 
         </div>
       </div>
 
-      <!-- DAY 3 -->
+      <!-- ── DAY 3 — WEDNESDAY ── -->
       <div class="day-col">
         <div class="day-header">
           <div class="day-num">Day 3 — Wednesday</div>
@@ -804,19 +797,11 @@
         <div class="events-list">
 
           <div class="event-item">
-            <div class="event-icon">🌅</div>
-            <div class="event-body">
-              <div class="event-time">6:00 AM</div>
-              <div class="event-title">Stake Leaders Depart</div>
-              <div class="event-sub">Reserve space at Pineview Reservoir. Life Jackets needed for all water activity participants.</div>
-            </div>
-          </div>
-
-          <div class="event-item">
             <div class="event-icon">🚌</div>
             <div class="event-body">
               <div class="event-time">7:00 AM</div>
-              <div class="event-title">Wards Depart for Lake</div>
+              <div class="event-title">Depart for Lake</div>
+              <div class="event-sub">Pineview Reservoir · Life jackets required for all water activity participants</div>
             </div>
           </div>
 
@@ -834,13 +819,14 @@
             <div class="event-body">
               <div class="event-time">8:30 AM</div>
               <div class="event-title">Breakfast at the Beach</div>
+              <div class="event-sub">Pineview Reservoir</div>
             </div>
           </div>
 
           <div class="event-item">
             <div class="event-icon">🚣</div>
             <div class="event-body">
-              <div class="event-time">All Morning</div>
+              <div class="event-time">10:00 AM</div>
               <div class="event-title">Lake Activities</div>
               <div class="event-sub">Swimming · Boating · Paddleboarding · Team Challenges</div>
             </div>
@@ -850,16 +836,17 @@
             <div class="event-icon">🏖️</div>
             <div class="event-body">
               <div class="event-time">1:00 PM</div>
-              <div class="event-title">Lunch at the Beach - Chilli Hot Dogs</div>
+              <div class="event-title">Lunch at the Beach — Chili Hot Dogs</div>
+              <div class="event-sub">Pineview Reservoir</div>
             </div>
           </div>
 
           <div class="event-item">
             <div class="event-icon">🔙</div>
             <div class="event-body">
-              <div class="event-time">3:00 – 5:00 PM</div>
-              <div class="event-title">Pavilion Time + The Range</div>
-              <div class="event-sub">Early returners welcome · Ax throwing &amp; archery open</div>
+              <div class="event-time">3:00 PM</div>
+              <div class="event-title">Camp Crawl &amp; Range</div>
+              <div class="event-sub">Entire Camp Ground · Ax throwing &amp; archery open</div>
             </div>
           </div>
 
@@ -868,16 +855,16 @@
             <div class="event-body">
               <div class="event-time">6:00 PM</div>
               <div class="event-title">Dinner (Huli Huli Chicken, Chop Suey) + Tribal Council #2</div>
-              <div class="event-sub">First 15 min · Theme: Walk Together</div>
+              <div class="event-sub">Main Bowery · First 15 min · Theme: Walk Together</div>
             </div>
           </div>
 
           <div class="event-item">
             <div class="event-icon">🌙</div>
             <div class="event-body">
-              <div class="event-time">7:00 – 11:00 PM</div>
-              <div class="event-title">Ward Time</div>
-              <div class="event-sub">Fellowship · Campfire · Brotherhood</div>
+              <div class="event-time">7:00 PM</div>
+              <div class="event-title">Camp Crawl &amp; Range (continued)</div>
+              <div class="event-sub">Entire Camp Ground · Fellowship · Campfire · Brotherhood</div>
             </div>
           </div>
 
@@ -890,10 +877,28 @@
             </div>
           </div>
 
+          <div class="event-item">
+            <div class="event-icon">🔦</div>
+            <div class="event-body">
+              <div class="event-time">10:00 PM</div>
+              <div class="event-title">Torch Quest</div>
+              <div class="event-sub">The Crossing</div>
+            </div>
+          </div>
+
+          <div class="event-item">
+            <div class="event-icon">🌙</div>
+            <div class="event-body">
+              <div class="event-time">11:00 PM</div>
+              <div class="event-title">Mandatory Quiet Time — Lights Out</div>
+              <div class="event-sub">Entire Camp Ground</div>
+            </div>
+          </div>
+
         </div>
       </div>
 
-      <!-- DAY 4 -->
+      <!-- ── DAY 4 — THURSDAY ── -->
       <div class="day-col">
         <div class="day-header">
           <div class="day-num">Day 4 — Thursday</div>
@@ -905,33 +910,27 @@
           <div class="event-item">
             <div class="event-icon">🌅</div>
             <div class="event-body">
-              <div class="event-time">7:00 AM</div>
+              <div class="event-time">7:30 AM</div>
               <div class="event-title">Closing Devotional</div>
+              <div class="event-sub">Amphitheater</div>
             </div>
           </div>
 
           <div class="event-item">
             <div class="event-icon">🏅</div>
             <div class="event-body">
-              <div class="event-time">After Devotional</div>
-              <div class="event-title">Awards &amp; Recognition</div>
-            </div>
-          </div>
-
-          <div class="event-item">
-            <div class="event-icon">🎒</div>
-            <div class="event-body">
-              <div class="event-time">7:45 AM</div>
-              <div class="event-title">Departure Snacks</div>
+              <div class="event-time">8:00 AM</div>
+              <div class="event-title">Awards Ceremony</div>
+              <div class="event-sub">Amphitheater</div>
             </div>
           </div>
 
           <div class="event-item">
             <div class="event-icon">🧹</div>
             <div class="event-body">
-              <div class="event-time">8:00 – 10:00 AM</div>
-              <div class="event-title">Camp Cleanup &amp; Checkout</div>
-              <div class="event-sub">Leave no trace · Campsite inspection</div>
+              <div class="event-time">8:30 AM</div>
+              <div class="event-title">Camp Clean Up &amp; Check Out</div>
+              <div class="event-sub">Entire Camp Ground · Leave no trace · Campsite inspection</div>
             </div>
           </div>
 
@@ -958,7 +957,7 @@
             <div class="event-body">
               <div class="event-time">After Departure</div>
               <div class="event-title">Ward Meal &amp; Debrief</div>
-              <div class="event-sub">Wards stop together on the way home to eat and reflect on camp. Golden Corral Buffet & Grill, 665 7200 S, Midvale, UT 84047 or Chuck-A-Rama - 12344 Minuteman Dr, Draper, UT 84020. Both opens at 11:00 AM</div>
+              <div class="event-sub">Wards stop together on the way home. Golden Corral Buffet &amp; Grill, 665 7200 S, Midvale, UT 84047 or Chuck-A-Rama, 12344 Minuteman Dr, Draper, UT 84020. Both open at 11:00 AM. Plan for 12:30–1:00 PM pickup at Skyridge.</div>
             </div>
           </div>
         </div>
