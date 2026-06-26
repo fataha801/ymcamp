@@ -441,6 +441,52 @@
       color: var(--navy);
     }
 
+    /* ── CAMP RULES ── */
+    .rules-section { margin-top: var(--spacing-xl); }
+
+    .rules-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px var(--spacing-md);
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      padding: var(--spacing-md);
+    }
+
+    @media (max-width: 600px) {
+      .rules-grid { grid-template-columns: 1fr; }
+    }
+
+    .rule-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 6px;
+      border-bottom: 1px solid var(--stone);
+    }
+
+    .rule-item:last-child { border-bottom: none; }
+
+    .rule-icon {
+      font-size: .9rem;
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      background: var(--cream);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    .rule-text {
+      font-size: .78rem;
+      color: var(--navy);
+      line-height: 1.45;
+    }
+
     /* ── FOOTER ── */
     footer {
       background: var(--navy);
@@ -982,6 +1028,53 @@
         <span class="throughout-tag gold">Brotherhood Activities</span>
         <span class="throughout-tag">Spiritual Growth</span>
         <span class="throughout-tag">Team Competitions</span>
+      </div>
+    </div>
+
+    <!-- CAMP RULES -->
+    <div class="rules-section">
+      <div class="section-divider" style="margin-top: var(--spacing-xl); margin-bottom: var(--spacing-md);">
+        <span class="section-divider-line"></span>
+        <span class="section-divider-label">Camp Rules</span>
+        <span class="section-divider-line"></span>
+      </div>
+      <div class="rules-grid">
+        <div class="rule-item">
+          <div class="rule-icon">🦺</div>
+          <div class="rule-text">Follow all safety instructions from leaders at all times.</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">📵</div>
+          <div class="rule-text">No electronics or phones during activities — phones allowed in camp ground areas only.</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">👥</div>
+          <div class="rule-text">Buddy system — never go anywhere alone.</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">🌙</div>
+          <div class="rule-text">Lights out at 10:30 PM. Quiet hours until 6:30 AM.</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">🌿</div>
+          <div class="rule-text">Respect nature. Leave no trace. Pack it in, pack it out.</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">🤝</div>
+          <div class="rule-text">Be kind. No bullying, hazing, or exclusion of any kind.</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">👟</div>
+          <div class="rule-text">Wear closed-toe shoes during all outdoor activities.</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">🗺️</div>
+          <div class="rule-text">Stay within camp boundaries unless accompanied by an adult leader.</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">🚨</div>
+          <div class="rule-text">Report any injury, illness, or concern to a leader immediately.</div>
+        </div>
       </div>
     </div>
 
