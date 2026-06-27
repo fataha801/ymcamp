@@ -501,14 +501,11 @@
       updated_at: new Date().toISOString(),
     };
 
-    const existing = inventory[item_id];
-    let result;
-
-    if (existing && existing.id) {
-      result = await db.from('inventory').update(payload).eq('id', existing.id).select().single();
-    } else {
-      result = await db.from('inventory').insert([payload]).select().single();
-    }
+    const result = await db
+      .from('inventory')
+      .upsert(payload, { onConflict: 'item_id' })
+      .select()
+      .single();
 
     if (result.error) throw result.error;
     inventory[item_id] = result.data;
